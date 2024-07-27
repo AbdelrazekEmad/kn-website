@@ -1,5 +1,6 @@
 // stores/counter.js
 import { defineStore } from "pinia";
+import categoriesApi from "@/apis/categories.api";
 
 export const useCategoriesStore = defineStore("categories", {
   state: () => {
