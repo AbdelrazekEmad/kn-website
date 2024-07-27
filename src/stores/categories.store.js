@@ -18,7 +18,6 @@ export const useCategoriesStore = defineStore("categories", {
     // all actions include async code
     async getAllCategories() {
       // request here
-      categoriesApi.get()
     },
   },
 });
