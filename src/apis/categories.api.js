@@ -1,9 +1,9 @@
 import APIClients from "@/shared/helpers/apis/APIClients.helper";
 
-class CategoriesApi extends APIClients {
+class CategoriesAPI extends APIClients {
   constructor() {
     super("categories");
   }
 }
 
-export default new CategoriesApi();
+export default new CategoriesAPI();

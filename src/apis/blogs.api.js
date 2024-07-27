@@ -1,9 +1,9 @@
 import APIClients from "@/shared/helpers/apis/APIClients.helper";
 
-class BlogsApi extends APIClients {
+class BlogsAPI extends APIClients {
   constructor() {
     super("blogs");
   }
 }
 
-export default new BlogsApi();
+export default new BlogsAPI();
