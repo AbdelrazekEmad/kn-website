@@ -16,7 +16,7 @@ export const useCategoriesStore = defineStore("categories", {
   },
   actions: {
     // all actions include async code
-    getAllCategories() {
+    async getAllCategories() {
       // request here
     },
   },

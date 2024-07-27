@@ -1,4 +1,5 @@
 import axios from "axios";
+import Trans from "@/i18n/translation";
 const VITE_BASE_URL_REQUEST = import.meta.env.VITE_BASE_URL_REQUEST;
 
 class APIClients {
@@ -6,46 +7,32 @@ class APIClients {
     this.targetRequestUrl = targetRequestUrl;
   }
 
-  get(requestQuery = "", options = {}, baseLang = "ar") {
-    return axios.get(
-      `${VITE_BASE_URL_REQUEST}/${baseLang}/api/${this.targetRequestUrl}/${requestQuery}`,
-      options
-    );
+  get url() {
+    return `${VITE_BASE_URL_REQUEST}/${Trans.currentLocale}/${this.targetRequestUrl}`;
   }
 
-  show(requestQuery = "", id, options = {}, baseLang = "ar") {
-    return axios.get(
-      `${VITE_BASE_URL_REQUEST}/${baseLang}/api/${this.targetRequestUrl}/${requestQuery}/${id}`,
-      options
-    );
+  get(requestQuery = "", options = {}) {
+    return axios.get(`${this.url}/${requestQuery}`, options);
   }
 
-  post(requestQuery = "", options = {}, baseLang = "ar") {
-    return axios.post(
-      `${VITE_BASE_URL_REQUEST}/${baseLang}/api/${this.targetRequestUrl}/${requestQuery}`,
-      options
-    );
+  show(requestQuery = "", id, options = {}) {
+    return axios.get(`${this.url}/${requestQuery}/${id}`, options);
   }
 
-  delete(requestQuery = "", id, options = {}, baseLang = "ar") {
-    return axios.delete(
-      `${VITE_BASE_URL_REQUEST}/${baseLang}/api/${this.targetRequestUrl}/${requestQuery}/${id}`,
-      options
-    );
+  post(requestQuery = "", options = {}) {
+    return axios.post(`${this.url}/${requestQuery}`, options);
   }
 
-  put(requestQuery = "", id, options = {}, baseLang = "ar") {
-    return axios.put(
-      `${VITE_BASE_URL_REQUEST}/${baseLang}/api/${this.targetRequestUrl}/${requestQuery}/${id}`,
-      options
-    );
+  delete(requestQuery = "", id, options = {}) {
+    return axios.delete(`${this.url}/${requestQuery}/${id}`, options);
   }
 
-  patch(requestQuery = "", id, options = {}, baseLang = "ar") {
-    return axios.patch(
-      `${VITE_BASE_URL_REQUEST}/${baseLang}/api/${this.targetRequestUrl}/${requestQuery}/${id}`,
-      options
-    );
+  put(requestQuery = "", id, options = {}) {
+    return axios.put(`${this.url}/${requestQuery}/${id}`, options);
+  }
+
+  patch(requestQuery = "", id, options = {}) {
+    return axios.patch(`${this.url}/${requestQuery}/${id}`, options);
   }
 }
 
