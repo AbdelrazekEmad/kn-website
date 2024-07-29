@@ -1,0 +1,9 @@
+:root {
+  --main-font: "Tajawal", sans-serif;
+  --secondary-font: "Tajawal", sans-serif;
+}
+
+:root[dir="ltr"] {
+  --main-font: "Poppins", sans-serif;
+  --secondary-font: "Cinzel Decorative", serif;
+}
