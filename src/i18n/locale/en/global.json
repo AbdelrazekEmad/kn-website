@@ -3,6 +3,10 @@
     "LOCALE": {
       "en": "English",
       "ar": "Arabic"
+    },
+    "NAVS": {
+      "HOME": "Home",
+      "BLOG": "Blog"
     }
   }
 }
