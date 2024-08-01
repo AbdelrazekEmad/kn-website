@@ -1,6 +1,7 @@
 {
   "BLOG": {
     "MAIN_BANNER": "Blogs",
-    "READ_MORE": "Read More"
+    "READ_MORE": "Read More",
+    "ADMIN": "Admin"
   }
 }

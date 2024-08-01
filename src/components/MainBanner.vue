@@ -15,7 +15,23 @@
         </nav>
         <h1 class="main-banner__header">{{ bannerTitle }}</h1>
       </template>
-      <template v-if="type === 'single-blog'">Single Blog</template>
+      <template v-if="type === 'single-blog'">
+        <h1 class="main-banner__header">{{ blogData.name }}</h1>
+        <div class="blog-data">
+          <div class="blog-data__item">
+            <i class="fa-regular fa-circle-user"></i>
+            {{ $t("BLOG.ADMIN") }}
+          </div>
+          <div class="blog-data__item">
+            <i class="fa-regular fa-circle-user"></i>
+            {{ blogData.date }}
+          </div>
+          <div class="blog-data__item">
+            <i class="fa-regular fa-circle-user"></i>
+            {{ blogData.time }}
+          </div>
+        </div>
+      </template>
     </div>
   </div>
 </template>
@@ -40,6 +56,10 @@ export default {
     bannerTitle: {
       type: String,
       default: "",
+    },
+    blogData: {
+      type: Object,
+      default: {},
     },
   },
   data() {
@@ -74,6 +94,7 @@ export default {
     text-transform: capitalize;
     font-weight: 400;
     font-size: 50px;
+    text-align: center;
   }
 
   .breadcrumb {
@@ -94,6 +115,20 @@ export default {
       font-family: "Font Awesome 6 Free";
       font-weight: 900;
       color: var(--main-color);
+    }
+  }
+
+  .blog-data {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    &__item {
+      color: #fff;
+
+      i {
+        color: var(--main-color);
+      }
     }
   }
 }

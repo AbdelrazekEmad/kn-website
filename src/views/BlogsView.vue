@@ -7,13 +7,16 @@
           <div class="blog">
             <div class="blog__body">
               <img :src="blog.img" alt="" class="blog__img img-fluid" />
-              <a href="" class="blog__title" :title="blog.name">{{ blog.name }}</a>
+              <!-- <a href="" class="blog__title" :title="blog.name">{{ blog.name }}</a> -->
+
+              <RouterLink :to="Tr.i18nRoute({ name: 'single-blog-page', params: { id: blog.id } })" class="blog__title" :title="blog.name">
+                {{ blog.name }}
+              </RouterLink>
+
               <p class="blog__description">{{ blog.description }}</p>
               <a href="" class="blog__read-more">{{ $t("BLOG.READ_MORE") }} <i class="fa-solid fa-angles-right"></i></a>
             </div>
-            <div class="blog__footer">
-              {{ blog.date }}
-            </div>
+            <div class="blog__footer">{{ blog.date }} . {{ blog.time }}</div>
           </div>
         </div>
       </div>
@@ -25,6 +28,7 @@
 import { useBlogsStore } from "@/stores/blogs.store";
 import { mapState, mapActions } from "pinia";
 import MainBanner from "@/components/MainBanner.vue";
+import Tr from "@/i18n/translation";
 
 export default {
   name: "BlogsView",
@@ -33,6 +37,7 @@ export default {
   },
   data() {
     return {
+      Tr: Tr,
       blogs: [
         {
           id: 1,
@@ -40,6 +45,7 @@ export default {
           name: "lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem",
           description: "lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem",
           date: "October 6, 2023",
+          time: "12:36 am",
         },
         {
           id: 2,
@@ -47,6 +53,7 @@ export default {
           name: "lorem lorem lorem lorem lorem",
           description: "lorem lorem lorem lorem lorem lorem lorem",
           date: "October 6, 2023",
+          time: "12:36 am",
         },
         {
           id: 3,
@@ -54,6 +61,7 @@ export default {
           name: "lorem lorem lorem lorem lorem",
           description: "lorem lorem lorem lorem lorem lorem lorem",
           date: "October 6, 2023",
+          time: "12:36 am",
         },
         {
           id: 4,
@@ -61,6 +69,7 @@ export default {
           name: "lorem lorem lorem lorem lorem",
           description: "lorem lorem lorem lorem lorem lorem lorem",
           date: "October 6, 2023",
+          time: "12:36 am",
         },
         {
           id: 5,
@@ -68,6 +77,7 @@ export default {
           name: "lorem lorem lorem lorem lorem",
           description: "lorem lorem lorem lorem lorem lorem lorem",
           date: "October 6, 2023",
+          time: "12:36 am",
         },
         {
           id: 6,
@@ -75,6 +85,7 @@ export default {
           name: "lorem lorem lorem lorem lorem",
           description: "lorem lorem lorem lorem lorem lorem lorem",
           date: "October 6, 2023",
+          time: "12:36 am",
         },
       ],
     };
