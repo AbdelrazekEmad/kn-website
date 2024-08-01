@@ -10,7 +10,9 @@
                 {{ $t("GLOBAL.NAVS.HOME") }}
               </RouterLink>
             </li>
-            <li class="breadcrumb-item active" aria-current="page">{{ currentPage }}</li>
+            <li class="breadcrumb-item active" aria-current="page">
+              {{ currentPage }}
+            </li>
           </ol>
         </nav>
         <h1 class="main-banner__header">{{ bannerTitle }}</h1>
@@ -29,6 +31,10 @@
           <div class="blog-data__item">
             <i class="fa-regular fa-circle-user"></i>
             {{ blogData.time }}
+          </div>
+          <div class="blog-data__item">
+            <i class="fa-solid fa-heart"></i>
+            {{ blogData.loves }} {{ $t("BLOG.LOVE") }}
           </div>
         </div>
       </template>
@@ -72,14 +78,14 @@ export default {
 
 <style lang="scss" scoped>
 .main-banner {
-  height: 450px;
+  min-height: 450px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 
   &__content {
     width: 100%;
-    height: 100%;
+    min-height: 450px;
     display: flex;
     align-items: center;
     justify-content: center;
