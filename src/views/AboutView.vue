@@ -14,7 +14,7 @@
     </section>
 
     <FeaturesSection />
-
+    <TeachersCards />
     <FAQSection />
 </template>
 
@@ -26,6 +26,8 @@ import AboutContent from "@/components/AboutContent.vue";
 import VisionBox from "@/components/VisionBox.vue";
 import FeaturesSection from "@/components/FeaturesSection.vue";
 import FAQSection from "@/components/FAQSection.vue";
+import TeachersCards from "@/components/TeachersCards.vue";
+
 
 export default {
     name: "AboutView",
@@ -34,7 +36,8 @@ export default {
         AboutContent,
         VisionBox,
         FeaturesSection,
-        FAQSection
+        FAQSection,
+        TeachersCards
     },
     data() {
         return {
