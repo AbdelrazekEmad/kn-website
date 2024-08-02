@@ -16,6 +16,7 @@
     <FeaturesSection />
     <TeachersCards />
     <FAQSection />
+    <LatestNews />
 </template>
 
 <script>
@@ -27,7 +28,7 @@ import VisionBox from "@/components/VisionBox.vue";
 import FeaturesSection from "@/components/FeaturesSection.vue";
 import FAQSection from "@/components/FAQSection.vue";
 import TeachersCards from "@/components/TeachersCards.vue";
-
+import LatestNews from "@/components/LatestNews.vue";
 
 export default {
     name: "AboutView",
@@ -37,7 +38,8 @@ export default {
         VisionBox,
         FeaturesSection,
         FAQSection,
-        TeachersCards
+        TeachersCards,
+        LatestNews
     },
     data() {
         return {
