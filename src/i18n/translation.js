@@ -65,7 +65,8 @@ const Trans = {
     Trans.currentLocale = newLocale;
     document.querySelector("html").setAttribute("lang", newLocale);
     document.querySelector("html").setAttribute("dir", newLocale === "ar" ? "rtl" : "ltr");
-    newLocale === "ar" ? document.querySelector("body").classList.add("rtl") : document.querySelector("body").classList.remove("rtl");
+    newLocale === "ar" ? document.querySelector("body").classList.remove("wrapper-ltr") : document.querySelector("body").classList.add("wrapper-ltr");
+    newLocale === "ar" ? (document.querySelector("#bootstrap").href = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.rtl.min.css") : (document.querySelector("#bootstrap").href = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css");
     localStorage.setItem("user-locale", newLocale);
   },
 

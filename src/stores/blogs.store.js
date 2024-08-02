@@ -1,5 +1,6 @@
 // stores/counter.js
 import { defineStore } from "pinia";
+import blogsApi from "@/apis/blogs.api";
 
 export const useBlogsStore = defineStore("blogs", {
   state: () => {

@@ -1,5 +1,6 @@
 // stores/counter.js
 import { defineStore } from "pinia";
+import categoriesApi from "@/apis/categories.api";
 
 export const useCategoriesStore = defineStore("categories", {
   state: () => {
@@ -15,7 +16,7 @@ export const useCategoriesStore = defineStore("categories", {
   },
   actions: {
     // all actions include async code
-    getAllCategories() {
+    async getAllCategories() {
       // request here
     },
   },
