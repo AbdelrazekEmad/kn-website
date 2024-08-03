@@ -108,7 +108,7 @@ export default {
       .router-link-active,
       &.active {
         text-decoration: none;
-        color: #fff;
+        color: var(--white-color);
 
         i {
           color: var(--main-color);
@@ -130,7 +130,7 @@ export default {
     gap: 8px;
 
     &__item {
-      color: #fff;
+      color: var(--white-color);
 
       i {
         color: var(--main-color);

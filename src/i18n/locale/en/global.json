@@ -6,7 +6,8 @@
     },
     "NAVS": {
       "HOME": "Home",
-      "BLOG": "Blog"
+      "BLOG": "Blog",
+      "CONTACT": "Contact"
     }
   }
 }
