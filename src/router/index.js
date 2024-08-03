@@ -34,6 +34,11 @@ const router = createRouter({
           name: "categories-page",
           component: () => import("@/views/CategoriesView.vue"),
         },
+        {
+          path: "contact-us",
+          name: "contact-us-page",
+          component: () => import("@/views/ContactUsView.vue"),
+        },
       ],
     },
   ],
