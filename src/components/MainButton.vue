@@ -27,6 +27,7 @@ export default {
 
 <style lang="scss" scoped>
 .main-button {
+    width: fit-content;
     background-color: var(--main-color);
     padding: 12px 24px;
     border-radius: 12px;

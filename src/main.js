@@ -1,6 +1,8 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 
+import 'vue3-carousel/dist/carousel.css'
+
 const app = createApp(App);
 
 // Store configuration

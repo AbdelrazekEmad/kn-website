@@ -1,7 +1,7 @@
 <template>
     <section class="features py-5">
         <div class="container">
-            <div class="row g-4">
+            <div class="row">
                 <div class="col-12 col-lg-6">
                     <div class="features__boxes">
                         <h2 class="features__main-title">
@@ -114,7 +114,7 @@ export default {
         display: flex;
         flex-direction: column;
         gap: 8px;
-        margin-top: 8px;
+        margin-top: 12px;
 
         @media (max-width: 768px) {
             align-items: center;
