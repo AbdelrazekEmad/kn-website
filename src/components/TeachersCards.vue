@@ -3,8 +3,8 @@
         <div class="container">
             <SectionTitle title="OUR TEACHERS" color="#101010" />
 
-            <div class="row g-4">
-                <div class="col-12 col-xl-3 col-md-6" v-for="teacher in teachers" :key="teacher.id">
+            <Carousel v-bind="getSettings" :breakpoints="breakpoints">
+                <Slide v-for="teacher in teachers" :key="teacher.id">
                     <div class="teacher__box">
                         <img class="teacher__img" :src="teacher.avatar" :alt="teacher.name" :title="teacher.name">
 
@@ -16,19 +16,28 @@
                             {{ teacher.text }}
                         </p>
                     </div>
-                </div>
-            </div>
+                </Slide>
+
+                <template #addons>
+                    <Navigation />
+                </template>
+            </Carousel>
         </div>
     </section>
 </template>
 
 <script>
 import SectionTitle from './SectionTitle.vue'
+import { Carousel, Navigation, Slide } from 'vue3-carousel'
+import Trans from "@/i18n/translation";
 
 export default {
     name: "TeachersCards",
     components: {
-        SectionTitle
+        SectionTitle,
+        Carousel,
+        Slide,
+        Navigation,
     },
     data() {
         return {
@@ -57,7 +66,33 @@ export default {
                     text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque modi amet atque ut ipsam voluptatibus quasi, quod',
                     avatar: 'https://placehold.co/900x600'
                 },
-            ]
+            ],
+
+            breakpoints: {
+                // 700px and up
+                768: {
+                    itemsToShow: 2,
+                    snapAlign: 'start',
+                },
+                991: {
+                    itemsToShow: 3,
+                    snapAlign: 'start',
+                },
+                1200: {
+                    itemsToShow: 4,
+                    snapAlign: 'start',
+                }
+            },
+        }
+    },
+    computed: {
+        getSettings() {
+            return {
+                snapAlign: 'start',
+                dir: Trans.currentLocale == 'ar' ? 'rlt' : 'ltr',
+                autoplay: 2000,
+                wrapAround: true
+            }
         }
     },
 }
@@ -68,16 +103,16 @@ export default {
     &__box {
         height: 100%;
         padding: 24px 32px;
+        margin: 0px 8px;
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 8px;
         border-radius: 8px;
-        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
         transition: all 0.3s linear;
 
         &:hover {
-            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
             transform: scale(1.01);
 
             .teacher__title {
@@ -109,6 +144,12 @@ export default {
         margin-bottom: 0;
         color: var(--text-color);
         text-align: center;
+    }
+}
+
+:deep {
+    .carousel__viewport{
+        padding: 10px 0;
     }
 }
 </style>
