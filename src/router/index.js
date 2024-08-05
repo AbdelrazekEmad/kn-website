@@ -31,8 +31,26 @@ const router = createRouter({
         },
         {
           path: "categories",
-          name: "categories-page",
-          component: () => import("@/views/CategoriesView.vue"),
+          redirect: { name: 'categories-page' },
+          children: [
+            {
+              path: "",
+              name: "categories-page",
+              component: () => import("@/views/CategoriesView.vue"),
+            },
+            {
+              path: ":id",
+              props: true,
+              name: "single-categories-page",
+              component: () => import("@/views/CategoryCoursesView.vue"),
+            },
+          ]
+        },
+        {
+          path: "courses/:id",
+          name: "single-course-page",
+          props:true,
+          component: () => import("@/views/SingleCourseView.vue"),
         },
         {
           path: "contact-us",
