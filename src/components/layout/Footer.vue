@@ -10,7 +10,7 @@ export default {};
 
 <style lang="scss" scoped>
 footer {
-  background-color: var(--blue-color);
+  background-color: var(--dark-main-color);
   color: var(--white-color);
   font-size: 22px;
   font-size: 500;

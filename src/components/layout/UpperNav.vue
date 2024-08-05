@@ -29,7 +29,7 @@
 
 <style lang="scss" scoped>
 .upper-nav {
-  background-color: var(--blue-color);
+  background-color: var(--dark-main-color);
   color: var(--white-color);
   padding: 12px;
 
@@ -41,7 +41,7 @@
     padding: 4px 8px;
 
     &:hover {
-      color: var(--dark-main-color);
+      color: var(--black-color);
     }
   }
 }
