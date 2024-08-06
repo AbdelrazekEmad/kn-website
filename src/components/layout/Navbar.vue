@@ -95,11 +95,11 @@ export default {
     font-weight: 400;
     font-size: 16px;
     transition: all 0.3s ease-in-out;
-    &.router-link-exact-active,
+    &.router-link-active,
     &:hover {
       color: var(--main-color);
     }
-    &.router-link-exact-active {
+    &.router-link-active {
       font-weight: 500;
     }
   }
