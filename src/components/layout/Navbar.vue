@@ -19,7 +19,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav gap-md-3 mb-2 mb-lg-0">
             <li class="nav-item" v-for="link in navLinks" :key="link.id">
-              <router-link class="nav-link" :to="Tr.i18nRoute(link.to)">
+              <router-link
+                class="nav-link"
+                :to="Tr.i18nRoute(link.to)"
+              >
                 {{ $t(link.nameKey) }}
               </router-link>
             </li>
