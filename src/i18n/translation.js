@@ -33,6 +33,7 @@ const Trans = {
 
   guessDefaultLocale() {
     const userPersistedLocale = Trans.getPersistedLocale();
+    console.log("userPersistedLocale", userPersistedLocale);
     if (userPersistedLocale) {
       return userPersistedLocale;
     }
@@ -81,9 +82,11 @@ const Trans = {
 
   async routeMiddleware(to, _from, next) {
     const paramLocale = to.params.locale;
+    console.log(paramLocale);
 
     if (!Trans.isLocaleSupported(paramLocale)) {
-      return next(Trans.guessDefaultLocale());
+      let guess = Trans.guessDefaultLocale();
+      return next({ path: `${guess}/not-found` });
     }
 
     await Trans.switchLanguage(paramLocale);
