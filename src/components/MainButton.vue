@@ -19,7 +19,7 @@ export default {
     },
     methods: {
         handelNavigation() {
-            this.router.push({ name: this.link })
+            this.$router.push(this.link)
         }
     }
 }

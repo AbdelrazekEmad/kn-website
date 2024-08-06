@@ -1,14 +1,15 @@
 <template>
+  <!-- TODO: get category replace title -->
   <main-banner
     :type="'breadcrumb'"
-    :banner-title="$t('CATEGORY.MAIN_BANNER')"
-    :current-page="$t('GLOBAL.NAVS.CATEGORIES')"
+    :banner-title="`Category ${id}`"
+    :current-page="$t('CATEGORY.TITLE')"
     :img-url="'https://placehold.co/900x600'"
   />
   <ListSectionSection
-    :list="categoriesList"
-    :title="$t('CATEGORY.SECTION_TITLE')"
-    router-name="single-categories-page"
+    :list="coursesList"
+    :title="$t('COURSE.SECTION_TITLE')"
+    router-name="single-course-page"
   />
 </template>
 
@@ -19,7 +20,13 @@ import MainBanner from "@/components/MainBanner.vue";
 import ListSectionSection from "@/components/ListSection.vue";
 import Tr from "@/i18n/translation";
 export default {
-  name: "ListSectionView",
+  name: "CategoryCoursesView",
+  props: {
+    id: {
+      type: String,
+      default: "",
+    },
+  },
   components: {
     MainBanner,
     ListSectionSection,
@@ -27,45 +34,45 @@ export default {
   data() {
     return {
       Tr: Tr,
-      categoriesList: [
+      coursesList: [
         {
           id: 1,
-          name: "Category 1",
+          name: "Course 1",
           text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque modi amet atque ut ipsam voluptatibus quasi, quod Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque modi amet atque ut ipsam voluptatibus quasi, quod",
           img: "https://placehold.co/900x600",
           link: "test",
         },
         {
           id: 2,
-          name: "Category 2",
+          name: "Course 2",
           text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque modi amet atque ut ipsam voluptatibus quasi, quod Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque modi amet atque ut ipsam voluptatibus quasi, quod",
           img: "https://placehold.co/900x600",
           link: "test",
         },
         {
           id: 3,
-          name: "Category 3",
+          name: "Course 3",
           text: " Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque modi amet atque ut ipsam voluptatibus quasi, quod Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque modi amet atque ut ipsam voluptatibus quasi, quod",
           img: "https://placehold.co/900x600",
           link: "test",
         },
         {
           id: 4,
-          name: "Category 4",
+          name: "Course 4",
           text: " Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque modi amet atque ut ipsam voluptatibus quasi, quod Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque modi amet atque ut ipsam voluptatibus quasi, quod",
           img: "https://placehold.co/900x600",
           link: "test",
         },
         {
           id: 5,
-          name: "Category 5",
+          name: "Course 5",
           text: " Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque modi amet atque ut ipsam voluptatibus quasi, quod Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque modi amet atque ut ipsam voluptatibus quasi, quod",
           img: "https://placehold.co/900x600",
           link: "test",
         },
         {
           id: 6,
-          name: "Category 6",
+          name: "Course 6",
           text: " Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque modi amet atque ut ipsam voluptatibus quasi, quod Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque modi amet atque ut ipsam voluptatibus quasi, quod",
           img: "https://placehold.co/900x600",
           link: "test",

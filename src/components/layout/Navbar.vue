@@ -22,7 +22,6 @@
               <router-link
                 class="nav-link"
                 :to="Tr.i18nRoute(link.to)"
-                active-class="active"
               >
                 {{ $t(link.nameKey) }}
               </router-link>
@@ -96,11 +95,11 @@ export default {
     font-weight: 400;
     font-size: 16px;
     transition: all 0.3s ease-in-out;
-    &.active,
+    &.router-link-exact-active,
     &:hover {
       color: var(--main-color);
     }
-    &.active {
+    &.router-link-exact-active {
       font-weight: 500;
     }
   }
