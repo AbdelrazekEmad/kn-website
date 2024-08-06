@@ -1,15 +1,17 @@
 <template>
-  <main-banner
-    :type="'breadcrumb'"
-    :banner-title="$t('CATEGORY.MAIN_BANNER')"
-    :current-page="$t('GLOBAL.NAVS.CATEGORIES')"
-    :img-url="'https://placehold.co/900x600'"
-  />
-  <ListSectionSection
-    :list="categoriesList"
-    :title="$t('CATEGORY.SECTION_TITLE')"
-    router-name="single-categories-page"
-  />
+  <div>
+    <main-banner
+      :type="'breadcrumb'"
+      :banner-title="$t('CATEGORY.MAIN_BANNER')"
+      :current-page="$t('GLOBAL.NAVS.CATEGORIES')"
+      :img-url="'https://placehold.co/900x600'"
+    />
+    <ListSectionSection
+      :list="categoriesList"
+      :title="$t('CATEGORY.SECTION_TITLE')"
+      router-name="single-categories-page"
+    />
+  </div>
 </template>
 
 <script>

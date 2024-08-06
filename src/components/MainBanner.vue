@@ -105,7 +105,7 @@ export default {
 
   .breadcrumb {
     &-item {
-      .router-link-active,
+      a,
       &.active {
         text-decoration: none;
         color: var(--white-color);

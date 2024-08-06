@@ -1,27 +1,50 @@
 <template>
-  <main-banner :type="'breadcrumb'" :banner-title="$t('BLOG.MAIN_BANNER')" :current-page="$t('GLOBAL.NAVS.BLOG')" :img-url="'https://placehold.co/900x600'" />
-  <section class="my-5">
-    <div class="container">
-      <div class="row g-4">
-        <div class="col-12 col-md-6 col-lg-4" v-for="blog in blogs" :key="blog.id">
-          <div class="blog">
-            <div class="blog__body">
-              <img :src="blog.img" alt="" class="blog__img img-fluid" />
-              <!-- <a href="" class="blog__title" :title="blog.name">{{ blog.name }}</a> -->
+  <div>
+    <main-banner
+      :type="'breadcrumb'"
+      :banner-title="$t('BLOG.MAIN_BANNER')"
+      :current-page="$t('GLOBAL.NAVS.BLOG')"
+      :img-url="'https://placehold.co/900x600'"
+    />
+    <section class="my-5">
+      <div class="container">
+        <div class="row g-4">
+          <div
+            class="col-12 col-md-6 col-lg-4"
+            v-for="blog in blogs"
+            :key="blog.id"
+          >
+            <div class="blog">
+              <div class="blog__body">
+                <img :src="blog.img" alt="" class="blog__img img-fluid" />
+                <!-- <a href="" class="blog__title" :title="blog.name">{{ blog.name }}</a> -->
 
-              <RouterLink :to="Tr.i18nRoute({ name: 'single-blog-page', params: { id: blog.id } })" class="blog__title" :title="blog.name">
-                {{ blog.name }}
-              </RouterLink>
+                <RouterLink
+                  :to="
+                    Tr.i18nRoute({
+                      name: 'single-blog-page',
+                      params: { id: blog.id },
+                    })
+                  "
+                  class="blog__title"
+                  :title="blog.name"
+                >
+                  {{ blog.name }}
+                </RouterLink>
 
-              <p class="blog__description">{{ blog.description }}</p>
-              <a href="" class="blog__read-more">{{ $t("BLOG.READ_MORE") }} <i class="fa-solid fa-angles-right"></i></a>
+                <p class="blog__description">{{ blog.description }}</p>
+                <a href="" class="blog__read-more"
+                  >{{ $t("BLOG.READ_MORE") }}
+                  <i class="fa-solid fa-angles-right"></i
+                ></a>
+              </div>
+              <div class="blog__footer">{{ blog.date }} . {{ blog.time }}</div>
             </div>
-            <div class="blog__footer">{{ blog.date }} . {{ blog.time }}</div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 </template>
 
 <script>
@@ -43,7 +66,8 @@ export default {
           id: 1,
           img: "https://placehold.co/900x600",
           name: "lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem",
-          description: "lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem",
+          description:
+            "lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem",
           date: "October 6, 2023",
           time: "12:36 am",
         },

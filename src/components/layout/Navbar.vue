@@ -19,10 +19,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav gap-md-3 mb-2 mb-lg-0">
             <li class="nav-item" v-for="link in navLinks" :key="link.id">
-              <router-link
-                class="nav-link"
-                :to="Tr.i18nRoute(link.to)"
-              >
+              <router-link class="nav-link" :to="Tr.i18nRoute(link.to)">
                 {{ $t(link.nameKey) }}
               </router-link>
             </li>
@@ -95,11 +92,11 @@ export default {
     font-weight: 400;
     font-size: 16px;
     transition: all 0.3s ease-in-out;
-    &.router-link-exact-active,
+    &.router-link-active,
     &:hover {
       color: var(--main-color);
     }
-    &.router-link-exact-active {
+    &.router-link-active {
       font-weight: 500;
     }
   }

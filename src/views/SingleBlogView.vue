@@ -1,9 +1,11 @@
 <template>
-  <main-banner :type="'single-blog'" :img-url="blog.img" :blog-data="blog" />
-  <div class="single-blog">
-    <img class="single-blog__img" :src="blog.img" alt="" />
-    <div class="container">
-      <div class="single-blog__content" v-html="blog.description"></div>
+  <div>
+    <main-banner :type="'single-blog'" :img-url="blog.img" :blog-data="blog" />
+    <div class="single-blog">
+      <img class="single-blog__img" :src="blog.img" alt="" />
+      <div class="container">
+        <div class="single-blog__content" v-html="blog.description"></div>
+      </div>
     </div>
   </div>
 </template>

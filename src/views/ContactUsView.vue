@@ -1,62 +1,99 @@
 <template>
-  <main-banner :type="'breadcrumb'" :banner-title="$t('CONTACT.MAIN_BANNER')" :current-page="$t('GLOBAL.NAVS.CONTACT')" :img-url="'https://placehold.co/900x600'" />
-  <section class="contact-us py-5">
-    <div class="container">
-      <div class="row align-items-center g-5">
-        <div class="col">
-          <div class="send-email">
-            <div class="send-email__icon">
-              <i class="fa-solid fa-envelope"></i>
+  <div>
+    <main-banner
+      :type="'breadcrumb'"
+      :banner-title="$t('CONTACT.MAIN_BANNER')"
+      :current-page="$t('GLOBAL.NAVS.CONTACT')"
+      :img-url="'https://placehold.co/900x600'"
+    />
+    <section class="contact-us py-5">
+      <div class="container">
+        <div class="row align-items-center g-5">
+          <div class="col">
+            <div class="send-email">
+              <div class="send-email__icon">
+                <i class="fa-solid fa-envelope"></i>
+              </div>
+              <h4 class="title">{{ $t("CONTACT.SEND_EMAIL") }}</h4>
+              <p class="send-email__paragraph">
+                Sed in libero ut nibh placerat accumsan
+              </p>
+              <button class="send-email__btn">
+                <a :href="'mailto:' + mainEmail">{{ mainEmail }}</a>
+              </button>
             </div>
-            <h4 class="title">{{ $t("CONTACT.SEND_EMAIL") }}</h4>
-            <p class="send-email__paragraph">Sed in libero ut nibh placerat accumsan</p>
-            <button class="send-email__btn">
-              <a :href="'mailto:' + mainEmail">{{ mainEmail }}</a>
-            </button>
+            <h4 class="title">{{ $t("CONTACT.OUR_SOCIAL") }}</h4>
+            <div class="social-media">
+              <a
+                :href="mainFacebook"
+                class="social-media__item"
+                target="_blank"
+              >
+                <i class="fa-brands fa-facebook"></i>
+              </a>
+              <a :href="mainTwitter" class="social-media__item" target="_blank">
+                <i class="fa-brands fa-x-twitter"></i>
+              </a>
+              <a :href="mainYoutube" class="social-media__item" target="_blank">
+                <i class="fa-brands fa-youtube"></i>
+              </a>
+              <a
+                :href="mainInstagram"
+                class="social-media__item"
+                target="_blank"
+              >
+                <i class="fa-brands fa-instagram"></i>
+              </a>
+              <a
+                :href="mainGooglePlay"
+                class="social-media__item"
+                target="_blank"
+              >
+                <i class="fa-brands fa-google-play"></i>
+              </a>
+            </div>
           </div>
-          <h4 class="title">{{ $t("CONTACT.OUR_SOCIAL") }}</h4>
-          <div class="social-media">
-            <a :href="mainFacebook" class="social-media__item" target="_blank">
-              <i class="fa-brands fa-facebook"></i>
-            </a>
-            <a :href="mainTwitter" class="social-media__item" target="_blank">
-              <i class="fa-brands fa-x-twitter"></i>
-            </a>
-            <a :href="mainYoutube" class="social-media__item" target="_blank">
-              <i class="fa-brands fa-youtube"></i>
-            </a>
-            <a :href="mainInstagram" class="social-media__item" target="_blank">
-              <i class="fa-brands fa-instagram"></i>
-            </a>
-            <a :href="mainGooglePlay" class="social-media__item" target="_blank">
-              <i class="fa-brands fa-google-play"></i>
-            </a>
-          </div>
-        </div>
-        <div class="col">
-          <div class="form">
-            <h4 class="title">{{ $t("CONTACT.ASK_QUESTION") }}</h4>
-            <div class="form-group">
-              <label for="name">{{ $t("CONTACT.FORM.NAME.LABEL") }}</label>
-              <input type="text" id="name" :placeholder="$t('CONTACT.FORM.NAME.PLACEHOLDER')" />
-            </div>
-            <div class="form-group">
-              <label for="email">{{ $t("CONTACT.FORM.EMAIL.LABEL") }}</label>
-              <input type="email" id="email" :placeholder="$t('CONTACT.FORM.EMAIL.PLACEHOLDER')" />
-            </div>
-            <div class="form-group">
-              <label for="message">{{ $t("CONTACT.FORM.MESSAGE.LABEL") }}</label>
-              <textarea rows="4" id="message" :placeholder="$t('CONTACT.FORM.MESSAGE.PLACEHOLDER')"></textarea>
-            </div>
+          <div class="col">
+            <div class="form">
+              <h4 class="title">{{ $t("CONTACT.ASK_QUESTION") }}</h4>
+              <div class="form-group">
+                <label for="name">{{ $t("CONTACT.FORM.NAME.LABEL") }}</label>
+                <input
+                  type="text"
+                  id="name"
+                  :placeholder="$t('CONTACT.FORM.NAME.PLACEHOLDER')"
+                />
+              </div>
+              <div class="form-group">
+                <label for="email">{{ $t("CONTACT.FORM.EMAIL.LABEL") }}</label>
+                <input
+                  type="email"
+                  id="email"
+                  :placeholder="$t('CONTACT.FORM.EMAIL.PLACEHOLDER')"
+                />
+              </div>
+              <div class="form-group">
+                <label for="message">{{
+                  $t("CONTACT.FORM.MESSAGE.LABEL")
+                }}</label>
+                <textarea
+                  rows="4"
+                  id="message"
+                  :placeholder="$t('CONTACT.FORM.MESSAGE.PLACEHOLDER')"
+                ></textarea>
+              </div>
 
-            <button class="send-email__btn w-100">
-              <a href="mailto:info@website.com"> {{ $t("CONTACT.FORM.SEND") }} </a>
-            </button>
+              <button class="send-email__btn w-100">
+                <a href="mailto:info@website.com">
+                  {{ $t("CONTACT.FORM.SEND") }}
+                </a>
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 </template>
 
 <script>

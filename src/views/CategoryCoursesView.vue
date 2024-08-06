@@ -1,16 +1,18 @@
 <template>
-  <!-- TODO: get category replace title -->
-  <main-banner
-    :type="'breadcrumb'"
-    :banner-title="`Category ${id}`"
-    :current-page="$t('CATEGORY.TITLE')"
-    :img-url="'https://placehold.co/900x600'"
-  />
-  <ListSectionSection
-    :list="coursesList"
-    :title="$t('COURSE.SECTION_TITLE')"
-    router-name="single-course-page"
-  />
+  <div>
+    <!-- TODO: get category replace title -->
+    <main-banner
+      :type="'breadcrumb'"
+      :banner-title="`Category ${id}`"
+      :current-page="$t('CATEGORY.TITLE')"
+      :img-url="'https://placehold.co/900x600'"
+    />
+    <ListSectionSection
+      :list="coursesList"
+      :title="$t('COURSE.SECTION_TITLE')"
+      router-name="single-course-page"
+    />
+  </div>
 </template>
 
 <script>

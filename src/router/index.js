@@ -3,6 +3,9 @@ import Tr from "@/i18n/translation";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.VITE_BASE_URL),
+  scrollBehavior() {
+    return { top: 0, behavior: 'smooth' }
+  },
   routes: [
     {
       path: "/:locale?",
@@ -11,6 +14,10 @@ const router = createRouter({
       children: [
         {
           path: "",
+          redirect: { name: "home-page" }
+        },
+        {
+          path: "home",
           name: "home-page",
           component: () => import("@/views/HomeView.vue"),
         },
@@ -49,7 +56,7 @@ const router = createRouter({
         {
           path: "courses/:id",
           name: "single-course-page",
-          props:true,
+          props: true,
           component: () => import("@/views/SingleCourseView.vue"),
         },
         {
