@@ -1,21 +1,10 @@
 <template>
   <div class="dropdown">
-    <a
-      class="nav-link dropdown-toggle"
-      href="#"
-      role="button"
-      data-bs-toggle="dropdown"
-      aria-expanded="false"
-    >
+    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
       {{ $t(`GLOBAL.LOCALE.${Tr.currentLocale}`) }}
     </a>
     <ul class="dropdown-menu">
-      <li
-        v-for="lang in languages"
-        :key="`locale-${lang}`"
-        :class="{ selected: locale === lang }"
-        @click="switchLanguage(lang)"
-      >
+      <li v-for="lang in languages" :key="`locale-${lang}`" :class="{ selected: locale === lang }" @click="switchLanguage(lang)">
         <img :src="`src/assets/images/flags/flag-${lang}.png`" width="20" />
         {{ $t(`GLOBAL.LOCALE.${lang}`) }}
       </li>
