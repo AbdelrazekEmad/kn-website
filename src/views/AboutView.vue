@@ -1,11 +1,7 @@
 <template>
   <div>
-    <main-banner
-      :type="'breadcrumb'"
-      :banner-title="$t('ABOUT.MAIN_BANNER')"
-      :current-page="$t('ABOUT.MAIN_BANNER')"
-      :img-url="'https://placehold.co/900x600'"
-    />
+    <main-banner :type="'breadcrumb'" :banner-title="$t('ABOUT.MAIN_BANNER')" :current-page="getBanner?.title"
+      :img-url="getBanner?.image" />
 
     <AboutContent>
       <template #content>
@@ -15,25 +11,8 @@
               {{ $t("ABOUT.MAIN_BANNER") }}
             </h2>
 
-            <p class="about-content__text">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque
-              modi amet atque ut ipsam voluptatibus quasi, quod accusantium, sit
-              perferendis harum temporibus molestias odit alias eum deleniti
-              suscipit nulla recusandae. Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Itaque modi amet atque ut ipsam voluptatibus
-              quasi, quod accusantium, sit perferendis harum temporibus
-              molestias odit alias eum deleniti suscipit nulla recusandae.
-            </p>
-
-            <p class="about-content__text">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque
-              modi amet atque ut ipsam voluptatibus quasi, quod accusantium, sit
-              perferendis harum temporibus molestias odit alias eum deleniti
-              suscipit nulla recusandae. Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Itaque modi amet atque ut ipsam voluptatibus
-              quasi, quod accusantium, sit perferendis harum temporibus
-              molestias odit alias eum deleniti suscipit nulla recusandae.
-            </p>
+            <div v-html="getAboutUs?.content">
+            </div>
 
             <MainButton text="Courses" link="courses" />
           </div>
@@ -41,12 +20,7 @@
 
         <div class="col-12 col-lg-6">
           <div class="about-content__box">
-            <img
-              class="about-content__img"
-              src="https://placehold.co/900x600"
-              alt="about us"
-              title="about us"
-            />
+            <img class="about-content__img" :src="getAboutUs?.image" alt="about us" title="about us" />
           </div>
         </div>
       </template>
@@ -55,18 +29,15 @@
     <section class="py-5">
       <div class="container">
         <div class="row g-4">
-          <div
-            class="col-12 col-lg-6"
-            v-for="vision in visions"
-            :key="vision.id"
-          >
+          <div class="col-12 col-lg-6" v-for="(vision, index) in getVisions" :key="index">
             <VisionBox :title="vision.title" :text="vision.text" />
           </div>
         </div>
       </div>
     </section>
 
-    <FeaturesSection />
+    <FeaturesSection :features="getWhatOffer" />
+
     <TeachersCards />
     <FAQSection />
     <LatestNews />
@@ -83,6 +54,8 @@ import FAQSection from "@/components/FAQSection.vue";
 import TeachersCards from "@/components/TeachersCards.vue";
 import LatestNews from "@/components/LatestNews.vue";
 import MainButton from "@/components/MainButton.vue";
+import { useAboutUsStore } from "@/stores/about-us.store";
+import { mapState, mapActions } from "pinia";
 
 export default {
   name: "AboutView",
@@ -113,6 +86,23 @@ export default {
       ],
     };
   },
+  computed: {
+    ...mapState(useAboutUsStore, ['getBanner', 'getAboutUs', 'getMission', 'getWhatOffer']),
+    getVisions() {
+      return [
+        {
+          title: this.getMission?.title,
+          text: this.getMission?.content
+        }
+      ]
+    }
+  },
+  methods: {
+    ...mapActions(useAboutUsStore, ['getAllAboutUs'])
+  },
+  async beforeMount() {
+    await this.getAllAboutUs()
+  }
 };
 </script>
 
