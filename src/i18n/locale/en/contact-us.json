@@ -1,0 +1,23 @@
+{
+  "CONTACT": {
+    "MAIN_BANNER": "Contact",
+    "SEND_EMAIL": "Send us an Email",
+    "OUR_SOCIAL": "Our Social Media",
+    "ASK_QUESTION": "Ask a question",
+    "FORM": {
+      "NAME": {
+        "LABEL": "Name",
+        "PLACEHOLDER": "Enter Your name"
+      },
+      "EMAIL": {
+        "LABEL": "Email",
+        "PLACEHOLDER": "Enter Your Email Address"
+      },
+      "MESSAGE": {
+        "LABEL": "Message",
+        "PLACEHOLDER": "Enter Your Message"
+      },
+      "SEND": "Send"
+    }
+  }
+}

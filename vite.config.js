@@ -10,7 +10,10 @@ export default defineConfig({
     vue(),
     VueI18nPlugin({
       runtimeOnly: false,
-      include: resolve(dirname(fileURLToPath(import.meta.url)), "./src/i18n/locales/**"),
+      include: resolve(
+        dirname(fileURLToPath(import.meta.url)),
+        "./src/i18n/locales/**"
+      ),
     }),
   ],
   resolve: {
@@ -18,4 +21,5 @@ export default defineConfig({
       "@": fileURLToPath(new URL("./src", import.meta.url)),
     },
   },
+  base: "/",
 });
