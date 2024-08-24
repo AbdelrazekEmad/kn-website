@@ -17,57 +17,64 @@ const router = createRouter({
       },
     },
     {
-      path: "/:locale?/home",
-      name: "home-page",
-      component: () => import("@/views/HomeView.vue"),
-    },
-    {
-      path: "/:locale?/about-us",
-      name: "about-us",
-      component: () => import("@/views/AboutView.vue"),
-    },
-    {
-      path: "/:locale?/blogs",
-      name: "blogs-page",
-      component: () => import("@/views/BlogsView.vue"),
-    },
-    {
-      path: "/:locale?/blogs/:id",
-      name: "single-blog-page",
-      component: () => import("@/views/SingleBlogView.vue"),
-    },
-    {
-      path: "/:locale?/categories",
-      redirect: { name: "categories-page" },
+      path: "/:locale?",
+      component: RouterView,
+      beforeEnter: Tr.routeMiddleware,
       children: [
         {
-          path: "",
-          name: "categories-page",
-          component: () => import("@/views/CategoriesView.vue"),
+          path: "home",
+          name: "home-page",
+          component: () => import("@/views/HomeView.vue"),
         },
         {
-          path: ":id",
+          path: "about-us",
+          name: "about-us",
+          component: () => import("@/views/AboutView.vue"),
+        },
+        {
+          path: "blogs",
+          name: "blogs-page",
+          component: () => import("@/views/BlogsView.vue"),
+        },
+        {
+          path: "blogs/:id",
+          name: "single-blog-page",
+          component: () => import("@/views/SingleBlogView.vue"),
+        },
+        {
+          path: "categories",
+          redirect: { name: "categories-page" },
+          children: [
+            {
+              path: "",
+              name: "categories-page",
+              component: () => import("@/views/CategoriesView.vue"),
+            },
+            {
+              path: ":id",
+              props: true,
+              name: "single-categories-page",
+              component: () => import("@/views/CategoryCoursesView.vue"),
+            },
+          ],
+        },
+        {
+          path: "courses/:id",
+          name: "single-course-page",
           props: true,
-          name: "single-categories-page",
-          component: () => import("@/views/CategoryCoursesView.vue"),
+          component: () => import("@/views/SingleCourseView.vue"),
+        },
+        {
+          path: "contact-us",
+          name: "contact-us-page",
+          component: () => import("@/views/ContactUsView.vue"),
+        },
+        {
+          path: ":pathMatch(.*)*",
+          name: "NotFound",
+          component: () => import("@/views/NotFoundView.vue"),
         },
       ],
-    },
-    {
-      path: "/:locale?/courses/:id",
-      name: "single-course-page",
-      props: true,
-      component: () => import("@/views/SingleCourseView.vue"),
-    },
-    {
-      path: "/:locale?/contact-us",
-      name: "contact-us-page",
-      component: () => import("@/views/ContactUsView.vue"),
-    },
-    {
-      path: "/:locale?/:pathMatch(.*)*",
-      name: "NotFound",
-      component: () => import("@/views/NotFoundView.vue"),
     },
   ],
 });
