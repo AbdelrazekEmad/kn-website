@@ -5,7 +5,8 @@
     </a>
     <ul class="dropdown-menu">
       <li v-for="lang in languages" :key="`locale-${lang}`" :class="{ selected: locale === lang }" @click="switchLanguage(lang)">
-        <img :src="`src/assets/images/flags/flag-${lang}.png`" width="20" />
+        <img v-if="lang === 'en'" src="@/assets/images/flags/flag-en.png" width="20" />
+        <img v-if="lang === 'ar'" src="@/assets/images/flags/flag-ar.png" width="20" />
         {{ $t(`GLOBAL.LOCALE.${lang}`) }}
       </li>
     </ul>
