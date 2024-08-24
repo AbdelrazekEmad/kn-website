@@ -4,18 +4,23 @@ import Tr from "@/i18n/translation";
 const router = createRouter({
   history: createWebHistory(import.meta.env.VITE_BASE_URL),
   scrollBehavior() {
-    return { top: 0, behavior: 'smooth' }
+    return { top: 0, behavior: "smooth" };
   },
   routes: [
+    {
+      path: "",
+      redirect: {
+        name: "home-page",
+        params: {
+          locale: Tr.currentLocale,
+        },
+      },
+    },
     {
       path: "/:locale?",
       component: RouterView,
       beforeEnter: Tr.routeMiddleware,
       children: [
-        {
-          path: "",
-          redirect: { name: "home-page" }
-        },
         {
           path: "home",
           name: "home-page",
@@ -38,7 +43,7 @@ const router = createRouter({
         },
         {
           path: "categories",
-          redirect: { name: 'categories-page' },
+          redirect: { name: "categories-page" },
           children: [
             {
               path: "",
@@ -51,7 +56,7 @@ const router = createRouter({
               name: "single-categories-page",
               component: () => import("@/views/CategoryCoursesView.vue"),
             },
-          ]
+          ],
         },
         {
           path: "courses/:id",
@@ -63,11 +68,6 @@ const router = createRouter({
           path: "contact-us",
           name: "contact-us-page",
           component: () => import("@/views/ContactUsView.vue"),
-        },
-        {
-          path: "not-found",
-          name: "NotFound",
-          component: () => import("@/views/NotFoundView.vue"),
         },
         {
           path: ":pathMatch(.*)*",
