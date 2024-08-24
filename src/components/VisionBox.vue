@@ -4,9 +4,9 @@
             {{ title }}
         </h2>
 
-        <p class="vision-box__text">
-            {{ text }}
-        </p>
+        <div v-html="text">
+
+        </div>
     </div>
 </template>
 
@@ -15,7 +15,6 @@
 export default {
     name: "VisionBox",
     props: {
-
         title: {
             type: String,
             required: true
