@@ -1,6 +1,6 @@
 <template>
   <div>
-    <main-banner :type="'breadcrumb'" :banner-title="$t('ABOUT.MAIN_BANNER')" :current-page="getBanner?.title"
+    <main-banner :type="'breadcrumb'" :banner-title="getBanner?.title" :current-page="getBanner?.title"
       :img-url="getBanner?.image" />
 
     <AboutContent>
@@ -8,7 +8,7 @@
         <div class="col-12 col-lg-6">
           <div class="about-content__box">
             <h2 class="about-content__title">
-              {{ $t("ABOUT.MAIN_BANNER") }}
+              {{ getAboutUs?.title }}
             </h2>
 
             <div v-html="getAboutUs?.content">
