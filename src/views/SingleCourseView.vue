@@ -2,9 +2,9 @@
   <div>
     <main-banner
       :type="'breadcrumb'"
-      :banner-title="`Course ${id}`"
+      :banner-title="course.title"
       :current-page="$t('COURSE.MAIN_BANNER')"
-      :img-url="'https://placehold.co/900x600'"
+      :img-url="course.image"
     />
     <section class="mt-5">
       <div class="container">
@@ -12,20 +12,9 @@
         <div class="course-info">
           <div class="row align-items-center">
             <div class="col-12 col-md-6">
-              <h3 class="main-header">Reading Quran Basics</h3>
+              <h3 class="main-header">{{ course.title }}</h3>
               <p class="course-info__desc">
-                Phasellus accumsan cursus velit. Vestibulum ante ipsum primis in
-                faucibus orci luctus et ultrices posuere cubilia Curae; Sed
-                aliquam, nisi quis porttitor congue, elit erat euismod orci, ac
-                placerat dolor lectus quis orci.
-              </p>
-              <p class="course-info__desc">
-                Donec elit libero, sodales nec, volutpat a, suscipit non,
-                turpis. Nullam sagittis. Suspendisse pulvinar, augue ac
-                venenatis condimentum, sem libero volutpat nibh, nec
-                pellentesque velit pede quis nunc. Vestibulum ante ipsum primis
-                in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce
-                id purus.
+                {{ course.description }}
               </p>
               <MainButton text="Enroll now" />
             </div>
@@ -57,9 +46,10 @@
 </template>
 
 <script>
+import { useCoursesStore } from "@/stores/courses.store";
+import { mapState, mapActions } from "pinia";
 import MainBanner from "@/components/MainBanner.vue";
 import MainButton from "../components/MainButton.vue";
-import Tr from "@/i18n/translation";
 export default {
   name: "SingleCourseView",
   props: {
@@ -74,7 +64,6 @@ export default {
   },
   data() {
     return {
-      Tr: Tr,
       features: [
         "Lorem ipsum dolor sit amet",
         "Donec quam felis",
@@ -94,15 +83,15 @@ export default {
       ],
     };
   },
-  // computed: {
-  //   ...mapState(useCategoriesStore, ["getCategories"]),
-  // },
-  // async mounted() {
-  //   await this.getAllCategories();
-  // },
-  // methods: {
-  //   ...mapActions(useCategoriesStore, ["getAllCategories"]),
-  // },
+  computed: {
+    ...mapState(useCoursesStore, ["course"]),
+  },
+  async mounted() {
+    await this.getSelectedCourse(this.id);
+  },
+  methods: {
+    ...mapActions(useCoursesStore, ["getSelectedCourse"]),
+  },
 };
 </script>
 

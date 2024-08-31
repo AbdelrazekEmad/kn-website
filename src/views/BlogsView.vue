@@ -1,23 +1,13 @@
 <template>
   <div>
-    <main-banner
-      :type="'breadcrumb'"
-      :banner-title="$t('BLOG.MAIN_BANNER')"
-      :current-page="$t('GLOBAL.NAVS.BLOG')"
-      :img-url="'https://placehold.co/900x600'"
-    />
+    <main-banner :type="'breadcrumb'" :banner-title="getBlogsHeaders.title" :current-page="getBlogsHeaders.title" :img-url="getBlogsHeaders.image" />
     <section class="my-5">
       <div class="container">
         <div class="row g-4">
-          <div
-            class="col-12 col-md-6 col-lg-4"
-            v-for="blog in blogs"
-            :key="blog.id"
-          >
+          <div class="col-12 col-md-6 col-lg-4" v-for="blog in getBlogs" :key="blog.id">
             <div class="blog">
               <div class="blog__body">
-                <img :src="blog.img" alt="" class="blog__img img-fluid" />
-                <!-- <a href="" class="blog__title" :title="blog.name">{{ blog.name }}</a> -->
+                <img :src="blog.image" :alt="blog.title" class="blog__img img-fluid" />
 
                 <RouterLink
                   :to="
@@ -27,16 +17,22 @@
                     })
                   "
                   class="blog__title"
-                  :title="blog.name"
+                  :title="blog.title"
                 >
-                  {{ blog.name }}
+                  {{ blog.title }}
                 </RouterLink>
 
-                <p class="blog__description">{{ blog.description }}</p>
-                <a href="" class="blog__read-more"
-                  >{{ $t("BLOG.READ_MORE") }}
-                  <i class="fa-solid fa-angles-right"></i
-                ></a>
+                <RouterLink
+                  :to="
+                    Tr.i18nRoute({
+                      name: 'single-blog-page',
+                      params: { id: blog.id },
+                    })
+                  "
+                  class="blog__read-more"
+                >
+                  {{ $t("BLOG.READ_MORE") }} <i class="fa-solid fa-angles-right"></i>
+                </RouterLink>
               </div>
               <div class="blog__footer">{{ blog.date }} . {{ blog.time }}</div>
             </div>
@@ -61,67 +57,16 @@ export default {
   data() {
     return {
       Tr: Tr,
-      blogs: [
-        {
-          id: 1,
-          img: "https://placehold.co/900x600",
-          name: "lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem",
-          description:
-            "lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem",
-          date: "October 6, 2023",
-          time: "12:36 am",
-        },
-        {
-          id: 2,
-          img: "https://placehold.co/900x600",
-          name: "lorem lorem lorem lorem lorem",
-          description: "lorem lorem lorem lorem lorem lorem lorem",
-          date: "October 6, 2023",
-          time: "12:36 am",
-        },
-        {
-          id: 3,
-          img: "https://placehold.co/900x600",
-          name: "lorem lorem lorem lorem lorem",
-          description: "lorem lorem lorem lorem lorem lorem lorem",
-          date: "October 6, 2023",
-          time: "12:36 am",
-        },
-        {
-          id: 4,
-          img: "https://placehold.co/900x600",
-          name: "lorem lorem lorem lorem lorem",
-          description: "lorem lorem lorem lorem lorem lorem lorem",
-          date: "October 6, 2023",
-          time: "12:36 am",
-        },
-        {
-          id: 5,
-          img: "https://placehold.co/900x600",
-          name: "lorem lorem lorem lorem lorem",
-          description: "lorem lorem lorem lorem lorem lorem lorem",
-          date: "October 6, 2023",
-          time: "12:36 am",
-        },
-        {
-          id: 6,
-          img: "https://placehold.co/900x600",
-          name: "lorem lorem lorem lorem lorem",
-          description: "lorem lorem lorem lorem lorem lorem lorem",
-          date: "October 6, 2023",
-          time: "12:36 am",
-        },
-      ],
     };
   },
   computed: {
-    ...mapState(useBlogsStore, ["getBlogs"]),
+    ...mapState(useBlogsStore, ["getBlogsHeaders", "getBlogs"]),
   },
   async mounted() {
-    await this.getAllBlogs();
+    await this.getBlogsContent();
   },
   methods: {
-    ...mapActions(useBlogsStore, ["getAllBlogs"]),
+    ...mapActions(useBlogsStore, ["getBlogsContent"]),
   },
 };
 </script>
@@ -140,6 +85,9 @@ export default {
 
   &__img {
     margin-bottom: 12px;
+    width: 100%;
+    max-height: 250px;
+    object-fit: cover;
   }
 
   &__title {
@@ -154,20 +102,7 @@ export default {
     -webkit-line-clamp: 2;
     line-clamp: 2;
     -webkit-box-orient: vertical;
-  }
-
-  &__description {
-    font-size: 14px;
-    padding: 16px;
-    margin: 0;
-    color: var(--text-color);
-    cursor: pointer;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    line-clamp: 4;
-    -webkit-box-orient: vertical;
+    margin-bottom: 16px;
   }
 
   &__read-more {

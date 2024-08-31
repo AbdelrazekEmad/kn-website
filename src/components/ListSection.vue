@@ -16,14 +16,14 @@
             <div class="items__item__img-container">
               <img
                 class="items__item__img"
-                :src="item.img"
-                :alt="item.name"
-                :title="item.name"
+                :src="item.image"
+                :alt="item.title"
+                :title="item.title"
               />
             </div>
 
             <h3 class="items__item__title">
-              {{ item.name }}
+              {{ item.title }}
             </h3>
 
             <p class="items__item__text">
@@ -31,7 +31,7 @@
             </p>
 
             <MainButton
-              text="Free Trail"
+              :text="$t('GLOBAL.GO_TO')"
               :link="{
                 name: 'single-categories-page',
                 params: { id: item.id },
