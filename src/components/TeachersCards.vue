@@ -42,33 +42,6 @@ export default {
   },
   data() {
     return {
-      teachers: [
-        {
-          id: 1,
-          name: 'lorem ipsum',
-          text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque modi amet atque ut ipsam voluptatibus quasi, quod',
-          avatar: 'https://placehold.co/900x600'
-        },
-        {
-          id: 2,
-          name: 'lorem ipsum',
-          text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque modi amet atque ut ipsam voluptatibus quasi, quod',
-          avatar: 'https://placehold.co/900x600'
-        },
-        {
-          id: 3,
-          name: 'lorem ipsum',
-          text: ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque modi amet atque ut ipsam voluptatibus quasi, quod',
-          avatar: 'https://placehold.co/900x600'
-        },
-        {
-          id: 4,
-          name: 'lorem ipsum',
-          text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque modi amet atque ut ipsam voluptatibus quasi, quod',
-          avatar: 'https://placehold.co/900x600'
-        },
-      ],
-
       breakpoints: {
         // 700px and up
         768: {
