@@ -139,7 +139,7 @@ export default {
         font-size: 48px;
         font-weight: 400;
         font-family: var(--secondary-font);
-        color: var(--blue-color);
+        color: var(--secondary-color);
         text-align: center;
     }
 
@@ -167,11 +167,11 @@ export default {
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 
         &:hover {
-            background-color: var(--blue-color);
+            background-color: var(--secondary-color);
         }
 
         &:last-of-type {
-            background-color: var(--blue-color);
+            background-color: var(--secondary-color);
         }
 
         &:last-of-type:hover {
@@ -182,7 +182,7 @@ export default {
 }
 
 .banner-features {
-    background-color: var(--blue-color);
+    background-color: var(--secondary-color);
 
     &__box {
         display: flex;
