@@ -138,4 +138,16 @@ export default {
     }
   }
 }
+
+html[dir="rtl"] {
+  .main-banner {
+    .breadcrumb {
+      .breadcrumb-item + .breadcrumb-item::before {
+        transform: rotate(180deg);
+        padding-left: 0;
+        padding-right: var(--bs-breadcrumb-item-padding-x);
+      }
+    }
+  }
+}
 </style>
