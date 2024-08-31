@@ -8,23 +8,15 @@ class APIClients {
   }
 
   get url() {
-    return `${VITE_BASE_URL_REQUEST}/${Trans.currentLocale}/api/cms/page/?slug=${this.targetRequestUrl}`;
+    return `${VITE_BASE_URL_REQUEST}/${Trans.currentLocale}/api/${this.targetRequestUrl}`;
   }
 
   get(requestQuery = "", options = {}) {
-    return axios.get(
-      `${this.url}${requestQuery ? "/" + requestQuery : ""}`,
-      options
-    );
+    return axios.get(`${this.url}${requestQuery ? "/" + requestQuery : ""}`, options);
   }
 
   show(requestQuery = "", id, options = {}) {
-    return axios.get(
-      `${this.url}${requestQuery ? "/" + requestQuery : ""}${
-        id ? "/" + id : ""
-      }`,
-      options
-    );
+    return axios.get(`${this.url}${requestQuery ? "/" + requestQuery : ""}${id ? "/" + id : ""}`, options);
   }
 
   // post(requestQuery = "", options = {}) {

@@ -18,19 +18,19 @@
         <h1 class="main-banner__header">{{ bannerTitle }}</h1>
       </template>
       <template v-if="type === 'single-blog'">
-        <h1 class="main-banner__header">{{ blogData.name }}</h1>
+        <h1 class="main-banner__header">{{ blogData.title }}</h1>
         <div class="blog-data">
           <div class="blog-data__item">
             <i class="fa-regular fa-circle-user"></i>
-            {{ $t("BLOG.ADMIN") }}
+            {{ blogData.author_name }}
           </div>
           <div class="blog-data__item">
-            <i class="fa-regular fa-circle-user"></i>
-            {{ blogData.date }}
+            <i class="fa-solid fa-calendar"></i>
+            {{ blogData.date || "test" }}
           </div>
           <div class="blog-data__item">
-            <i class="fa-regular fa-circle-user"></i>
-            {{ blogData.time }}
+            <i class="fa-regular fa-clock"></i>
+            {{ blogData.time || "test" }}
           </div>
           <div class="blog-data__item">
             <i class="fa-solid fa-heart"></i>
