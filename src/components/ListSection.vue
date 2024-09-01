@@ -33,7 +33,7 @@
             <MainButton
               :text="$t('GLOBAL.GO_TO')"
               :link="{
-                name: 'single-categories-page',
+                name: routerName,
                 params: { id: item.id },
               }"
             />

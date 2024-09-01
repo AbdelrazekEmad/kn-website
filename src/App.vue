@@ -2,7 +2,7 @@
   <Navbar></Navbar>
   <router-view v-slot="{ Component, route }">
     <transition name="fade" mode="out-in">
-      <div>
+      <div class="flex-grow-1">
         <component :is="Component" :key="route.path" />
       </div>
     </transition>

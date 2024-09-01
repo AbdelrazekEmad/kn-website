@@ -1,51 +1,55 @@
 <template>
-  <div>
-    <main-banner
-      :type="'breadcrumb'"
-      :banner-title="course.title"
-      :current-page="$t('COURSE.MAIN_BANNER')"
-      :img-url="course.image"
-    />
-    <section class="mt-5">
-      <div class="container">
-        <!-- course info -->
-        <div class="course-info">
-          <div class="row align-items-center">
-            <div class="col-12 col-md-6">
-              <h3 class="main-header">{{ course.title }}</h3>
-              <p class="course-info__desc">
-                {{ course.description }}
-              </p>
-              <MainButton text="Enroll now" />
+  <div class="h-100">
+    <template v-if="!isFetching && !isLoadingDelay">
+      <main-banner
+        :type="'breadcrumb'"
+        :banner-title="course.title"
+        :current-page="$t('COURSE.MAIN_BANNER')"
+        :img-url="course.image"
+      />
+      <section class="mt-5">
+        <div class="container">
+          <!-- course info -->
+          <div class="course-info">
+            <div class="row align-items-center">
+              <div class="col-12 col-md-6">
+                <h3 class="main-header">{{ course.title }}</h3>
+                <p class="course-info__desc">
+                  {{ course.description }}
+                </p>
+                <MainButton text="Enroll now" />
+              </div>
+              <div class="col-12 col-md-6 order-first order-md-2">
+                <div class="p-md-5 p-2 course-info__image">
+                  <img src="https://placehold.co/900x600" alt="" />
+                </div>
+              </div>
             </div>
-            <div class="col-12 col-md-6 order-first order-md-2">
-              <div class="p-md-5 p-2 course-info__image">
-                <img src="https://placehold.co/900x600" alt="" />
+          </div>
+          <div class="features my-3 my-md-5">
+            <h3 class="main-header">Course Key features</h3>
+            <div class="features row g-2">
+              <div
+                class="col-6 col-md-4"
+                v-for="(feature, index) in features"
+                :key="index"
+              >
+                <div class="features__feature">
+                  <i class="fa-regular fa-circle-check"></i>
+                  {{ feature }}
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="features my-3 my-md-5">
-          <h3 class="main-header">Course Key features</h3>
-          <div class="features row g-2">
-            <div
-              class="col-6 col-md-4"
-              v-for="(feature, index) in features"
-              :key="index"
-            >
-              <div class="features__feature">
-                <i class="fa-regular fa-circle-check"></i>
-                {{ feature }}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+      </section>
+    </template>
+    <Loader v-else />
   </div>
 </template>
 
 <script>
+import { useLoadingStore } from "@/stores/loading.store";
 import { useCoursesStore } from "@/stores/courses.store";
 import { mapState, mapActions } from "pinia";
 import MainBanner from "@/components/MainBanner.vue";
@@ -84,7 +88,8 @@ export default {
     };
   },
   computed: {
-    ...mapState(useCoursesStore, ["course"]),
+    ...mapState(useCoursesStore, ["course" , "isFetching"]),
+    ...mapState(useLoadingStore, ["isLoadingDelay"]),
   },
   async mounted() {
     await this.getSelectedCourse(this.id);

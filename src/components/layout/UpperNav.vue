@@ -15,7 +15,6 @@
             <a :href="email">
               <i class="fa-regular fa-envelope"></i> {{ email }}</a
             >
-            {{ socialFacebook }}
           </div>
         </div>
         <div class="col-12 col-md-6">
