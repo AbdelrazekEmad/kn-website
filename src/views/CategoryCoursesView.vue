@@ -1,20 +1,24 @@
 <template>
-  <div>
-    <main-banner
-      :type="'breadcrumb'"
-      :banner-title="category.title"
-      :current-page="$t('CATEGORY.TITLE')"
-      :img-url="category.image"
-    />
-    <ListSection
-      :list="coursesList"
-      :title="$t('COURSE.SECTION_TITLE')"
-      router-name="single-course-page"
-    />
+  <div class="h-100">
+    <template v-if="!isFetching && !isLoadingDelay">
+      <main-banner
+        :type="'breadcrumb'"
+        :banner-title="category.title"
+        :current-page="$t('CATEGORY.TITLE')"
+        :img-url="category.image"
+      />
+      <ListSection
+        :list="coursesList"
+        :title="$t('COURSE.SECTION_TITLE')"
+        router-name="single-course-page"
+      />
+    </template>
+    <Loader v-else />
   </div>
 </template>
 
 <script>
+import { useLoadingStore } from "@/stores/loading.store";
 import { useCoursesStore } from "@/stores/courses.store";
 import { mapState, mapActions } from "pinia";
 import MainBanner from "@/components/MainBanner.vue";
@@ -35,7 +39,9 @@ export default {
     ...mapState(useCoursesStore, {
       coursesList: "selectedCourses",
       category: "category",
+      isFetching: "isFetching",
     }),
+    ...mapState(useLoadingStore, ["isLoadingDelay"]),
   },
   async mounted() {
     await this.getCategoryCourses(this.id);
