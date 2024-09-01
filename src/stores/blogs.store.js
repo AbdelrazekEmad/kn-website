@@ -21,6 +21,10 @@ export const useBlogsStore = defineStore("blogs", {
     getSingleBlog(state) {
       return state.singleBlog;
     },
+    getLatestBlogs(state) {
+      //TODO: ask about the latest blog order
+      return state.blogs.slice(0, 3);
+    },
   },
   actions: {
     async getBlogsContent() {
