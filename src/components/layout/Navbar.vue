@@ -3,33 +3,30 @@
     <upper-nav></upper-nav>
     <nav class="navbar navbar-expand-lg bg-white">
       <div class="container">
-        <a class="navbar-brand me-md-5" href="#">KN logo</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
+        <router-link
+          class="logo"
+          :to="
+            Tr.i18nRoute({
+              name: 'home-page',
+            })
+          "
         >
+          <img src="../../assets/images/kn-loho.png" alt="" />
+        </router-link>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav gap-md-3 mb-2 mb-lg-0">
             <li class="nav-item" v-for="link in navLinks" :key="link.id">
-              <router-link
-                class="nav-link"
-                :to="Tr.i18nRoute(link.to)"
-              >
+              <router-link class="nav-link" :to="Tr.i18nRoute(link.to)">
                 {{ $t(link.nameKey) }}
               </router-link>
             </li>
           </ul>
-          <div
-            class="d-flex align-items-md-center gap-4 flex-column flex-md-row"
-          >
+          <div class="d-flex align-items-md-center gap-4 flex-column flex-md-row">
             <language-switcher />
             <MainButton text="test" link="courses" />
           </div>
@@ -87,6 +84,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.logo {
+  width: 60px;
+  height: 60px;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
 .navbar-nav {
   width: 100%;
   justify-content: center;

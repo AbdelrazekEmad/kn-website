@@ -9,6 +9,7 @@ export const useBlogsStore = defineStore("blogs", {
       blogsHeader: {},
       blogs: [],
       singleBlog: {},
+      isFetching: false,
     };
   },
   getters: {
@@ -29,6 +30,7 @@ export const useBlogsStore = defineStore("blogs", {
   actions: {
     async getBlogsContent() {
       try {
+        this.isFetching = true;
         const response = await blogsApi.get();
         let data = response.data.data.results[0];
         this.blogsHeader = {
@@ -38,15 +40,20 @@ export const useBlogsStore = defineStore("blogs", {
         this.blogs = data.child;
       } catch (e) {
         console.log(e);
+      } finally {
+        this.isFetching = false;
       }
     },
     async getSingleBlogContent(id) {
       try {
+        this.isFetching = true;
         const response = await SpecificPageAPI.get(id);
         let data = response.data.data;
         this.singleBlog = data;
       } catch (e) {
         console.log(e);
+      } finally {
+        this.isFetching = false;
       }
     },
   },
