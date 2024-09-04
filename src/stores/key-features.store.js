@@ -28,7 +28,6 @@ export const useKeyFeaturesStore = defineStore("keyFeatures", {
         };
         this.keyFeaturesItems = data.child.map((item) => {
           return {
-            title: item.title,
             content: item.content,
             image: item.image,
           };

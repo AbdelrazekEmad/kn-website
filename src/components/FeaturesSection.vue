@@ -10,9 +10,9 @@
               <img class="features__icon" :src="feature.image" alt="" />
 
               <div class="features__content">
-                <h3 class="features__title">
+                <!-- <h3 class="features__title">
                   {{ feature.title }}
-                </h3>
+                </h3> -->
 
                 <p class="features__text" v-html="feature.content"></p>
               </div>
