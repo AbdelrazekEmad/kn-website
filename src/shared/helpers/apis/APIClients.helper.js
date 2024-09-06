@@ -1,6 +1,9 @@
 import axios from "axios";
 import Trans from "@/i18n/translation";
 const VITE_BASE_URL_REQUEST = import.meta.env.VITE_BASE_URL_REQUEST;
+// Loading store
+import { useLoadingStore } from "@/stores/loading.store";
+const loadingStore = useLoadingStore()
 
 class APIClients {
   constructor(targetRequestUrl) {
@@ -8,6 +11,7 @@ class APIClients {
   }
 
   get url() {
+    loadingStore.generateLoadingDelay();
     return `${VITE_BASE_URL_REQUEST}/${Trans.currentLocale}/api/${this.targetRequestUrl}`;
   }
 

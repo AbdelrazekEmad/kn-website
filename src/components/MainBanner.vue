@@ -25,17 +25,13 @@
             {{ blogData.author_name }}
           </div>
           <div class="blog-data__item">
-            <i class="fa-solid fa-calendar"></i>
-            {{ blogData.date || "test" }}
-          </div>
-          <div class="blog-data__item">
             <i class="fa-regular fa-clock"></i>
-            {{ blogData.time || "test" }}
+            {{ blogData.created_since }}
           </div>
-          <div class="blog-data__item">
+          <!-- <div class="blog-data__item">
             <i class="fa-solid fa-heart"></i>
             {{ blogData.loves }} {{ $t("BLOG.LOVE") }}
-          </div>
+          </div> -->
         </div>
       </template>
     </div>
@@ -134,6 +130,18 @@ export default {
 
       i {
         color: var(--main-color);
+      }
+    }
+  }
+}
+
+html[dir="rtl"] {
+  .main-banner {
+    .breadcrumb {
+      .breadcrumb-item + .breadcrumb-item::before {
+        transform: rotate(180deg);
+        padding-left: 0;
+        padding-right: var(--bs-breadcrumb-item-padding-x);
       }
     }
   }

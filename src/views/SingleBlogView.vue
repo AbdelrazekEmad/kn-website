@@ -1,18 +1,22 @@
 <template>
-  <div>
-    <main-banner :type="'single-blog'" :img-url="getSingleBlog.image" :blog-data="getSingleBlog" />
-    <div class="single-blog">
-      <img class="single-blog__img" :src="getSingleBlog.image" alt="" />
-      <div class="container">
-        <div class="single-blog__content" v-html="getSingleBlog.content"></div>
+  <div class="h-100">
+    <template v-if="!isFetching && !isLoadingDelay">
+      <main-banner :type="'single-blog'" :img-url="getSingleBlog.image" :blog-data="getSingleBlog" />
+      <div class="single-blog">
+        <img class="single-blog__img" :src="getSingleBlog.image" alt="" />
+        <div class="container">
+          <div class="single-blog__content" v-html="getSingleBlog.content"></div>
+        </div>
       </div>
-    </div>
+    </template>
+    <Loader v-else />
   </div>
 </template>
 
 <script>
 import MainBanner from "@/components/MainBanner.vue";
 import { useBlogsStore } from "@/stores/blogs.store";
+import { useLoadingStore } from "@/stores/loading.store";
 import { mapState, mapActions } from "pinia";
 
 export default {
@@ -22,13 +26,10 @@ export default {
   },
   async mounted() {
     await this.getSingleBlogContent(this.$route.params.id);
-    console.log(this.getSingleBlog);
   },
   computed: {
-    ...mapState(useBlogsStore, ["getSingleBlog"]),
-    // blog() {
-    //   return this.blogs.find((blog) => blog.id == this.$route.params.id);
-    // },
+    ...mapState(useBlogsStore, ["getSingleBlog", "isFetching"]),
+    ...mapState(useLoadingStore, ["isLoadingDelay"]),
   },
   methods: {
     ...mapActions(useBlogsStore, ["getSingleBlogContent"]),

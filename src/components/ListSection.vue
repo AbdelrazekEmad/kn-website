@@ -1,25 +1,13 @@
 <template>
-  <section class="items py-5">
+  <section class="items py-5" :style="`background-image: url(${backgroundImage});`">
     <div class="container">
       <SectionTitle class="my-5" :title="title" color="#101010" />
 
       <div class="row g-0">
-        <div
-          class="col-12 col-xl-4 col-md-6"
-          v-for="item in list"
-          :key="item.id"
-        >
-          <router-link
-            :to="{ name: routerName, params: { id: item.id } }"
-            class="items__item__box"
-          >
+        <div class="col-12 col-xl-4 col-md-6" v-for="item in list" :key="item.id">
+          <router-link :to="{ name: routerName, params: { id: item.id } }" class="items__item__box">
             <div class="items__item__img-container">
-              <img
-                class="items__item__img"
-                :src="item.image"
-                :alt="item.title"
-                :title="item.title"
-              />
+              <img class="items__item__img" :src="item.image" :alt="item.title" :title="item.title" />
             </div>
 
             <h3 class="items__item__title">
@@ -33,7 +21,7 @@
             <MainButton
               :text="$t('GLOBAL.GO_TO')"
               :link="{
-                name: 'single-categories-page',
+                name: routerName,
                 params: { id: item.id },
               }"
             />
@@ -67,6 +55,10 @@ export default {
       type: String,
       required: true,
     },
+    backgroundImage: {
+      type: String,
+      default: "https://placehold.co/900x600",
+    },
   },
   data() {
     return {};
@@ -76,7 +68,6 @@ export default {
 
 <style lang="scss" scoped>
 .items {
-  background-image: url("https://placehold.co/900x600");
   background-size: cover;
 
   &__item {
@@ -88,8 +79,7 @@ export default {
       gap: 16px;
       transition: all 0.3s linear;
       padding: 16px;
-      box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
-        rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+      box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
 
       &:hover {
         .categories__img {

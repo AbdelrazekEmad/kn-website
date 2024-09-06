@@ -1,28 +1,22 @@
 <template>
-  <section class="features py-5">
+  <section class="features py-5" :style="`background-image: url(${getKeyFeaturesSection.image})`">
     <div class="container">
       <div class="row">
         <div class="col-12 col-lg-6">
           <div class="features__boxes">
-            <h2 class="features__main-title">
-              {{ features?.title }}
-            </h2>
+            <h2 class="features__main-title">{{ getKeyFeaturesSection.title }}</h2>
 
-            <!-- <div class="features__box" v-for="feature in features" :key="feature.id">
-              <i class="features__icon" :class="feature.iconClass"></i>
+            <div class="features__box" v-for="feature in getKeyFeaturesItems" :key="feature.id">
+              <img class="features__icon" :src="feature.image" alt="" />
 
               <div class="features__content">
-                <h3 class="features__title">
+                <!-- <h3 class="features__title">
                   {{ feature.title }}
-                </h3>
+                </h3> -->
 
-                <p class="features__text">
-                  {{ feature.text }}
-                </p>
+                <p class="features__text" v-html="feature.content"></p>
               </div>
-            </div> -->
-
-            <div v-html="features?.content"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -31,58 +25,31 @@
 </template>
 
 <script>
+import { useKeyFeaturesStore } from "@/stores/key-features.store";
+import { mapState, mapActions } from "pinia";
 import Tr from "@/i18n/translation";
 
 export default {
   name: "FeaturesSection",
-  props: {
-    features: {
-      required: true,
-      type: Object,
-      default() {
-        return {
-          title: 'Features',
-          features: [
-            {
-              id: 1,
-              title: 'Features 1',
-              text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio autem dignissimos, quam error rem eum ratione excepturi deleniti aliquam dolor ullam distinctio aspernatur odit, beatae hic iste fugit rerum minima.',
-              iconClass: 'fa-regular fa-clock'
-            },
-            {
-              id: 2,
-              title: 'Features 2',
-              text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio autem dignissimos, quam error rem eum ratione excepturi deleniti aliquam dolor ullam distinctio aspernatur odit, beatae hic iste fugit rerum minima.',
-              iconClass: 'fa-solid fa-book-quran'
-            },
-            {
-              id: 3,
-              title: 'Features 3',
-              text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio autem dignissimos, quam error rem eum ratione excepturi deleniti aliquam dolor ullam distinctio aspernatur odit, beatae hic iste fugit rerum minima.',
-              iconClass: 'fa-solid fa-certificate'
-            },
-            {
-              id: 4,
-              title: 'Features 4',
-              text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio autem dignissimos, quam error rem eum ratione excepturi deleniti aliquam dolor ullam distinctio aspernatur odit, beatae hic iste fugit rerum minima.',
-              iconClass: 'fa-solid fa-user-group'
-            }
-          ]
-        };
-      },
-    }
-  },
   data() {
     return {
       Tr: Tr,
-    }
+    };
   },
-}
+  computed: {
+    ...mapState(useKeyFeaturesStore, ["getKeyFeaturesSection", "getKeyFeaturesItems"]),
+  },
+  async mounted() {
+    await this.keyFeaturesContent();
+  },
+  methods: {
+    ...mapActions(useKeyFeaturesStore, ["keyFeaturesContent"]),
+  },
+};
 </script>
 
 <style lang="scss" scoped>
 .features {
-  background-image: url('https://placehold.co/900x600');
   background-size: cover;
 
   &__boxes {
@@ -115,12 +82,9 @@ export default {
   }
 
   &__icon {
-    color: var(--main-color);
-    font-size: 48px;
-
-    &:hover {
-      color: var(--dark-main-color);
-    }
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
   }
 
   &__content {
@@ -148,6 +112,8 @@ export default {
     line-height: 1.5;
     margin-bottom: 0;
     color: var(--white-color);
+    font-weight: bold;
+    font-weight: 500;
 
     @media (max-width: 768px) {
       text-align: center;

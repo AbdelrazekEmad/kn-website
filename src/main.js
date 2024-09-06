@@ -5,6 +5,10 @@ import 'vue3-carousel/dist/carousel.css'
 
 const app = createApp(App);
 
+// register loader globally 
+import Loader from "@/components/Loader.vue";
+app.component("Loader", Loader);
+
 // Store configuration
 import { createPinia } from "pinia";
 const pinia = createPinia();
