@@ -85,8 +85,8 @@ export default {
 
 <style lang="scss" scoped>
 .logo {
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
   img {
     width: 100%;
     height: 100%;
