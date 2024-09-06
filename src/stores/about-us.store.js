@@ -11,7 +11,10 @@ export const useAboutUsStore = defineStore("aboutUs", {
   getters: {
     // getters here
     getBanner(state) {
-      if (Array.isArray(state.aboutUs?.results) && state.aboutUs?.results.length > 0) {
+      if (
+        Array.isArray(state.aboutUs?.results) &&
+        state.aboutUs?.results.length > 0
+      ) {
         return state.aboutUs?.results[0]?.child?.find(
           (item) => item.slug == "about-us-xo2x"
         );
@@ -19,7 +22,10 @@ export const useAboutUsStore = defineStore("aboutUs", {
       return null;
     },
     getAboutUs(state) {
-      if (Array.isArray(state.aboutUs?.results) && state.aboutUs?.results.length > 0) {
+      if (
+        Array.isArray(state.aboutUs?.results) &&
+        state.aboutUs?.results.length > 0
+      ) {
         return state.aboutUs?.results[0]?.child?.find(
           (item) => item.slug == "about-us-uvlx"
         );
@@ -27,7 +33,10 @@ export const useAboutUsStore = defineStore("aboutUs", {
       return null;
     },
     getMission(state) {
-      if (Array.isArray(state.aboutUs?.results) && state.aboutUs?.results.length > 0) {
+      if (
+        Array.isArray(state.aboutUs?.results) &&
+        state.aboutUs?.results.length > 0
+      ) {
         return state.aboutUs?.results[0]?.child?.find(
           (item) => item.slug == "mission-vision"
         );
@@ -35,9 +44,23 @@ export const useAboutUsStore = defineStore("aboutUs", {
       return null;
     },
     getWhatOffer(state) {
-      if (Array.isArray(state.aboutUs?.results) && state.aboutUs?.results.length > 0) {
+      if (
+        Array.isArray(state.aboutUs?.results) &&
+        state.aboutUs?.results.length > 0
+      ) {
         return state.aboutUs?.results[0]?.child?.find(
           (item) => item.slug == "what-we-offer"
+        );
+      }
+      return null;
+    },
+    getFaqs(state) {
+      if (
+        Array.isArray(state.aboutUs?.results) &&
+        state.aboutUs?.results.length > 0
+      ) {
+        return state.aboutUs?.results[0]?.child?.find(
+          (item) => item.slug == "faq"
         );
       }
       return null;
