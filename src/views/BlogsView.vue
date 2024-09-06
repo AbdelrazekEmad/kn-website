@@ -35,7 +35,7 @@
                     {{ $t("BLOG.READ_MORE") }} <i class="fa-solid fa-angles-right"></i>
                   </RouterLink>
                 </div>
-                <div class="blog__footer">{{ blog.date }} . {{ blog.time }}</div>
+                <div class="blog__footer">{{ blog.created_since }}</div>
               </div>
             </div>
           </div>

@@ -102,9 +102,13 @@ export default {
     font-weight: 400;
     font-size: 16px;
     transition: all 0.3s ease-in-out;
+    background-color: var(--main-color);
+    color: #fff;
+    padding-inline: 20px;
+    border-radius: 8px;
     &.router-link-active,
     &:hover {
-      color: var(--main-color);
+      color: var(--second-color);
     }
     &.router-link-active {
       font-weight: 500;

@@ -25,17 +25,13 @@
             {{ blogData.author_name }}
           </div>
           <div class="blog-data__item">
-            <i class="fa-solid fa-calendar"></i>
-            {{ blogData.date || "test" }}
-          </div>
-          <div class="blog-data__item">
             <i class="fa-regular fa-clock"></i>
-            {{ blogData.time || "test" }}
+            {{ blogData.created_since }}
           </div>
-          <div class="blog-data__item">
+          <!-- <div class="blog-data__item">
             <i class="fa-solid fa-heart"></i>
             {{ blogData.loves }} {{ $t("BLOG.LOVE") }}
-          </div>
+          </div> -->
         </div>
       </template>
     </div>
