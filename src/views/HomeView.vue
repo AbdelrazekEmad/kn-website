@@ -1,37 +1,31 @@
 <template>
-  <div>
+  <div class="home-content">
     <HomeSlider />
+    <BannerSection :features="getApart" />
+
     <AboutContent>
       <template #content>
         <div class="col-12 col-lg-6">
-          <div class="about-content__box">
-            <h2 class="about-content__title">
-              Learn Quran online with Tajweed! Learn Quran
+          <div class="home-content__box">
+            <h2 class="home-content__title">
+              {{ getStories?.title }}
             </h2>
 
-            <p class="about-content__text">
-              Li Europan lingues es membres del sam familie. Lor separat existentie es un myth. Por scientie,
-              musica, sport etc, litot Europa usa li sam vocabular. Li lingues differe solmen in li
-              grammatica, li pronunciation e li plu commun vocabules. Omnicos directe al desirabilite de un
-              nov lingua franca.
-            </p>
+            <div v-html="getStories?.content">
+            </div>
 
-            <p class="about-content__text">
-              On refusa continuar payar custosi traductores. At solmen va esser necessi far uniform
-              grammatica, pronunciation.
-            </p>
-
-            <MainButton text="Read More" link="about-us" />
+            <MainButton text="Courses" link="courses" />
           </div>
         </div>
 
         <div class="col-12 col-lg-6">
-          <div class="about-content__box">
-            <img class="about-content__img" src="https://placehold.co/900x600" alt="about us" title="about us">
+          <div class="home-content__box">
+            <img class="home-content__img" :src="getStories?.image" alt="about us" title="about us" />
           </div>
         </div>
       </template>
     </AboutContent>
+
     <CoursesSection />
     <TeachersCards />
     <FeaturesSection />
@@ -51,6 +45,9 @@ import HomeSlider from "@/components/HomeSlider.vue";
 import CoursesSection from "@/components/CoursesSection.vue";
 import FeedbackSection from "@/components/FeedbackSection.vue";
 import MainButton from '@/components/MainButton.vue';
+import BannerSection from "@/components/BannerSection.vue";
+import { useHomeStore } from "@/stores/home.store";
+import { mapState, mapActions } from "pinia";
 
 export default {
   name: "HomeView",
@@ -62,18 +59,28 @@ export default {
     HomeSlider,
     CoursesSection,
     FeedbackSection,
-    MainButton
+    MainButton,
+    BannerSection
   },
   data() {
     return {
       Tr: Tr,
     };
   },
+  computed: {
+    ...mapState(useHomeStore, ['getSlider', 'getApart', 'getStories', 'getCourses']),
+  },
+  methods: {
+    ...mapActions(useHomeStore, ['getAllHome'])
+  },
+  async beforeMount() {
+    await this.getAllHome()
+  }
 };
 </script>
 
 <style lang="scss" scoped>
-.about-content {
+.home-content {
   &__box {
     height: 100%;
   }
@@ -100,7 +107,8 @@ export default {
 
   &__img {
     width: 100%;
-    height: 100%;
+    max-height: 500px;
+    object-fit: cover;
     border-radius: 24px;
     border-end-start-radius: 0px;
     object-fit: cover;
