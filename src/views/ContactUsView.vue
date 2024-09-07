@@ -25,24 +25,33 @@
             <h4 class="title">{{ $t("CONTACT.OUR_SOCIAL") }}</h4>
             <div class="social-media">
               <a
-                :href="mainFacebook"
+                :href="mainFacebookEn"
                 class="social-media__item"
                 target="_blank"
+                title="En page"
               >
                 <i class="fa-brands fa-facebook"></i>
               </a>
-              <a :href="mainTwitter" class="social-media__item" target="_blank">
-                <i class="fa-brands fa-x-twitter"></i>
-              </a>
-              <a :href="mainYoutube" class="social-media__item" target="_blank">
-                <i class="fa-brands fa-youtube"></i>
-              </a>
               <a
-                :href="mainInstagram"
+                :href="mainFacebookAr"
+                class="social-media__item"
+                target="_blank"
+                title="Ar page"
+              >
+                <i class="fa-brands fa-facebook"></i>
+              </a>
+              <a :href="mainTelegram" class="social-media__item" target="_blank">
+                <i class="fa-brands fa-telegram"></i>
+              </a>
+              <!-- <a :href="mainYoutube" class="social-media__item" target="_blank">
+                <i class="fa-brands fa-youtube"></i>
+              </a> -->
+              <a
+                :href="mainMessenger"
                 class="social-media__item"
                 target="_blank"
               >
-                <i class="fa-brands fa-instagram"></i>
+              <i class="fa-brands fa-facebook-messenger"></i>
               </a>
               <a
                 :href="mainGooglePlay"
@@ -106,11 +115,12 @@ export default {
   },
   data() {
     return {
-      mainEmail: import.meta.env.VITE_SOCIAL_MAIN_EMAIL,
-      mainFacebook: import.meta.env.VITE_SOCIAL_FACEBOOK,
-      mainTwitter: import.meta.env.VITE_SOCIAL_X,
+      mainEmail: import.meta.env.VITE_SOCIAL_EMAIL,
+      mainFacebookEn: import.meta.env.VITE_SOCIAL_FACEBOOK_EN,
+      mainFacebookAr: import.meta.env.VITE_SOCIAL_FACEBOOK_AR,
+      mainTelegram: import.meta.env.VITE_SOCIAL_TELEGRAM,
       mainYoutube: import.meta.env.VITE_SOCIAL_YOUTUBE,
-      mainInstagram: import.meta.env.VITE_SOCIAL_INSTAGRAM,
+      mainMessenger: import.meta.env.VITE_SOCIAL_MESSENGER,
       mainGooglePlay: import.meta.env.VITE_SOCIAL_PLAY,
     };
   },

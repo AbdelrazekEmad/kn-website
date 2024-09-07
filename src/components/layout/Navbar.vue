@@ -14,19 +14,29 @@
           <img src="../../assets/images/kn-loho.png" alt="" />
         </router-link>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
           <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav gap-md-3 mb-2 mb-lg-0">
+        <div class="mt-3 collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav gap-md-3 mb-2 mb-lg-0 gap-3">
             <li class="nav-item" v-for="link in navLinks" :key="link.id">
               <router-link class="nav-link" :to="Tr.i18nRoute(link.to)">
                 {{ $t(link.nameKey) }}
               </router-link>
             </li>
           </ul>
-          <div class="d-flex align-items-md-center gap-4 flex-column flex-md-row">
+          <div
+            class="d-flex align-items-md-center gap-4 flex-column flex-md-row"
+          >
             <language-switcher />
             <MainButton text="test" link="courses" />
           </div>
@@ -41,6 +51,7 @@ import LanguageSwitcher from "../LanguageSwitcher.vue";
 import UpperNav from "./UpperNav.vue";
 import MainButton from "@/components/MainButton.vue";
 import Tr from "@/i18n/translation";
+import NAV_ITEMS from "@/shared/constants/navbarItems";
 
 export default {
   components: {
@@ -50,33 +61,7 @@ export default {
   },
   data() {
     return {
-      navLinks: [
-        {
-          nameKey: "GLOBAL.NAVS.HOME",
-          to: { name: "home-page" },
-          id: "home",
-        },
-        {
-          nameKey: "GLOBAL.NAVS.ABOUT",
-          to: { name: "about-us" },
-          id: "about",
-        },
-        {
-          nameKey: "GLOBAL.NAVS.BLOGS",
-          to: { name: "blogs-page" },
-          id: "blogs",
-        },
-        {
-          nameKey: "GLOBAL.NAVS.CATEGORIES",
-          to: { name: "categories-page" },
-          id: "categories",
-        },
-        {
-          nameKey: "GLOBAL.NAVS.CONTACT",
-          to: { name: "contact-us-page" },
-          id: "contact",
-        },
-      ],
+      navLinks: NAV_ITEMS,
       Tr: Tr,
     };
   },
