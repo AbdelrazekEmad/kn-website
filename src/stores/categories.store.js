@@ -7,6 +7,7 @@ export const useCategoriesStore = defineStore("categoriesContent", {
     return {
       categoriesHeader: {},
       categoriesSection: {},
+      singleCategoryContent:{},
       isFetching: false,
     };
   },
@@ -29,6 +30,9 @@ export const useCategoriesStore = defineStore("categoriesContent", {
           image: data.image,
         };
         this.categoriesSection = data.child[0];
+        this.singleCategoryContent = data.child[0].child[0]
+        console.log(data.child[0].child[0]);
+        
       } catch (e) {
         console.log(e);
       } finally {

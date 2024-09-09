@@ -10,10 +10,6 @@
               <img class="features__icon" :src="feature.image" alt="" />
 
               <div class="features__content">
-                <!-- <h3 class="features__title">
-                  {{ feature.title }}
-                </h3> -->
-
                 <p class="features__text" v-html="feature.content"></p>
               </div>
             </div>
@@ -91,7 +87,6 @@ export default {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    margin-top: 12px;
 
     @media (max-width: 768px) {
       align-items: center;

@@ -36,10 +36,10 @@
       </div>
     </section>
 
-    <FeaturesSection :features="getWhatOffer" />
+    <FeaturesSection />
 
     <TeachersCards />
-    <FAQSection />
+    <FAQSection :faqs="getFaqs" />
     <LatestNews />
   </div>
 </template>
@@ -72,27 +72,19 @@ export default {
   data() {
     return {
       Tr: Tr,
-      visions: [
-        {
-          id: 1,
-          title: "Who We Are",
-          text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo quis cum rerum doloremque iusto id, nam, consequuntur eos earum fuga beatae optio voluptate facilis, exercitationem animi laudantium voluptatibus officiis magnam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo quis cum rerum doloremque iusto id, nam, consequuntur eos earum fuga beatae optio voluptate facilis, exercitationem animi laudantium voluptatibus officiis magnam.",
-        },
-        {
-          id: 2,
-          title: "Mission & Vision",
-          text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo quis cum rerum doloremque iusto id, nam, consequuntur eos earum fuga beatae optio voluptate facilis, exercitationem animi laudantium voluptatibus officiis magnam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo quis cum rerum doloremque iusto id, nam, consequuntur eos earum fuga beatae optio voluptate facilis, exercitationem animi laudantium voluptatibus officiis magnam.",
-        },
-      ],
     };
   },
   computed: {
-    ...mapState(useAboutUsStore, ['getBanner', 'getAboutUs', 'getMission', 'getWhatOffer']),
+    ...mapState(useAboutUsStore, ['getBanner', 'getAboutUs', 'getMission', 'getWhatOffer', 'getFaqs']),
     getVisions() {
       return [
         {
           title: this.getMission?.title,
           text: this.getMission?.content
+        },
+        {
+          title: this.getWhatOffer?.title,
+          text: this.getWhatOffer?.content
         }
       ]
     }
@@ -134,7 +126,8 @@ export default {
 
   &__img {
     width: 100%;
-    height: 100%;
+    max-height: 500px;
+    object-fit: cover;
     border-radius: 24px;
     border-end-start-radius: 0px;
     object-fit: cover;
