@@ -5,7 +5,7 @@ export const useLoadingStore = defineStore("loading", {
   state: () => {
     return {
       isLoadingDelay: false,
-      timer: null
+      timer: null,
     };
   },
   getters: {
@@ -13,13 +13,19 @@ export const useLoadingStore = defineStore("loading", {
   },
   actions: {
     async generateLoadingDelay() {
+      console.log(this.isLoadingDelay);
+
       if (this.timer) {
-        clearTimeout(this.timer)
+        console.log(5151515151551151);
+        
+        clearTimeout(this.timer);
       }
-      this.isLoadingDelay = true
+      this.isLoadingDelay = true;
       this.timer = setTimeout(() => {
-        this.isLoadingDelay = false
-        this.timer = null
+        this.isLoadingDelay = false;
+        this.timer = null;
+
+        console.log(this.isLoadingDelay);
       }, 1500);
     },
   },

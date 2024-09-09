@@ -3,13 +3,13 @@
     <div class="container">
       <SectionTitle :title="faqs.title" color="#cea348" />
       <div class="row g-4">
-        <div class="col-12 col-lg-6" v-for="faq in faqs.child" :key="faq.id">
+        <div class="col-12 col-lg-6" v-for="faq in faqs?.child" :key="faq?.id">
           <div class="faq__box">
             <h2 class="faq__title">
-              {{ faq.title }}
+              {{ faq?.title }}
             </h2>
 
-            <div class="faq__text" v-html="faq.content">
+            <div class="faq__text" v-html="faq?.content">
             </div>
           </div>
         </div>
@@ -30,6 +30,9 @@ export default {
     faqs: {
       required: true,
       type: Object,
+      default: () => {
+        return {}
+      }
     }
   }
 }

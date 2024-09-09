@@ -7,6 +7,7 @@ export const useKeyFeaturesStore = defineStore("keyFeatures", {
     return {
       keyFeaturesSection: {},
       keyFeaturesItems: [],
+      isFetching: false,
     };
   },
   getters: {
@@ -16,10 +17,14 @@ export const useKeyFeaturesStore = defineStore("keyFeatures", {
     getKeyFeaturesItems(state) {
       return state.keyFeaturesItems;
     },
+    getFetchingStatus(state) {
+      return state.isFetching;
+    },
   },
   actions: {
     async keyFeaturesContent() {
       try {
+        this.isFetching = true;
         const response = await keyFeaturesAPI.get();
         let data = response.data.data.results[0];
         this.keyFeaturesSection = {
@@ -34,6 +39,8 @@ export const useKeyFeaturesStore = defineStore("keyFeatures", {
         });
       } catch (e) {
         console.log(e);
+      } finally {
+        this.isFetching = false;
       }
     },
   },

@@ -29,8 +29,6 @@
 import SectionTitle from './SectionTitle.vue'
 import { Carousel, Navigation, Slide } from 'vue3-carousel'
 import Trans from "@/i18n/translation";
-import { mapState, mapActions } from "pinia";
-import { useTeachersStore } from '@/stores/teachers.store';
 
 export default {
   name: "TeachersCards",
@@ -39,6 +37,12 @@ export default {
     Carousel,
     Slide,
     Navigation,
+  },
+  props: {
+    getTeachersData: {
+      required: true,
+      type: Array
+    }
   },
   data() {
     return {
@@ -59,11 +63,7 @@ export default {
       },
     }
   },
-  async beforeMount() {
-    await this.getAllTeachers()
-  },
   computed: {
-    ...mapState(useTeachersStore, ['getTeachersData']),
     getSettings() {
       return {
         snapAlign: 'start',
@@ -73,9 +73,6 @@ export default {
       }
     }
   },
-  methods: {
-    ...mapActions(useTeachersStore, ['getAllTeachers'])
-  }
 }
 </script>
 

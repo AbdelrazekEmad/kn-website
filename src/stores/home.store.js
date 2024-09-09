@@ -6,6 +6,7 @@ export const useHomeStore = defineStore("home", {
   state: () => {
     return {
       home: {},
+      isFetching: false,
     };
   },
   getters: {
@@ -54,17 +55,34 @@ export const useHomeStore = defineStore("home", {
       }
       return null;
     },
+    getFeedbacks(state) {
+      if (
+        Array.isArray(state.home?.results) &&
+        state.home?.results.length > 0
+      ) {
+        return state.home?.results[0]?.child?.find(
+          (item) => item.slug == "feedback"
+        );
+      }
+      return null;
+    },
+    getFetchingStatus(state) {
+      return state.isFetching;
+    },
   },
   actions: {
     // all actions include async code
     async getAllHome() {
       // request here
       try {
+        this.isFetching = true;
         const response = await HomeApi.get();
 
         this.home = response?.data?.data;
       } catch (error) {
         console.log(error);
+      } finally {
+        this.isFetching = false;
       }
     },
   },
