@@ -1,8 +1,21 @@
 <template>
   <div class="h-100">
-    <template v-if="!isFetching && !categoriesContentIsFetching && !isLoadingDelay">
-      <main-banner :type="'breadcrumb'" :banner-title="categoriesHeader.title" :current-page="categoriesHeader.title" :img-url="categoriesHeader.image" />
-      <ListSection :list="categoriesList" :title="getCategoriesSection.title" :background-image="getCategoriesSection.image" router-name="single-categories-page" />
+    <template
+      v-if="!isFetching && !categoriesContentIsFetching && !isLoadingDelay"
+    >
+      <main-banner
+        :type="'breadcrumb'"
+        :banner-title="categoriesHeader.title"
+        :current-page="categoriesHeader.title"
+        :img-url="categoriesHeader.image"
+      />
+      <ListSection
+        :list="categoriesList"
+        :title="getCategoriesSection.title"
+        :background-image="getCategoriesSection.image"
+        router-name="single-categories-page"
+        single-btn-text-key="CATEGORY_BTN"
+      />
     </template>
     <Loader v-else />
   </div>

@@ -19,7 +19,7 @@
             </p>
 
             <MainButton
-              :text="$t('GLOBAL.GO_TO')"
+              :text="$t(`GLOBAL.${singleBtnTextKey}`)"
               :link="{
                 name: routerName,
                 params: { id: item.id },
@@ -59,6 +59,10 @@ export default {
       type: String,
       default: "https://placehold.co/900x600",
     },
+    singleBtnTextKey:{
+      type: String,
+      default: ""
+    }
   },
   data() {
     return {};

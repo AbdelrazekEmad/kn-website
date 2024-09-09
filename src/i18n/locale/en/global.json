@@ -12,7 +12,8 @@
       "BLOGS": "Blogs",
       "CATEGORIES": "Categories"
     },
-    "GO_TO":"Go to",
-    "FOOTER":"All copyright reserved ©2024"
+    "CATEGORY_BTN":"Category Corses",
+    "CORSE_BTN":"Corse details",
+    "FOOTER_RIGHTS":"All copyright reserved ©2024"
   }
 }
