@@ -21,25 +21,24 @@
 </template>
 
 <script>
-import { useKeyFeaturesStore } from "@/stores/key-features.store";
-import { mapState, mapActions } from "pinia";
 import Tr from "@/i18n/translation";
 
 export default {
   name: "FeaturesSection",
+  props: {
+    getKeyFeaturesSection: {
+      required: true,
+      type: Object
+    },
+    getKeyFeaturesItems: {
+      required: true,
+      type: Array
+    }
+  },
   data() {
     return {
       Tr: Tr,
     };
-  },
-  computed: {
-    ...mapState(useKeyFeaturesStore, ["getKeyFeaturesSection", "getKeyFeaturesItems"]),
-  },
-  async mounted() {
-    await this.keyFeaturesContent();
-  },
-  methods: {
-    ...mapActions(useKeyFeaturesStore, ["keyFeaturesContent"]),
   },
 };
 </script>

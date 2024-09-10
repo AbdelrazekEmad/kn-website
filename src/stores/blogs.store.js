@@ -26,6 +26,9 @@ export const useBlogsStore = defineStore("blogs", {
       //TODO: ask about the latest blog order
       return state.blogs.slice(0, 3);
     },
+    getFetchingStatus(state) {
+      return state.isFetching;
+    },
   },
   actions: {
     async getBlogsContent() {

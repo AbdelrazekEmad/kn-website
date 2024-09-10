@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div
+    v-if="!getFetchingStatus && !teacherFetchingStatus && !featuresFetchingStatus && !blogsFetchingStatus & !isLoadingDelay">
     <main-banner :type="'breadcrumb'" :banner-title="getBanner?.title" :current-page="getBanner?.title"
       :img-url="getBanner?.image" />
 
@@ -36,12 +37,13 @@
       </div>
     </section>
 
-    <FeaturesSection />
-
-    <TeachersCards />
+    <FeaturesSection :getKeyFeaturesSection="getKeyFeaturesSection" :getKeyFeaturesItems="getKeyFeaturesItems" />
+    <TeachersCards :getTeachersData="getTeachersData" />
     <FAQSection :faqs="getFaqs" />
-    <LatestNews />
+    <LatestNews :getLatestBlogs="getLatestBlogs" />
   </div>
+
+  <Loader v-else />
 </template>
 
 <script>
@@ -56,6 +58,10 @@ import LatestNews from "@/components/LatestNews.vue";
 import MainButton from "@/components/MainButton.vue";
 import { useAboutUsStore } from "@/stores/about-us.store";
 import { mapState, mapActions } from "pinia";
+import { useLoadingStore } from "@/stores/loading.store";
+import { useTeachersStore } from "@/stores/teachers.store";
+import { useKeyFeaturesStore } from "@/stores/key-features.store";
+import { useBlogsStore } from "@/stores/blogs.store";
 
 export default {
   name: "AboutView",
@@ -75,7 +81,25 @@ export default {
     };
   },
   computed: {
-    ...mapState(useAboutUsStore, ['getBanner', 'getAboutUs', 'getMission', 'getWhatOffer', 'getFaqs']),
+    ...mapState(useAboutUsStore, ['getBanner', 'getAboutUs', 'getMission', 'getWhatOffer', 'getFaqs', 'getFetchingStatus']),
+
+    ...mapState(useLoadingStore, ["isLoadingDelay"]),
+
+    ...mapState(useTeachersStore, {
+      teacherFetchingStatus: 'getFetchingStatus',
+      getTeachersData: 'getTeachersData'
+    }),
+
+    ...mapState(useKeyFeaturesStore, {
+      featuresFetchingStatus: 'getFetchingStatus',
+      getKeyFeaturesSection: 'getKeyFeaturesSection',
+      getKeyFeaturesItems: 'getKeyFeaturesItems'
+    }),
+
+    ...mapState(useBlogsStore, {
+      blogsFetchingStatus: 'getFetchingStatus',
+      getLatestBlogs: 'getLatestBlogs'
+    }),
     getVisions() {
       return [
         {
@@ -90,10 +114,16 @@ export default {
     }
   },
   methods: {
-    ...mapActions(useAboutUsStore, ['getAllAboutUs'])
+    ...mapActions(useAboutUsStore, ['getAllAboutUs']),
+    ...mapActions(useBlogsStore, ["getBlogsContent"]),
+    ...mapActions(useTeachersStore, ['getAllTeachers']),
+    ...mapActions(useKeyFeaturesStore, ["keyFeaturesContent"]),
   },
   async beforeMount() {
     await this.getAllAboutUs()
+    await this.getBlogsContent();
+    await this.getAllTeachers();
+    await this.keyFeaturesContent();
   }
 };
 </script>
