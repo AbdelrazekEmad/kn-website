@@ -20,8 +20,6 @@ export const useLoadingStore = defineStore("loading", {
       this.timer = setTimeout(() => {
         this.isLoadingDelay = false;
         this.timer = null;
-
-        console.log(this.isLoadingDelay);
       }, 1500);
     },
   },
