@@ -41,7 +41,7 @@ export default {
   props: {
     getTeachersData: {
       required: true,
-      type: Array
+      type: Object
     }
   },
   data() {
@@ -67,7 +67,7 @@ export default {
     getSettings() {
       return {
         snapAlign: 'start',
-        dir: Trans.currentLocale == 'ar' ? 'rlt' : 'ltr',
+        dir: Trans.currentLocale == 'ar' ? 'rtl' : 'ltr',
         autoplay: 2000,
         wrapAround: true
       }

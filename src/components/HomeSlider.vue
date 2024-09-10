@@ -1,20 +1,19 @@
 <template>
   <div class="slider-parent">
-    <template v-for="(image, index) in images" :key="index">
+    <template v-for="(image, index) in slides?.page_images" :key="index">
       <transition name="fade">
-        <img :src="image.src" :alt="image.alt" :title="image.alt" class="slider-parent__img"
+        <img :src="image.image" alt="slider image" title="slider image" class="slider-parent__img"
           v-if="index === currentSliderIndex" />
       </transition>
     </template>
 
     <div class="slider-parent__content">
       <h1 class="slider-parent__title">
-        LEARN QURAN ONLINE
+        {{ slides?.title }}
       </h1>
 
-      <p class="slider-parent__text">
-        Best Quran Tutors are a step away
-      </p>
+      <div v-html="slides?.content">
+      </div>
 
       <div class="slider-parent__buttons">
         <button class="slider-parent__button">
@@ -31,44 +30,19 @@
 
 <script>
 export default {
+  props: {
+    slides: {
+      required: true,
+      type: Object,
+      default: () => {
+        return {}
+      }
+    }
+  },
   data() {
     return {
-      images: [
-        {
-          src: "https://placehold.co/900x600",
-          alt: "Image 1",
-        },
-        {
-          src: "https://placehold.co/900x600",
-          alt: "Image 2",
-        },
-        {
-          src: "https://placehold.co/900x600",
-          alt: "Image 3",
-        },
-      ],
       intervalId: null,
       currentSliderIndex: 0,
-      features: [
-        {
-          id: 1,
-          title: '24/7 Online Classes',
-          text: 'Aenean vulputate eleifend tellus.',
-          iconClass: 'fa-regular fa-clock'
-        },
-        {
-          id: 2,
-          title: 'Free Trial Class',
-          text: 'Aenean vulputate eleifend tellus.',
-          iconClass: 'fa-solid fa-dollar-sign'
-        },
-        {
-          id: 3,
-          title: 'Completion Certificates',
-          text: 'Aenean vulputate eleifend tellus.',
-          iconClass: 'fa-solid fa-certificate'
-        },
-      ]
     };
   },
   methods: {
@@ -78,7 +52,7 @@ export default {
       }, 3000);
     },
     nextSlide() {
-      this.currentSliderIndex = (this.currentSliderIndex + 1) % this.images.length;
+      this.currentSliderIndex = (this.currentSliderIndex + 1) % this.slides?.page_images.length;
     },
   },
   mounted() {

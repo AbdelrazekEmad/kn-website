@@ -1,7 +1,7 @@
 <template>
   <div class="home-content"
     v-if="!getFetchingStatus && !teacherFetchingStatus && !featuresFetchingStatus && !blogsFetchingStatus & !isLoadingDelay">
-    <HomeSlider />
+    <HomeSlider :slides="getSlider" />
     <BannerSection :features="getApart" />
 
     <AboutContent>

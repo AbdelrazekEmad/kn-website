@@ -13,11 +13,7 @@ export const useLoadingStore = defineStore("loading", {
   },
   actions: {
     async generateLoadingDelay() {
-      console.log(this.isLoadingDelay);
-
       if (this.timer) {
-        console.log(5151515151551151);
-        
         clearTimeout(this.timer);
       }
       this.isLoadingDelay = true;
