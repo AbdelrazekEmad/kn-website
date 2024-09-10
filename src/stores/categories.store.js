@@ -31,7 +31,6 @@ export const useCategoriesStore = defineStore("categoriesContent", {
         };
         this.categoriesSection = data.child[0];
         this.singleCategoryContent = data.child[0].child[0]
-        console.log(data.child[0].child[0]);
         
       } catch (e) {
         console.log(e);

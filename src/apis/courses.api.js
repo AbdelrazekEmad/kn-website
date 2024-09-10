@@ -22,6 +22,10 @@ class CategoriesApi extends APIClients {
   getSelectedCourse(courseId) {
     return axios.get(`${this.url}/${courseId}`);
   }
+
+  getPopularCourses(){
+    return axios.get(`${this.url}/popular_course`);
+  }
 }
 
 

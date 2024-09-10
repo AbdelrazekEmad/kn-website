@@ -25,6 +25,7 @@
             <h4 class="title">{{ $t("CONTACT.OUR_SOCIAL") }}</h4>
             <div class="social-media">
               <a
+                v-if="currentLocale == 'en'"
                 :href="mainFacebookEn"
                 class="social-media__item"
                 target="_blank"
@@ -33,6 +34,7 @@
                 <i class="fa-brands fa-facebook"></i>
               </a>
               <a
+                v-else
                 :href="mainFacebookAr"
                 class="social-media__item"
                 target="_blank"
@@ -40,18 +42,25 @@
               >
                 <i class="fa-brands fa-facebook"></i>
               </a>
-              <a :href="mainTelegram" class="social-media__item" target="_blank">
+              <a
+                :href="mainTelegram"
+                class="social-media__item"
+                target="_blank"
+              >
                 <i class="fa-brands fa-telegram"></i>
               </a>
-              <!-- <a :href="mainYoutube" class="social-media__item" target="_blank">
-                <i class="fa-brands fa-youtube"></i>
-              </a> -->
+              <a :href="mainX" class="social-media__item" target="_blank">
+                <i class="fa-brands fa-x-twitter"></i>
+              </a>
               <a
                 :href="mainMessenger"
                 class="social-media__item"
                 target="_blank"
               >
-              <i class="fa-brands fa-facebook-messenger"></i>
+                <i class="fa-brands fa-facebook-messenger"></i>
+              </a>
+              <a :href="mainLinked" class="social-media__item" target="_blank">
+                <i class="fa-brands fa-linkedin"></i>
               </a>
               <a
                 :href="mainGooglePlay"
@@ -107,6 +116,7 @@
 
 <script>
 import MainBanner from "@/components/MainBanner.vue";
+import Tr from "@/i18n/translation";
 
 export default {
   name: "ContactUsView",
@@ -121,8 +131,16 @@ export default {
       mainTelegram: import.meta.env.VITE_SOCIAL_TELEGRAM,
       mainYoutube: import.meta.env.VITE_SOCIAL_YOUTUBE,
       mainMessenger: import.meta.env.VITE_SOCIAL_MESSENGER,
+      mainLinked: import.meta.env.VITE_SOCIAL_LINKED,
+      mainX: import.meta.env.VITE_SOCIAL_X,
       mainGooglePlay: import.meta.env.VITE_SOCIAL_PLAY,
+      Tr: Tr,
     };
+  },
+  computed: {
+    currentLocale() {
+      return this.Tr.currentLocale;
+    },
   },
 };
 </script>
