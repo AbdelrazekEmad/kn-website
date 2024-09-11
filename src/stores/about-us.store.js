@@ -6,6 +6,7 @@ export const useAboutUsStore = defineStore("aboutUs", {
   state: () => {
     return {
       aboutUs: {},
+      isFetching: false,
     };
   },
   getters: {
@@ -65,17 +66,23 @@ export const useAboutUsStore = defineStore("aboutUs", {
       }
       return null;
     },
+    getFetchingStatus(state) {
+      return state.isFetching;
+    },
   },
   actions: {
     // all actions include async code
     async getAllAboutUs() {
       // request here
       try {
+        this.isFetching = true;
         const response = await AboutUsApi.get();
 
         this.aboutUs = response?.data?.data;
       } catch (error) {
         console.log(error);
+      } finally {
+        this.isFetching = false;
       }
     },
   },

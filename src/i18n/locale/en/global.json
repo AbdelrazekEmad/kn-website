@@ -12,8 +12,8 @@
       "BLOGS": "Blogs",
       "CATEGORIES": "Categories"
     },
-    "CATEGORY_BTN":"Category Corses",
-    "CORSE_BTN":"Corse details",
-    "FOOTER_RIGHTS":"All copyright reserved ©2024"
+    "CATEGORY_BTN": "Category Corses",
+    "CORSE_BTN": "Corse details",
+    "FOOTER_RIGHTS": "All copyright reserved ©{year}"
   }
 }

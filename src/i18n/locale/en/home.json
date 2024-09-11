@@ -1,5 +1,9 @@
 {
   "HOME": {
+    "SLIDER": {
+      "FREE_TRIAL": "Book Free Trial",
+      "BROWSE_COURSES": "Browse Courses"
+    },
     "FEEDBACK": "Parent's Feedback"
   }
 }

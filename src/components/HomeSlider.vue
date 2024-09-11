@@ -1,74 +1,47 @@
 <template>
   <div class="slider-parent">
-    <template v-for="(image, index) in images" :key="index">
+    <template v-for="(image, index) in slides?.page_images" :key="index">
       <transition name="fade">
-        <img :src="image.src" :alt="image.alt" :title="image.alt" class="slider-parent__img"
-          v-if="index === currentSliderIndex" />
+        <img :src="image.image" alt="slider image" title="slider image" class="slider-parent__img" v-if="index === currentSliderIndex" />
       </transition>
     </template>
 
     <div class="slider-parent__content">
       <h1 class="slider-parent__title">
-        LEARN QURAN ONLINE
+        {{ slides?.title }}
       </h1>
 
-      <p class="slider-parent__text">
-        Best Quran Tutors are a step away
-      </p>
+      <div v-html="slides?.content"></div>
 
       <div class="slider-parent__buttons">
-        <button class="slider-parent__button">
-          book free trial
-        </button>
-
-        <button class="slider-parent__button">
-          browse courses
-        </button>
+        <MainButton class="slider-parent__button" :text="$t('HOME.SLIDER.FREE_TRIAL')" :href="mainGooglePlay" />
+        <MainButton class="slider-parent__button light" :text="$t('HOME.SLIDER.BROWSE_COURSES')" link="courses" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import MainButton from "../components/MainButton.vue";
+
 export default {
+  components: {
+    MainButton,
+  },
+  props: {
+    slides: {
+      required: true,
+      type: Object,
+      default: () => {
+        return {};
+      },
+    },
+  },
   data() {
     return {
-      images: [
-        {
-          src: "https://placehold.co/900x600",
-          alt: "Image 1",
-        },
-        {
-          src: "https://placehold.co/900x600",
-          alt: "Image 2",
-        },
-        {
-          src: "https://placehold.co/900x600",
-          alt: "Image 3",
-        },
-      ],
       intervalId: null,
       currentSliderIndex: 0,
-      features: [
-        {
-          id: 1,
-          title: '24/7 Online Classes',
-          text: 'Aenean vulputate eleifend tellus.',
-          iconClass: 'fa-regular fa-clock'
-        },
-        {
-          id: 2,
-          title: 'Free Trial Class',
-          text: 'Aenean vulputate eleifend tellus.',
-          iconClass: 'fa-solid fa-dollar-sign'
-        },
-        {
-          id: 3,
-          title: 'Completion Certificates',
-          text: 'Aenean vulputate eleifend tellus.',
-          iconClass: 'fa-solid fa-certificate'
-        },
-      ]
+      mainGooglePlay: import.meta.env.VITE_SOCIAL_PLAY,
     };
   },
   methods: {
@@ -78,7 +51,7 @@ export default {
       }, 3000);
     },
     nextSlide() {
-      this.currentSliderIndex = (this.currentSliderIndex + 1) % this.images.length;
+      this.currentSliderIndex = (this.currentSliderIndex + 1) % this.slides?.page_images.length;
     },
   },
   mounted() {
@@ -142,19 +115,20 @@ export default {
     transition: all 0.2s linear;
     border-radius: 16px;
     text-transform: capitalize;
+    line-height: unset;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 
     &:hover {
       background-color: var(--secondary-color);
+      color: var(--white-color);
     }
 
-    &:last-of-type {
+    &.light {
       background-color: var(--secondary-color);
-    }
 
-    &:last-of-type:hover {
-      background-color: var(--main-color);
-
+      &:hover {
+        background-color: var(--main-color);
+      }
     }
   }
 }

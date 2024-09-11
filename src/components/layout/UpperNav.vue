@@ -25,14 +25,28 @@
           <div
             class="contacts-icon d-flex justify-content-center justify-content-md-end gap-2"
           >
-            <a target="_blank" title="En page" :href="facebookEn"
-              ><i class="fa-brands fa-facebook-f"></i
-            ></a>
-            <a target="_blank" title="Ar page" :href="facebookAr">
+            <a
+              v-if="currentLocale == 'en'"
+              target="_blank"
+              title="En page"
+              :href="facebookEn"
+            >
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a v-else target="_blank" title="Ar page" :href="facebookAr">
               <i class="fa-brands fa-facebook-f"></i>
             </a>
             <a target="_blank" title="telegram" :href="telegram">
               <i class="fa-brands fa-telegram"></i>
+            </a>
+            <a target="_blank" title="X" :href="X">
+              <i class="fa-brands fa-x-twitter"></i>
+            </a>
+            <a target="_blank" title="Messenger" :href="messenger">
+              <i class="fa-brands fa-facebook-messenger"></i>
+            </a>
+            <a target="_blank" title="Linked in" :href="linked">
+              <i class="fa-brands fa-linkedin"></i>
             </a>
             <a target="_blank" title="google paly" :href="googlePlay">
               <i class="fa-brands fa-google-play"></i>
@@ -45,6 +59,7 @@
 </template>
 
 <script>
+import Tr from "@/i18n/translation";
 export default {
   data() {
     return {
@@ -52,11 +67,19 @@ export default {
       facebookEn: import.meta.env.VITE_SOCIAL_FACEBOOK_EN,
       facebookAr: import.meta.env.VITE_SOCIAL_FACEBOOK_AR,
       telegram: import.meta.env.VITE_SOCIAL_TELEGRAM,
+      linked: import.meta.env.VITE_SOCIAL_LINKED,
+      X: import.meta.env.VITE_SOCIAL_X,
       messenger: import.meta.env.VITE_SOCIAL_MESSENGER,
       googlePlay: import.meta.env.VITE_SOCIAL_PLAY,
       whatsapp1: import.meta.env.VITE_WHATSAPP_1,
       whatsapp2: import.meta.env.VITE_WHATSAPP_2,
+      Tr: Tr,
     };
+  },
+  computed: {
+    currentLocale() {
+      return this.Tr.currentLocale;
+    },
   },
 };
 </script>

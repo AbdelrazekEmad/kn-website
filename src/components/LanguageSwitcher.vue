@@ -1,6 +1,8 @@
 <template>
   <div class="dropdown">
     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <img v-if="locale === 'en'" src="@/assets/images/flags/flag-en.png" width="20" />
+      <img v-if="locale === 'ar'" src="@/assets/images/flags/flag-ar.png" width="20" />
       {{ $t(`GLOBAL.LOCALE.${Tr.currentLocale}`) }}
     </a>
     <ul class="dropdown-menu">

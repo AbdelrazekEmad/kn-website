@@ -9,6 +9,7 @@ export const useCoursesStore = defineStore("courses", {
       selectedCourses: [],
       category: {},
       course: {},
+      popularCourse:[],
       isFetching: false
     };
   },
@@ -63,6 +64,19 @@ export const useCoursesStore = defineStore("courses", {
         this.isFetching = true
         const { data: { data } } = await coursesApi.getSelectedCourse(id);
         this.course = data || []
+      } catch (error) {
+        console.log(error);
+      }
+      finally{
+        this.isFetching = false
+      }
+    },
+
+    async getPopularCourse() {
+      try {
+        this.isFetching = true
+        const { data: { data:{results} } } = await coursesApi.getPopularCourses();
+        this.popularCourse = results || []
       } catch (error) {
         console.log(error);
       }

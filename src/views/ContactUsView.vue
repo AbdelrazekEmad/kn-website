@@ -1,112 +1,83 @@
 <template>
-  <div>
-    <main-banner
-      :type="'breadcrumb'"
-      :banner-title="$t('CONTACT.MAIN_BANNER')"
-      :current-page="$t('GLOBAL.NAVS.CONTACT')"
-      :img-url="'https://placehold.co/900x600'"
-    />
-    <section class="contact-us py-5">
-      <div class="container">
-        <div class="row align-items-center g-5">
-          <div class="col">
-            <div class="send-email">
-              <div class="send-email__icon">
-                <i class="fa-solid fa-envelope"></i>
+  <div class="h-100">
+    <template v-if="!isFetching && !isLoadingDelay">
+      <main-banner :type="'breadcrumb'" :banner-title="contactUsHeader.title" :current-page="$t('GLOBAL.NAVS.CONTACT')" :img-url="contactUsHeader.image" />
+      <section class="contact-us py-5">
+        <div class="container">
+          <div class="row align-items-center g-5">
+            <div class="col">
+              <div class="send-email">
+                <div class="send-email__icon">
+                  <i class="fa-solid fa-envelope"></i>
+                </div>
+                <h4 class="title">{{ $t("CONTACT.SEND_EMAIL") }}</h4>
+                <p class="send-email__paragraph">{{ $t("CONTACT.SEND_EMAIL_DESCRIPTION") }}</p>
+                <button class="send-email__btn">
+                  <a :href="'mailto:' + mainEmail">{{ mainEmail }}</a>
+                </button>
               </div>
-              <h4 class="title">{{ $t("CONTACT.SEND_EMAIL") }}</h4>
-              <p class="send-email__paragraph">
-                Sed in libero ut nibh placerat accumsan
-              </p>
-              <button class="send-email__btn">
-                <a :href="'mailto:' + mainEmail">{{ mainEmail }}</a>
-              </button>
-            </div>
-            <h4 class="title">{{ $t("CONTACT.OUR_SOCIAL") }}</h4>
-            <div class="social-media">
-              <a
-                :href="mainFacebookEn"
-                class="social-media__item"
-                target="_blank"
-                title="En page"
-              >
-                <i class="fa-brands fa-facebook"></i>
-              </a>
-              <a
-                :href="mainFacebookAr"
-                class="social-media__item"
-                target="_blank"
-                title="Ar page"
-              >
-                <i class="fa-brands fa-facebook"></i>
-              </a>
-              <a :href="mainTelegram" class="social-media__item" target="_blank">
-                <i class="fa-brands fa-telegram"></i>
-              </a>
-              <!-- <a :href="mainYoutube" class="social-media__item" target="_blank">
-                <i class="fa-brands fa-youtube"></i>
-              </a> -->
-              <a
-                :href="mainMessenger"
-                class="social-media__item"
-                target="_blank"
-              >
-              <i class="fa-brands fa-facebook-messenger"></i>
-              </a>
-              <a
-                :href="mainGooglePlay"
-                class="social-media__item"
-                target="_blank"
-              >
-                <i class="fa-brands fa-google-play"></i>
-              </a>
-            </div>
-          </div>
-          <div class="col">
-            <div class="form">
-              <h4 class="title">{{ $t("CONTACT.ASK_QUESTION") }}</h4>
-              <div class="form-group">
-                <label for="name">{{ $t("CONTACT.FORM.NAME.LABEL") }}</label>
-                <input
-                  type="text"
-                  id="name"
-                  :placeholder="$t('CONTACT.FORM.NAME.PLACEHOLDER')"
-                />
-              </div>
-              <div class="form-group">
-                <label for="email">{{ $t("CONTACT.FORM.EMAIL.LABEL") }}</label>
-                <input
-                  type="email"
-                  id="email"
-                  :placeholder="$t('CONTACT.FORM.EMAIL.PLACEHOLDER')"
-                />
-              </div>
-              <div class="form-group">
-                <label for="message">{{
-                  $t("CONTACT.FORM.MESSAGE.LABEL")
-                }}</label>
-                <textarea
-                  rows="4"
-                  id="message"
-                  :placeholder="$t('CONTACT.FORM.MESSAGE.PLACEHOLDER')"
-                ></textarea>
-              </div>
-
-              <button class="send-email__btn w-100">
-                <a href="mailto:info@website.com">
-                  {{ $t("CONTACT.FORM.SEND") }}
+              <h4 class="title">{{ $t("CONTACT.OUR_SOCIAL") }}</h4>
+              <div class="social-media">
+                <a v-if="currentLocale == 'en'" :href="mainFacebookEn" class="social-media__item" target="_blank" title="En page">
+                  <i class="fa-brands fa-facebook"></i>
                 </a>
-              </button>
+                <a v-else :href="mainFacebookAr" class="social-media__item" target="_blank" title="Ar page">
+                  <i class="fa-brands fa-facebook"></i>
+                </a>
+                <a :href="mainTelegram" class="social-media__item" target="_blank">
+                  <i class="fa-brands fa-telegram"></i>
+                </a>
+                <a :href="mainX" class="social-media__item" target="_blank">
+                  <i class="fa-brands fa-x-twitter"></i>
+                </a>
+                <a :href="mainMessenger" class="social-media__item" target="_blank">
+                  <i class="fa-brands fa-facebook-messenger"></i>
+                </a>
+                <a :href="mainLinked" class="social-media__item" target="_blank">
+                  <i class="fa-brands fa-linkedin"></i>
+                </a>
+                <a :href="mainGooglePlay" class="social-media__item" target="_blank">
+                  <i class="fa-brands fa-google-play"></i>
+                </a>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form">
+                <h4 class="title">{{ formTitle }}</h4>
+                <div class="form-group">
+                  <label for="name">{{ $t("CONTACT.FORM.NAME.LABEL") }}</label>
+                  <input type="text" id="name" :placeholder="$t('CONTACT.FORM.NAME.PLACEHOLDER')" />
+                </div>
+                <div class="form-group">
+                  <label for="email">{{ $t("CONTACT.FORM.EMAIL.LABEL") }}</label>
+                  <input type="email" id="email" :placeholder="$t('CONTACT.FORM.EMAIL.PLACEHOLDER')" />
+                </div>
+                <div class="form-group">
+                  <label for="message">{{ $t("CONTACT.FORM.MESSAGE.LABEL") }}</label>
+                  <textarea rows="4" id="message" :placeholder="$t('CONTACT.FORM.MESSAGE.PLACEHOLDER')"></textarea>
+                </div>
+
+                <button class="send-email__btn w-100">
+                  <a href="mailto:info@website.com">
+                    {{ $t("CONTACT.FORM.SEND") }}
+                  </a>
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </template>
+    <Loader v-else />
   </div>
 </template>
 
 <script>
+import { useContactUsStore } from "@/stores/contact-us.store";
+import { useLoadingStore } from "@/stores/loading.store";
+import { mapState, mapActions } from "pinia";
 import MainBanner from "@/components/MainBanner.vue";
+import Tr from "@/i18n/translation";
 
 export default {
   name: "ContactUsView",
@@ -121,8 +92,24 @@ export default {
       mainTelegram: import.meta.env.VITE_SOCIAL_TELEGRAM,
       mainYoutube: import.meta.env.VITE_SOCIAL_YOUTUBE,
       mainMessenger: import.meta.env.VITE_SOCIAL_MESSENGER,
+      mainLinked: import.meta.env.VITE_SOCIAL_LINKED,
+      mainX: import.meta.env.VITE_SOCIAL_X,
       mainGooglePlay: import.meta.env.VITE_SOCIAL_PLAY,
+      Tr: Tr,
     };
+  },
+  computed: {
+    ...mapState(useContactUsStore, ["contactUsHeader", "formTitle", "isFetching"]),
+    ...mapState(useLoadingStore, ["isLoadingDelay"]),
+    currentLocale() {
+      return this.Tr.currentLocale;
+    },
+  },
+  async mounted() {
+    await this.getContactUs();
+  },
+  methods: {
+    ...mapActions(useContactUsStore, ["getContactUs"]),
   },
 };
 </script>
@@ -232,6 +219,14 @@ export default {
       color: #1f2124;
       border-radius: 3px;
       padding: 0.5rem 1rem;
+    }
+  }
+}
+
+html[dir="rtl"] {
+  .form {
+    input[type="email"] {
+      direction: rtl;
     }
   }
 }
