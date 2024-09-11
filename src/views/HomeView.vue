@@ -1,15 +1,5 @@
 <template>
-  <div
-    class="home-content"
-    v-if="
-      !getFetchingStatus &&
-      !teacherFetchingStatus &&
-      !featuresFetchingStatus &&
-      !blogsFetchingStatus &&
-      !categoriesContentIsFetching &&
-      !isLoadingDelay
-    "
-  >
+  <div class="home-content" v-if="!getFetchingStatus && !teacherFetchingStatus && !featuresFetchingStatus && !blogsFetchingStatus && !categoriesContentIsFetching && !isLoadingDelay">
     <HomeSlider :slides="getSlider" />
     <BannerSection :features="getApart" />
 
@@ -23,36 +13,22 @@
 
             <div v-html="getStories?.content"></div>
 
-            <MainButton text="Courses" link="courses" />
+            <MainButton :text="$t('GLOBAL.NAVS.CATEGORIES')" :link="{ name: 'categories-page' }" />
           </div>
         </div>
 
         <div class="col-12 col-lg-6">
           <div class="home-content__box">
-            <img
-              class="home-content__img"
-              :src="getStories?.image"
-              alt="about us"
-              title="about us"
-            />
+            <img class="home-content__img" :src="getStories?.image" alt="about us" title="about us" />
           </div>
         </div>
       </template>
     </AboutContent>
 
-    <ListSection
-      :list="popularCourse"
-      :title="getCategoriesSection.title"
-      :background-image="getCategoriesSection.image"
-      router-name="single-course-page"
-      single-btn-text-key="CORSE_BTN"
-    />
+    <ListSection :list="popularCourse" :title="getCategoriesSection.title" :background-image="getCategoriesSection.image" router-name="single-course-page" single-btn-text-key="CORSE_BTN" />
 
     <TeachersCards :getTeachersData="getTeachersData" />
-    <FeaturesSection
-      :getKeyFeaturesSection="getKeyFeaturesSection"
-      :getKeyFeaturesItems="getKeyFeaturesItems"
-    />
+    <FeaturesSection :getKeyFeaturesSection="getKeyFeaturesSection" :getKeyFeaturesItems="getKeyFeaturesItems" />
     <LatestNews :getLatestBlogs="getLatestBlogs" />
     <FeedbackSection :feedbacks="getFeedbacks" />
   </div>
@@ -101,14 +77,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(useHomeStore, [
-      "getSlider",
-      "getApart",
-      "getStories",
-      "getCourses",
-      "getFeedbacks",
-      "getFetchingStatus",
-    ]),
+    ...mapState(useHomeStore, ["getSlider", "getApart", "getStories", "getCourses", "getFeedbacks", "getFetchingStatus"]),
     ...mapState(useLoadingStore, ["isLoadingDelay"]),
     ...mapState(useTeachersStore, {
       teacherFetchingStatus: "getFetchingStatus",

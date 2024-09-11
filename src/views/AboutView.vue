@@ -1,8 +1,6 @@
 <template>
-  <div
-    v-if="!getFetchingStatus && !teacherFetchingStatus && !featuresFetchingStatus && !blogsFetchingStatus & !isLoadingDelay">
-    <main-banner :type="'breadcrumb'" :banner-title="getBanner?.title" :current-page="getBanner?.title"
-      :img-url="getBanner?.image" />
+  <div v-if="!getFetchingStatus && !teacherFetchingStatus && !featuresFetchingStatus && !blogsFetchingStatus & !isLoadingDelay">
+    <main-banner :type="'breadcrumb'" :banner-title="getBanner?.title" :current-page="getBanner?.title" :img-url="getBanner?.image" />
 
     <AboutContent>
       <template #content>
@@ -12,10 +10,9 @@
               {{ getAboutUs?.title }}
             </h2>
 
-            <div v-html="getAboutUs?.content">
-            </div>
+            <div v-html="getAboutUs?.content"></div>
 
-            <MainButton text="Courses" link="courses" />
+            <MainButton :text="$t('GLOBAL.NAVS.CATEGORIES')" :link="{ name: 'categories-page' }" />
           </div>
         </div>
 
@@ -39,8 +36,8 @@
 
     <FeaturesSection :getKeyFeaturesSection="getKeyFeaturesSection" :getKeyFeaturesItems="getKeyFeaturesItems" />
     <TeachersCards :getTeachersData="getTeachersData" />
-    <FAQSection :faqs="getFaqs" />
     <LatestNews :getLatestBlogs="getLatestBlogs" />
+    <FAQSection :faqs="getFaqs" />
   </div>
 
   <Loader v-else />
@@ -81,50 +78,50 @@ export default {
     };
   },
   computed: {
-    ...mapState(useAboutUsStore, ['getBanner', 'getAboutUs', 'getMission', 'getWhatOffer', 'getFaqs', 'getFetchingStatus']),
+    ...mapState(useAboutUsStore, ["getBanner", "getAboutUs", "getMission", "getWhatOffer", "getFaqs", "getFetchingStatus"]),
 
     ...mapState(useLoadingStore, ["isLoadingDelay"]),
 
     ...mapState(useTeachersStore, {
-      teacherFetchingStatus: 'getFetchingStatus',
-      getTeachersData: 'getTeachersData'
+      teacherFetchingStatus: "getFetchingStatus",
+      getTeachersData: "getTeachersData",
     }),
 
     ...mapState(useKeyFeaturesStore, {
-      featuresFetchingStatus: 'getFetchingStatus',
-      getKeyFeaturesSection: 'getKeyFeaturesSection',
-      getKeyFeaturesItems: 'getKeyFeaturesItems'
+      featuresFetchingStatus: "getFetchingStatus",
+      getKeyFeaturesSection: "getKeyFeaturesSection",
+      getKeyFeaturesItems: "getKeyFeaturesItems",
     }),
 
     ...mapState(useBlogsStore, {
-      blogsFetchingStatus: 'getFetchingStatus',
-      getLatestBlogs: 'getLatestBlogs'
+      blogsFetchingStatus: "getFetchingStatus",
+      getLatestBlogs: "getLatestBlogs",
     }),
     getVisions() {
       return [
         {
           title: this.getMission?.title,
-          text: this.getMission?.content
+          text: this.getMission?.content,
         },
         {
           title: this.getWhatOffer?.title,
-          text: this.getWhatOffer?.content
-        }
-      ]
-    }
+          text: this.getWhatOffer?.content,
+        },
+      ];
+    },
   },
   methods: {
-    ...mapActions(useAboutUsStore, ['getAllAboutUs']),
+    ...mapActions(useAboutUsStore, ["getAllAboutUs"]),
     ...mapActions(useBlogsStore, ["getBlogsContent"]),
-    ...mapActions(useTeachersStore, ['getAllTeachers']),
+    ...mapActions(useTeachersStore, ["getAllTeachers"]),
     ...mapActions(useKeyFeaturesStore, ["keyFeaturesContent"]),
   },
   async beforeMount() {
-    await this.getAllAboutUs()
+    await this.getAllAboutUs();
     await this.getBlogsContent();
     await this.getAllTeachers();
     await this.keyFeaturesContent();
-  }
+  },
 };
 </script>
 

@@ -1,7 +1,7 @@
 <template>
-  <button @click="handelNavigation" class="main-button">
+  <a @click="handelNavigation" :href="href" class="main-button">
     {{ text }}
-  </button>
+  </a>
 </template>
 
 <script>
@@ -14,12 +14,18 @@ export default {
     },
     link: {
       type: [String, Object],
-      required: true,
+      default: "",
+    },
+    href: {
+      type: String,
+      default: "javascript:void(0)",
     },
   },
   methods: {
     handelNavigation() {
-      this.$router.push(this.link);
+      if (this.link != "") {
+        this.$router.push(this.link);
+      }
     },
   },
 };
@@ -27,6 +33,7 @@ export default {
 
 <style lang="scss" scoped>
 .main-button {
+  display: block;
   width: fit-content;
   background-color: var(--secondary-color);
   padding: 12px 24px;

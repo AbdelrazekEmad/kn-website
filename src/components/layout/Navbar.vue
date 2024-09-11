@@ -14,19 +14,11 @@
           <img src="../../assets/images/kn-loho.png" alt="" />
         </router-link>
 
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="mt-3 collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="mt-3 mt-lg-0 collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav gap-md-3 mb-2 mb-lg-0 gap-3">
             <li class="nav-item" v-for="link in navLinks" :key="link.id">
               <router-link class="nav-link" :to="Tr.i18nRoute(link.to)">
@@ -34,11 +26,9 @@
               </router-link>
             </li>
           </ul>
-          <div
-            class="d-flex align-items-md-center gap-4 flex-column flex-md-row"
-          >
+          <div class="d-flex align-items-md-center gap-4 flex-column flex-md-row">
             <language-switcher />
-            <MainButton text="test" link="courses" />
+            <!-- <MainButton text="test" link="courses" /> -->
           </div>
         </div>
       </div>

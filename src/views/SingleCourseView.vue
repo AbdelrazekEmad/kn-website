@@ -1,12 +1,7 @@
 <template>
   <div class="h-100">
     <template v-if="!isFetching && !isLoadingDelay">
-      <main-banner
-        :type="'breadcrumb'"
-        :banner-title="course.title"
-        :current-page="$t('COURSE.MAIN_BANNER')"
-        :img-url="course.image"
-      />
+      <main-banner :type="'breadcrumb'" :banner-title="course.title" :current-page="$t('COURSE.MAIN_BANNER')" :img-url="course.image" />
       <section class="mt-5">
         <div class="container">
           <!-- course info -->
@@ -17,30 +12,26 @@
                 <p class="course-info__desc">
                   {{ course.description }}
                 </p>
-                <MainButton text="Enroll now" />
+                <MainButton text="Enroll now" :href="mainGooglePlay" />
               </div>
               <div class="col-12 col-md-6 order-first order-md-2">
                 <div class="p-md-5 p-2 course-info__image">
-                  <img src="https://placehold.co/900x600" alt="" />
+                  <img :src="course.image" alt="" />
                 </div>
               </div>
             </div>
           </div>
-          <div class="features my-3 my-md-5">
+          <!-- <div class="features my-3 my-md-5">
             <h3 class="main-header">Course Key features</h3>
             <div class="features row g-2">
-              <div
-                class="col-6 col-md-4"
-                v-for="(feature, index) in features"
-                :key="index"
-              >
+              <div class="col-6 col-md-4" v-for="(feature, index) in features" :key="index">
                 <div class="features__feature">
                   <i class="fa-regular fa-circle-check"></i>
                   {{ feature }}
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </section>
     </template>
@@ -68,27 +59,12 @@ export default {
   },
   data() {
     return {
-      features: [
-        "Lorem ipsum dolor sit amet",
-        "Donec quam felis",
-        "Donec pede justo",
-        "Curabitur ullamcorper ultricies",
-        "Maecenas tempus",
-        "Lorem ipsum dolor sit amet",
-        "Donec quam felis",
-        "Donec pede justo",
-        "Curabitur ullamcorper ultricies",
-        "Maecenas tempus",
-        "Lorem ipsum dolor sit amet",
-        "Donec quam felis",
-        "Donec pede justo",
-        "Curabitur ullamcorper ultricies",
-        "Maecenas tempus",
-      ],
+      mainGooglePlay: import.meta.env.VITE_SOCIAL_PLAY,
+      // features: ["Lorem ipsum dolor sit amet", "Donec quam felis", "Donec pede justo", "Curabitur ullamcorper ultricies", "Maecenas tempus", "Lorem ipsum dolor sit amet", "Donec quam felis", "Donec pede justo", "Curabitur ullamcorper ultricies", "Maecenas tempus", "Lorem ipsum dolor sit amet", "Donec quam felis", "Donec pede justo", "Curabitur ullamcorper ultricies", "Maecenas tempus"],
     };
   },
   computed: {
-    ...mapState(useCoursesStore, ["course" , "isFetching"]),
+    ...mapState(useCoursesStore, ["course", "isFetching"]),
     ...mapState(useLoadingStore, ["isLoadingDelay"]),
   },
   async mounted() {
