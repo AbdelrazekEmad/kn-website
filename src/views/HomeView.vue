@@ -13,7 +13,7 @@
 
             <div v-html="getStories?.content"></div>
 
-            <MainButton :text="$t('GLOBAL.NAVS.CATEGORIES')" :link="{ name: 'categories-page' }" />
+            <MainButton :text="$t('HOME.PROGRAMS_LINK')" :link="{ name: 'categories-page' }" />
           </div>
         </div>
 

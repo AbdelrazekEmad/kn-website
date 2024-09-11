@@ -2,20 +2,20 @@
   <div class="slider-parent">
     <template v-for="(image, index) in slides?.page_images" :key="index">
       <transition name="fade">
-        <img :src="image.image" alt="slider image" title="slider image" class="slider-parent__img" v-if="index === currentSliderIndex" />
+        <img :src="image.image" alt="slider image" title="slider image" class="slider-parent__img"
+          v-if="index === currentSliderIndex" />
       </transition>
     </template>
 
     <div class="slider-parent__content">
-      <h1 class="slider-parent__title">
-        {{ slides?.title }}
-      </h1>
+      <div v-html="slides?.content">
+      </div>
 
-      <div v-html="slides?.content"></div>
 
       <div class="slider-parent__buttons">
         <MainButton class="slider-parent__button" :text="$t('HOME.SLIDER.FREE_TRIAL')" :href="mainGooglePlay" />
-        <MainButton class="slider-parent__button light" :text="$t('HOME.SLIDER.BROWSE_COURSES')" link="courses" />
+        <MainButton class="slider-parent__button light" :text="$t('HOME.PROGRAMS_LINK')"
+          :link="{ name: 'categories-page' }" />
       </div>
     </div>
   </div>
