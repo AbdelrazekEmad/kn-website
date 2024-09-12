@@ -58,8 +58,9 @@
                 </div>
 
                 <button class="send-email__btn w-100">
-                  <a href="mailto:info@website.com">
+                  <a href="mailto:info@website.com" class="d-flex align-items-center justify-content-center gap-2">
                     {{ $t("CONTACT.FORM.SEND") }}
+                    <i class="fa-brands fa-whatsapp"></i>
                   </a>
                 </button>
               </div>
@@ -143,8 +144,6 @@ export default {
     width: fit-content;
     background-color: var(--main-color);
     border-radius: 12px;
-    border-start-end-radius: 0px;
-    border-end-end-radius: 0px;
     border: 0;
     outline: 0;
     line-height: 1;

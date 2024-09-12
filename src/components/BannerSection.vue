@@ -64,6 +64,7 @@ export default {
   &__img {
     height: 48px;
     width: 48px;
+    filter: invert(1);
   }
 
   &__content {

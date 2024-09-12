@@ -44,7 +44,7 @@ export const useHomeStore = defineStore("home", {
       }
       return null;
     },
-    getCourses(state) {
+    getFeaturedCourses(state) {
       if (
         Array.isArray(state.home?.results) &&
         state.home?.results.length > 0

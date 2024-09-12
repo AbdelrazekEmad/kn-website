@@ -2,7 +2,7 @@
   "CONTACT": {
     "MAIN_BANNER": "Contact",
     "SEND_EMAIL": "Send us an Email",
-    "SEND_EMAIL_DESCRIPTION": "Feel free to send us an email",
+    "SEND_EMAIL_DESCRIPTION": "Contact us and we will respond to you as soon as possible",
     "OUR_SOCIAL": "Our Social Media",
     "ASK_QUESTION": "Ask a question",
     "FORM": {
@@ -18,7 +18,7 @@
         "LABEL": "Message",
         "PLACEHOLDER": "Enter Your Message"
       },
-      "SEND": "Send"
+      "SEND": "Send Whatsapp"
     }
   }
 }

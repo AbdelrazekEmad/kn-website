@@ -12,7 +12,7 @@
         :title="singleCategoryContent.title"
         :background-image="singleCategoryContent.image"
         router-name="single-course-page"
-        single-btn-text-key="CORSE_BTN"
+        single-btn-text-key="COURSE_BTN"
       />
     </template>
     <Loader v-else />
