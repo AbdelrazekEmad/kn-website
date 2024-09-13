@@ -7,13 +7,14 @@
         </h2>
 
 
-        <Carousel v-bind="getSettings">
+        <Carousel v-bind="getSettings" :breakpoints="breakpoints">
           <Slide v-for="(feedback, index) in feedbacks?.child" :key="index">
             <div class="feedback__item">
               <img class="feedback__img-feedback" :src="feedback.image" alt="feedback.title" title="feedback.title">
 
               <div class="feedback__widget">
-                <img class="feedback__img" :src="feedback.page_images[0].image" :alt="feedback.title" :title="feedback.title">
+                <img class="feedback__img" :src="feedback.page_images[0].image" :alt="feedback.title"
+                  :title="feedback.title">
 
                 <h3 class="feedback__title">
                   {{ feedback.title }}
@@ -52,6 +53,20 @@ export default {
   data() {
     return {
       Tr: Tr,
+      breakpoints: {
+        991: {
+          itemsToShow: 2,
+          snapAlign: 'start',
+        },
+        1200: {
+          itemsToShow: 2.5,
+          snapAlign: 'start',
+        },
+        1400: {
+          itemsToShow: 3,
+          snapAlign: 'start',
+        }
+      },
     }
   },
   computed: {
@@ -60,7 +75,7 @@ export default {
         snapAlign: 'start',
         dir: Trans.currentLocale == 'ar' ? 'rtl' : 'ltr',
         // autoplay: 2000,
-        wrapAround: true
+        wrapAround: true,
       }
     }
   },
@@ -92,10 +107,10 @@ export default {
   }
 
   &__item {
+    padding: 16px;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     position: relative;
-    width: 100%;
-    height: 100%;
+    height: 400px;
   }
 
   &__img-feedback {
