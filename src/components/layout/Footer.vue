@@ -2,7 +2,7 @@
   <footer>
     <div class="container">
       <div class="row justify-content-between align-items-center py-3 border-top">
-        <ul class="nav col-md-4 flex-wrap flex-column flex-md-row">
+        <ul class="nav col-md-5 flex-nowrap flex-column flex-md-row">
           <li class="nav-item" v-for="link in navLinks" :key="link.id">
             <router-link class="nav-link px-2" :to="Tr.i18nRoute(link.to)">
               {{ $t(link.nameKey) }}
@@ -10,13 +10,13 @@
           </li>
         </ul>
 
-        <div class="col-md-4">
+        <div class="col-md-2">
           <router-link :to="Tr.i18nRoute({ name: 'home-page' })" class="d-inline-block">
             <img src="../../assets/images/kn-loho.png" alt="Logo" class="logo" />
           </router-link>
         </div>
 
-        <p class="col-md-4 mb-0 col-12">
+        <p class="col-md-5 mb-0 col-12">
           {{
             $t("GLOBAL.FOOTER_RIGHTS", {
               year: currentYear,

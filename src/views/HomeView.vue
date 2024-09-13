@@ -1,5 +1,5 @@
 <template>
-  <div class="home-content" v-if="!getFetchingStatus && !teacherFetchingStatus && !featuresFetchingStatus && !blogsFetchingStatus && !categoriesContentIsFetching && !isLoadingDelay">
+  <div class="home-content" v-if="!getFetchingStatus && !teacherFetchingStatus && !featuresFetchingStatus && !blogsFetchingStatus && !isLoadingDelay">
     <HomeSlider :slides="getSlider" />
     <BannerSection :features="getApart" />
 
@@ -25,7 +25,7 @@
       </template>
     </AboutContent>
 
-    <ListSection :list="popularCourse" :title="getCategoriesSection.title" :background-image="getCategoriesSection.image" router-name="single-course-page" single-btn-text-key="CORSE_BTN" />
+    <ListSection :list="popularCourse" :title="getFeaturedCourses?.title" :background-image="getFeaturedCourses?.image" router-name="single-course-page" single-btn-text-key="COURSE_BTN" />
 
     <TeachersCards :getTeachersData="getTeachersData" />
     <FeaturesSection :getKeyFeaturesSection="getKeyFeaturesSection" :getKeyFeaturesItems="getKeyFeaturesItems" />
@@ -54,7 +54,6 @@ import { useLoadingStore } from "@/stores/loading.store";
 import { useTeachersStore } from "@/stores/teachers.store";
 import { useKeyFeaturesStore } from "@/stores/key-features.store";
 import { useBlogsStore } from "@/stores/blogs.store";
-import { useCategoriesStore } from "@/stores/categories.store";
 import { useCoursesStore } from "@/stores/courses.store";
 
 export default {
@@ -77,7 +76,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(useHomeStore, ["getSlider", "getApart", "getStories", "getCourses", "getFeedbacks", "getFetchingStatus"]),
+    ...mapState(useHomeStore, ["getSlider", "getApart", "getStories", "getFeaturedCourses", "getFeedbacks", "getFetchingStatus"]),
     ...mapState(useLoadingStore, ["isLoadingDelay"]),
     ...mapState(useTeachersStore, {
       teacherFetchingStatus: "getFetchingStatus",
@@ -95,10 +94,6 @@ export default {
       getLatestBlogs: "getLatestBlogs",
     }),
     ...mapState(useCoursesStore, ["popularCourse"]),
-    ...mapState(useCategoriesStore, {
-      getCategoriesSection: "getCategoriesSection",
-      categoriesContentIsFetching: "isFetching",
-    }),
   },
   methods: {
     ...mapActions(useHomeStore, ["getAllHome"]),
@@ -106,14 +101,12 @@ export default {
     ...mapActions(useTeachersStore, ["getAllTeachers"]),
     ...mapActions(useKeyFeaturesStore, ["keyFeaturesContent"]),
     ...mapActions(useCoursesStore, ["getPopularCourse"]),
-    ...mapActions(useCategoriesStore, ["categoriesContent"]),
   },
   async beforeMount() {
     await this.getAllHome();
     await this.getBlogsContent();
     await this.getAllTeachers();
     await this.keyFeaturesContent();
-    await this.categoriesContent();
     await this.getPopularCourse();
   },
 };

@@ -2,7 +2,7 @@
   "CONTACT": {
     "MAIN_BANNER": "تواصل معنا",
     "SEND_EMAIL": "ارسل لنا بريد الكتروني",
-    "SEND_EMAIL_DESCRIPTION": "تواصل معنا في اي وقت كما تشاء",
+    "SEND_EMAIL_DESCRIPTION": "تواصل معنا وسيتم الرد عليكم في أقرب وقت",
     "OUR_SOCIAL": "مواقع التواصل الأجتماعي",
     "ASK_QUESTION": "أرسل سؤالك",
     "FORM": {
@@ -18,7 +18,7 @@
         "LABEL": "الرساله",
         "PLACEHOLDER": "ادخل رسالتك"
       },
-      "SEND": "ارسال"
+      "SEND": "ارسل واتس آب"
     }
   }
 }

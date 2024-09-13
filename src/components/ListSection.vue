@@ -19,6 +19,7 @@
             </p>
 
             <MainButton
+              class="mt-auto"
               :text="$t(`GLOBAL.${singleBtnTextKey}`)"
               :link="{
                 name: routerName,

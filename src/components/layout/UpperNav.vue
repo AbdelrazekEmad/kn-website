@@ -48,7 +48,7 @@
             <a target="_blank" title="Linked in" :href="linked">
               <i class="fa-brands fa-linkedin"></i>
             </a>
-            <a target="_blank" title="google paly" :href="googlePlay">
+            <a target="_blank" title="Google play" :href="googlePlay">
               <i class="fa-brands fa-google-play"></i>
             </a>
           </div>
