@@ -1,43 +1,31 @@
 <template>
   <section class="feedback py-5" :style="`background-image: url(${feedbacks.image})`">
     <div class="container">
-      <div class="row justify-content-end">
-        <div class="col-12 col-lg-6">
-          <div class="feedback__boxes">
-            <h2 class="feedback__main-title">
-              {{ feedbacks?.title }}
-            </h2>
+      <div class="feedback__boxes">
+        <h2 class="feedback__main-title">
+          {{ feedbacks?.title }}
+        </h2>
 
 
-            <Carousel v-bind="getSettings">
-              <Slide v-for="(feedback, index) in feedbacks?.child" :key="index">
-                <div class="feedback__item">
-                  <i class="feedback__icon fa-solid fa-quote-right"></i>
+        <Carousel v-bind="getSettings">
+          <Slide v-for="(feedback, index) in feedbacks?.child" :key="index">
+            <div class="feedback__item">
+              <img class="feedback__img-feedback" :src="feedback.image" alt="feedback.title" title="feedback.title">
 
+              <div class="feedback__widget">
+                <img class="feedback__img" :src="feedback.page_images[0].image" :alt="feedback.title" :title="feedback.title">
 
-                  <div class="feedback__text" v-html="feedback?.content"></div>
+                <h3 class="feedback__title">
+                  {{ feedback.title }}
+                </h3>
+              </div>
+            </div>
+          </Slide>
 
-                  <div class="feedback__rate">
-                    <i v-for="rate in feedback.total_likes" :key="rate"
-                      class="feedback__rate-icon fa-solid fa-star"></i>
-                  </div>
-
-                  <div class="feedback__widget">
-                    <img class="feedback__img" :src="feedback.image" :alt="feedback.title" :title="feedback.title">
-
-                    <h3 class="feedback__title">
-                      {{ feedback.title }}
-                    </h3>
-                  </div>
-                </div>
-              </Slide>
-
-              <template #addons>
-                <Navigation />
-              </template>
-            </Carousel>
-          </div>
-        </div>
+          <template #addons>
+            <Navigation />
+          </template>
+        </Carousel>
       </div>
     </div>
   </section>
@@ -105,19 +93,14 @@ export default {
 
   &__item {
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-    padding: 32px;
-    background-color: transparent;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-    width: 85%;
     position: relative;
-    padding-bottom: 55px;
+    width: 100%;
+    height: 100%;
+  }
 
-    @media (max-width:768px) {
-      width: 100%;
-    }
+  &__img-feedback {
+    height: 100%;
+    width: 100%;
   }
 
   &__icon {

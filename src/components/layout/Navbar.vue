@@ -83,7 +83,7 @@ export default {
     border-radius: 8px;
     &.router-link-active,
     &:hover {
-      color: var(--second-color);
+      background-color: var(--secondary-color);
     }
     &.router-link-active {
       font-weight: 500;
