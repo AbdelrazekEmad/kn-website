@@ -42,28 +42,26 @@
               </div>
             </div>
             <div class="col">
-              <div class="form">
+              <form class="form" @submit.prevent="sendWhatsAppMessage">
                 <h4 class="title">{{ formTitle }}</h4>
                 <div class="form-group">
                   <label for="name">{{ $t("CONTACT.FORM.NAME.LABEL") }}</label>
-                  <input type="text" id="name" :placeholder="$t('CONTACT.FORM.NAME.PLACEHOLDER')" />
+                  <input type="text" id="name" v-model="formName" :placeholder="$t('CONTACT.FORM.NAME.PLACEHOLDER')" />
                 </div>
                 <div class="form-group">
                   <label for="email">{{ $t("CONTACT.FORM.EMAIL.LABEL") }}</label>
-                  <input type="email" id="email" :placeholder="$t('CONTACT.FORM.EMAIL.PLACEHOLDER')" />
+                  <input type="email" id="email" v-model="formEmail" :placeholder="$t('CONTACT.FORM.EMAIL.PLACEHOLDER')" />
                 </div>
                 <div class="form-group">
                   <label for="message">{{ $t("CONTACT.FORM.MESSAGE.LABEL") }}</label>
-                  <textarea rows="4" id="message" :placeholder="$t('CONTACT.FORM.MESSAGE.PLACEHOLDER')"></textarea>
+                  <textarea rows="4" id="message" v-model="formMessage" :placeholder="$t('CONTACT.FORM.MESSAGE.PLACEHOLDER')"></textarea>
                 </div>
 
-                <button class="send-email__btn w-100">
-                  <a href="mailto:info@website.com" class="d-flex align-items-center justify-content-center gap-2">
-                    {{ $t("CONTACT.FORM.SEND") }}
-                    <i class="fa-brands fa-whatsapp"></i>
-                  </a>
+                <button class="send-email__btn w-100 p-3" type="submit">
+                  {{ $t("CONTACT.FORM.SEND") }}
+                  <i class="fa-brands fa-whatsapp"></i>
                 </button>
-              </div>
+              </form>
             </div>
           </div>
         </div>
@@ -96,6 +94,10 @@ export default {
       mainLinked: import.meta.env.VITE_SOCIAL_LINKED,
       mainX: import.meta.env.VITE_SOCIAL_X,
       mainGooglePlay: import.meta.env.VITE_SOCIAL_PLAY,
+      sendFromWhatsapp: import.meta.env.VITE_WHATSAPP_1,
+      formName: "",
+      formEmail: "",
+      formMessage: "",
       Tr: Tr,
     };
   },
@@ -111,6 +113,14 @@ export default {
   },
   methods: {
     ...mapActions(useContactUsStore, ["getContactUs"]),
+
+    sendWhatsAppMessage() {
+      const text = `Name: ${this.formName}\nEmail: ${this.formEmail}\nMessage: ${this.formMessage}`;
+
+      const whatsappUrl = `https://api.whatsapp.com/send?phone=${this.sendFromWhatsapp}&text=${encodeURIComponent(text)}`;
+
+      window.location.href = whatsappUrl;
+    },
   },
 };
 </script>
@@ -149,6 +159,7 @@ export default {
     line-height: 1;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
     transition: all 0.2s linear;
+    color: white;
 
     a {
       display: block;
@@ -194,14 +205,6 @@ export default {
 }
 
 .form {
-  //   &__header {
-  //     font-size: 25px;
-  //     text-transform: uppercase;
-  //     text-align: center;
-  //     font-family: var(--secondary-font);
-  //     margin-bottom: 20px;
-  //   }
-
   .form-group {
     margin-bottom: 12px;
 
