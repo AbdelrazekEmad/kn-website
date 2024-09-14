@@ -94,7 +94,7 @@ export default {
       mainLinked: import.meta.env.VITE_SOCIAL_LINKED,
       mainX: import.meta.env.VITE_SOCIAL_X,
       mainGooglePlay: import.meta.env.VITE_SOCIAL_PLAY,
-      sendFromWhatsapp: import.meta.env.VITE_WHATSAPP_1,
+      sendFromWhatsapp: import.meta.env.VITE_WHATSAPP_2,
       formName: "",
       formEmail: "",
       formMessage: "",
