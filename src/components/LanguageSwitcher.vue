@@ -1,14 +1,41 @@
 <template>
   <div class="dropdown">
-    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-      <img v-if="locale === 'en'" src="@/assets/images/flags/flag-en.png" width="20" />
-      <img v-if="locale === 'ar'" src="@/assets/images/flags/flag-ar.png" width="20" />
+    <a
+      class="nav-link dropdown-toggle"
+      href="#"
+      role="button"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
+    >
+      <img
+        v-if="locale === 'en'"
+        src="@/assets/images/flags/flag-en.png"
+        width="20"
+      />
+      <img
+        v-if="locale === 'ar'"
+        src="@/assets/images/flags/flag-ar.png"
+        width="20"
+      />
       {{ $t(`GLOBAL.LOCALE.${Tr.currentLocale}`) }}
     </a>
     <ul class="dropdown-menu">
-      <li v-for="lang in languages" :key="`locale-${lang}`" :class="{ selected: locale === lang }" @click="switchLanguage(lang)">
-        <img v-if="lang === 'en'" src="@/assets/images/flags/flag-en.png" width="20" />
-        <img v-if="lang === 'ar'" src="@/assets/images/flags/flag-ar.png" width="20" />
+      <li
+        v-for="lang in languages"
+        :key="`locale-${lang}`"
+        :class="{ selected: locale === lang }"
+        @click="switchLanguage(lang)"
+      >
+        <img
+          v-if="lang === 'en'"
+          src="@/assets/images/flags/flag-en.png"
+          width="20"
+        />
+        <img
+          v-if="lang === 'ar'"
+          src="@/assets/images/flags/flag-ar.png"
+          width="20"
+        />
         {{ $t(`GLOBAL.LOCALE.${lang}`) }}
       </li>
     </ul>
@@ -53,6 +80,8 @@ export default {
   li {
     padding: 8px;
     transition: all 0.3s ease-in-out;
+    cursor: pointer;
+
     &:hover,
     &.selected {
       background-color: var(--bg-color);
