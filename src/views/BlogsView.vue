@@ -1,42 +1,48 @@
 <template>
   <div class="h-100">
     <template v-if="!isFetching && !isLoadingDelay">
-      <main-banner :type="'breadcrumb'" :banner-title="getBlogsHeaders.title" :current-page="getBlogsHeaders.title" :img-url="getBlogsHeaders.image" />
+      <main-banner
+        :type="'breadcrumb'"
+        :banner-title="getBlogsHeaders.title"
+        :current-page="getBlogsHeaders.title"
+        :img-url="getBlogsHeaders.image"
+      />
       <section class="my-5">
         <div class="container">
           <div class="row g-4">
-            <div class="col-12 col-md-6 col-lg-4" v-for="blog in getBlogs" :key="blog.id">
-              <div class="blog">
-                <div class="blog__body">
-                  <img :src="blog.image" :alt="blog.title" class="blog__img img-fluid" />
+            <div
+              class="col-12 col-md-6 col-lg-4"
+              v-for="blog in getBlogs"
+              :key="blog.id"
+            >
+              <RouterLink
+                :to="
+                  Tr.i18nRoute({
+                    name: 'single-blog-page',
+                    params: { id: blog.id },
+                  })
+                "
+              >
+                <div class="blog">
+                  <div class="blog__body">
+                    <img
+                      :src="blog.image"
+                      :alt="blog.title"
+                      class="blog__img img-fluid"
+                    />
 
-                  <RouterLink
-                    :to="
-                      Tr.i18nRoute({
-                        name: 'single-blog-page',
-                        params: { id: blog.id },
-                      })
-                    "
-                    class="blog__title"
-                    :title="blog.title"
-                  >
-                    {{ blog.title }}
-                  </RouterLink>
+                    <p class="blog__title" :title="blog.title">
+                      {{ blog.title }}
+                    </p>
 
-                  <RouterLink
-                    :to="
-                      Tr.i18nRoute({
-                        name: 'single-blog-page',
-                        params: { id: blog.id },
-                      })
-                    "
-                    class="blog__read-more"
-                  >
-                    {{ $t("BLOG.READ_MORE") }} <i class="fa-solid fa-angles-right"></i>
-                  </RouterLink>
+                    <span class="blog__read-more">
+                      {{ $t("BLOG.READ_MORE") }}
+                      <i class="fa-solid fa-angles-right"></i>
+                    </span>
+                  </div>
+                  <div class="blog__footer">{{ blog.created_since }}</div>
                 </div>
-                <div class="blog__footer">{{ blog.created_since }}</div>
-              </div>
+              </RouterLink>
             </div>
           </div>
         </div>

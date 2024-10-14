@@ -4,29 +4,39 @@
       <SectionTitle :title="$t('BLOG.LATEST_TITLE')" color="#101010" />
 
       <div class="row g-4">
-        <div class="col-12 col-md-6 col-lg-4" v-for="blog in getLatestBlogs" :key="blog.id">
-          <div class="blog">
-            <div class="blog__body">
-              <img :src="blog.image" :alt="blog.title" class="blog__img img-fluid" />
-
-              <RouterLink :to="Tr.i18nRoute({
+        <div
+          class="col-12 col-md-6 col-lg-4"
+          v-for="blog in getLatestBlogs"
+          :key="blog.id"
+        >
+          <RouterLink
+            :to="
+              Tr.i18nRoute({
                 name: 'single-blog-page',
                 params: { id: blog.id },
               })
-                " class="blog__title" :title="blog.title">
-                {{ blog.title }}
-              </RouterLink>
+            "
+          >
+            <div class="blog">
+              <div class="blog__body">
+                <img
+                  :src="blog.image"
+                  :alt="blog.title"
+                  class="blog__img img-fluid"
+                />
 
-              <RouterLink :to="Tr.i18nRoute({
-                name: 'single-blog-page',
-                params: { id: blog.id },
-              })
-                " class="blog__read-more">
-                {{ $t("BLOG.READ_MORE") }} <i class="fa-solid fa-angles-right"></i>
-              </RouterLink>
+                <p class="blog__title" :title="blog.title">
+                  {{ blog.title }}
+                </p>
+
+                <span class="blog__read-more">
+                  {{ $t("BLOG.READ_MORE") }}
+                  <i class="fa-solid fa-angles-right"></i>
+                </span>
+              </div>
+              <div class="blog__footer">{{ blog.created_since }}</div>
             </div>
-            <div class="blog__footer">{{ blog.created_since }}</div>
-          </div>
+          </RouterLink>
         </div>
       </div>
     </div>
@@ -42,8 +52,8 @@ export default {
   props: {
     getLatestBlogs: {
       required: true,
-      type: Array
-    }
+      type: Array,
+    },
   },
   components: {
     SectionTitle,

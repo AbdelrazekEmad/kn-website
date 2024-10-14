@@ -53,6 +53,8 @@
     color: var(--secondary-color);
     font-size: 12px;
     margin-top: 8px;
+    direction: ltr;
+    text-align: start;
   }
 }
 
@@ -62,6 +64,10 @@ html[dir="rtl"] {
       i {
         transform: rotate(180deg);
       }
+    }
+
+    &__footer {
+      text-align: end;
     }
   }
 }
