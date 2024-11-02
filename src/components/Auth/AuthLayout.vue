@@ -19,7 +19,7 @@ export default {
 
 <style scoped lang="scss">
 .auth-layout {
-  block-size: 100vh;
+  min-block-size: 100vh;
   padding: 40px 64px;
   display: flex;
   gap: 64px;
@@ -30,7 +30,6 @@ export default {
   }
 
   &__banner {
-    block-size: 100%;
     background-image: url('@/assets/images/auth/bg.svg');
     background-size: cover;
     background-repeat: no-repeat;

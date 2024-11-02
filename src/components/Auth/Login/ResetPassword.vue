@@ -62,7 +62,7 @@ export default {
   validations() {
     return {
       password: { required },
-      confirmPassword: { required, sameAsPassword: sameAs('password') },
+      confirmPassword: { required, sameAsPassword: sameAs(this.password) },
     }
   },
   methods: {
