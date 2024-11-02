@@ -113,7 +113,7 @@ export default {
 
   &__content {
     inline-size: 100%;
-    block-size: 88px;
+    min-block-size: 88px;
     padding: 16px;
     border-radius: 8px;
     background-color: #F5F5F5;
@@ -137,7 +137,7 @@ export default {
 
   &__wrapper {
     flex-grow: 1;
-    block-size: 56px;
+    min-block-size: 56px;
     padding: 8px 12px;
     border-radius: 8px;
     display: flex;
@@ -158,7 +158,7 @@ export default {
 
   &__label {
     inline-size: fit-content;
-    block-size: 40px;
+    min-block-size: 40px;
     padding: 8px 16px;
     border-radius: 8px;
     background-color: var(--dark-slate-gray);

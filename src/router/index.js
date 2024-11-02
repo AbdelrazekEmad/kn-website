@@ -22,6 +22,10 @@ const router = createRouter({
       beforeEnter: Tr.routeMiddleware,
       children: [
         {
+          path: "",
+          redirect: { name: "home-page" },
+        },
+        {
           path: "home",
           name: "home-page",
           component: () => import("@/views/HomeView.vue"),
