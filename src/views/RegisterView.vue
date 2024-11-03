@@ -69,14 +69,18 @@
 
         <div class="register-layout__boxes">
           <div class="register-layout__box" v-if="studentType">
-            one
+            <SelectInput :options="country" :label="$t('REGISTER.NATIONALITY')" @update:modelValue="onSelectGender">
+              <template v-slot:icon>
+                <img src="@/assets/images/auth/icons/global.svg" alt="global">
+              </template>
+            </SelectInput>
           </div>
 
           <div class="register-layout__box">
             <FormInput :placeholder="$t('REGISTER.PHONE_NUMBER')" type="text" :label="$t('REGISTER.PHONE_NUMBER')"
               :error="v$.tel.$error" v-model="v$.tel.$model">
               <template v-slot:icon>
-                <img src="@/assets/images/auth/icons/flag.svg" alt="flag">
+                <img src="@/assets/images/auth/icons/global.svg" alt="global">
               </template>
 
               <template v-slot:error>
@@ -194,6 +198,7 @@ export default {
         { label: 'Male', value: 'Mail', id: 1 },
         { label: 'Female', value: 'Female', id: 2 },
       ],
+      country: [{ label: 'list is empty', value: 'list is empty', id: 1 },],
       tel: ''
     }
   },
