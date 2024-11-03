@@ -4,7 +4,7 @@
       {{ title }}
     </h3>
 
-    <div class="upload-input__content">
+    <div class="upload-input__content" :class="{ error: error }">
       <div class="upload-input__switcher">
         <SwitchButton @submitValue="onSwitch" />
 
@@ -31,6 +31,8 @@
         </label>
       </div>
     </div>
+
+    <slot name="error"></slot>
   </div>
 </template>
 
@@ -60,6 +62,11 @@ export default {
       Required: false,
       default: 'Upload your certificate'
     },
+    error: {
+      type: Boolean,
+      Required: true,
+      default: false
+    }
   },
   components: {
     SwitchButton
@@ -92,6 +99,7 @@ export default {
     },
     onSwitch(value) {
       this.toggleSwitch = value
+      this.$emit('onSwitchInput', this.toggleSwitch)
     }
   },
 };
@@ -120,6 +128,10 @@ export default {
     display: flex;
     align-items: center;
     gap: 16px;
+
+    &.error {
+      border: 1px solid red;
+    }
   }
 
   &__switcher {
@@ -177,5 +189,17 @@ export default {
       cursor: not-allowed;
     }
   }
+}
+
+:slotted(.error-wrapper) {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+:slotted(.error-wrapper__error) {
+  font-size: 16px;
+  font-weight: 400;
+  color: red;
 }
 </style>

@@ -4,7 +4,7 @@
       {{ label }}
     </h3>
 
-    <div class="custom-select__wrapper" @click="toggleDropdown">
+    <div class="custom-select__wrapper" :class="{ error: error }" @click="toggleDropdown">
       <slot name="icon">
         <img src="@/assets/images/auth/icons/gender.svg" alt="email">
       </slot>
@@ -19,6 +19,8 @@
         </div>
       </div>
     </div>
+
+    <slot name="error"></slot>
   </div>
 </template>
 
@@ -36,6 +38,11 @@ export default {
       Required: true,
       default: 'lorem label'
     },
+    error: {
+      type: Boolean,
+      Required: true,
+      default: false
+    }
   },
   data() {
     return {
@@ -88,6 +95,10 @@ export default {
     border: 1px solid var(--light-gray);
     background-color: var(--white-color);
     padding-inline-start: 50px;
+
+    &.error {
+      border-color: red;
+    }
   }
 
   &__selected-option {
@@ -131,5 +142,17 @@ export default {
   inset-block-start: 50%;
   transform: translateY(-50%);
   pointer-events: none;
+}
+
+:slotted(.error-wrapper) {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+:slotted(.error-wrapper__error) {
+  font-size: 16px;
+  font-weight: 400;
+  color: red;
 }
 </style>

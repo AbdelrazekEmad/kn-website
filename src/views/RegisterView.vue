@@ -55,9 +55,18 @@
 
         <div class="register-layout__boxes">
           <div class="register-layout__box">
-            <SelectInput :options="genders" :label="$t('REGISTER.GENDER')" @update:modelValue="onSelectGender">
+            <SelectInput :error="v$.gender.$error" :options="genders" :label="$t('REGISTER.GENDER')"
+              @update:modelValue="onSelectGender">
               <template v-slot:icon>
                 <img src="@/assets/images/auth/icons/gender.svg" alt="gender">
+              </template>
+
+              <template v-slot:error>
+                <div class="error-wrapper" v-if="v$.gender.$error">
+                  <p class="error-wrapper__error" v-for="(error, index) in v$.gender.$errors" :key="index">
+                    {{ error.$message }}
+                  </p>
+                </div>
               </template>
             </SelectInput>
           </div>
@@ -69,9 +78,18 @@
 
         <div class="register-layout__boxes">
           <div class="register-layout__box" v-if="studentType">
-            <SelectInput :options="country" :label="$t('REGISTER.NATIONALITY')" @update:modelValue="onSelectGender">
+            <SelectInput :error="v$.nationality.$error" :options="country" :label="$t('REGISTER.NATIONALITY')"
+              @update:modelValue="onSelectGender">
               <template v-slot:icon>
                 <img src="@/assets/images/auth/icons/global.svg" alt="global">
+              </template>
+
+              <template v-slot:error>
+                <div class="error-wrapper" v-if="v$.nationality.$error">
+                  <p class="error-wrapper__error" v-for="(error, index) in v$.nationality.$errors" :key="index">
+                    {{ error.$message }}
+                  </p>
+                </div>
               </template>
             </SelectInput>
           </div>
@@ -123,8 +141,17 @@
           </template>
         </FormInput>
 
-        <CustomUploadInput :title="$t('REGISTER.NEW_MUSLIM_MESSAGE')" :subtitle="$t('REGISTER.NEW_MUSLIM')"
-          :placeholder="$t('REGISTER.CERTIFICATE')" />
+        <CustomUploadInput @onSwitchInput="toggleRequired" :error="v$.pdf.$error"
+          :title="$t('REGISTER.NEW_MUSLIM_MESSAGE')" :subtitle="$t('REGISTER.NEW_MUSLIM')"
+          :placeholder="$t('REGISTER.CERTIFICATE')">
+          <template v-slot:error>
+            <div class="error-wrapper" v-if="v$.pdf.$error">
+              <p class="error-wrapper__error" v-for="(error, index) in v$.pdf.$errors" :key="index">
+                {{ error.$message }}
+              </p>
+            </div>
+          </template>
+        </CustomUploadInput>
 
         <FormButton @handelFormSubmit="onSubmit" :text="$t('REGISTER.CREATE_ACCOUNT')" />
 
@@ -155,7 +182,7 @@ import SelectInput from '@/components/Auth/SelectInput.vue';
 import CustomUploadInput from '@/components/Auth/CustomUploadInput.vue';
 import Tr from "@/i18n/translation";
 import { useVuelidate } from '@vuelidate/core'
-import { required, email, minLength, maxLength, numeric } from '@vuelidate/validators'
+import { required, email, minLength, maxLength, numeric, requiredIf } from '@vuelidate/validators'
 
 export default {
   name: 'RegisterView',
@@ -178,7 +205,10 @@ export default {
       firstName: '',
       lastName: '',
       email: '',
+      nationality: '',
       password: '',
+      pdf: '',
+      pdfRequiredStatus: false,
       types: [
         {
           id: 1,
@@ -199,6 +229,7 @@ export default {
         { label: 'Male', value: 'Mail', id: 1 },
         { label: 'Female', value: 'Female', id: 2 },
       ],
+      gender: '',
       country: [{ label: 'list is empty', value: 'list is empty', id: 1 },],
       tel: ''
     }
@@ -206,9 +237,12 @@ export default {
   validations() {
     return {
       firstName: { required },
+      nationality: { required },
+      gender: { required },
       lastName: { required },
       email: { required, email },
       password: { required },
+      pdf: { requiredIf: requiredIf(() => this.pdfRequiredStatus) },
       tel: {
         required,
         numeric,
@@ -242,6 +276,9 @@ export default {
     },
     onSelectGender(value) {
       console.log(value);
+    },
+    toggleRequired(value) {
+      this.pdfRequiredStatus = value
     }
   }
 }
@@ -272,7 +309,7 @@ export default {
 
   &__boxes {
     display: flex;
-    align-items: center;
+    align-items: self-start;
     flex-wrap: wrap;
     gap: 24px;
   }
