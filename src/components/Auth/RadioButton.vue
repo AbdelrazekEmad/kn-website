@@ -2,7 +2,7 @@
   <label :for="uniqueId" class="radio-button" :class="{ checked: option.checked }">
     <input :checked="option.checked" class="radio-button__input" :id="uniqueId" type="radio" :name="option.name"
       :value="option.value" @change="submitValue" />
-    {{ option.value }}
+    {{ option.label }}
   </label>
 </template>
 

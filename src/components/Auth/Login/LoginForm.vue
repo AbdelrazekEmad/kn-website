@@ -38,7 +38,7 @@
 
   <FormButton @handelFormSubmit="onSubmit" :text="$t('LOGIN.LOGIN')" />
 
-  <router-link class="register-link" :to="{ name: 'Register' }">
+  <router-link class="register-link" :to="{ name: 'Register', params: { locale: Tr.currentLocale } }">
     {{ $t('LOGIN.ACCOUNT') }}
     <span>
       {{ $t('LOGIN.CREATE_ACCOUNT') }}

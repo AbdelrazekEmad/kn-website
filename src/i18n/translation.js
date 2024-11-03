@@ -23,7 +23,10 @@ const Trans = {
   },
 
   getUserLocale() {
-    const locale = window.navigator.language || window.navigator.userLanguage || Trans.defaultLocale;
+    const locale =
+      window.navigator.language ||
+      window.navigator.userLanguage ||
+      Trans.defaultLocale;
 
     return {
       locale: locale,
@@ -64,9 +67,17 @@ const Trans = {
     await Trans.loadLocaleMessages(newLocale);
     Trans.currentLocale = newLocale;
     document.querySelector("html").setAttribute("lang", newLocale);
-    document.querySelector("html").setAttribute("dir", newLocale === "ar" ? "rtl" : "ltr");
-    newLocale === "ar" ? document.querySelector("body").classList.remove("wrapper-ltr") : document.querySelector("body").classList.add("wrapper-ltr");
-    newLocale === "ar" ? (document.querySelector("#bootstrap").href = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.rtl.min.css") : (document.querySelector("#bootstrap").href = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css");
+    document
+      .querySelector("html")
+      .setAttribute("dir", newLocale === "ar" ? "rtl" : "ltr");
+    newLocale === "ar"
+      ? document.querySelector("body").classList.remove("wrapper-ltr")
+      : document.querySelector("body").classList.add("wrapper-ltr");
+    newLocale === "ar"
+      ? (document.querySelector("#bootstrap").href =
+          "https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.rtl.min.css")
+      : (document.querySelector("#bootstrap").href =
+          "https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css");
     localStorage.setItem("user-locale", newLocale);
   },
 

@@ -129,12 +129,11 @@
         <FormButton @handelFormSubmit="onSubmit" :text="$t('REGISTER.CREATE_ACCOUNT')" />
 
         <label class="register-layout__check" for="terms">
-          {{ $t('REGISTER.TERMS_CONDITIONS') }}
-
           <input type="checkbox" id="terms" name="terms">
+          {{ $t('REGISTER.TERMS_CONDITIONS') }}
         </label>
 
-        <router-link class="register-layout__link" :to="{ name: 'loginForm' }">
+        <router-link class="register-layout__link" :to="{ name: 'loginForm', params: { locale: Tr.currentLocale } }">
           {{ $t('REGISTER.HAVE_ACCOUNT') }}
           <span>
             {{ $t('REGISTER.LOG_IN') }}
@@ -185,12 +184,14 @@ export default {
           id: 1,
           name: 'type',
           value: 'student',
+          label: this.$t('REGISTER.STUDENT'),
           checked: true
         },
         {
           id: 2,
           name: 'type',
           value: 'teacher',
+          label: this.$t('REGISTER.TEACHER'),
           checked: false
         }
       ],

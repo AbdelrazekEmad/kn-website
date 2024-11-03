@@ -83,6 +83,7 @@ const router = createRouter({
     {
       path: "/:locale?/login",
       name: "login",
+      beforeEnter: Tr.routeMiddleware,
       component: () => import("@/views/LoginView.vue"),
       children: [
         {
@@ -110,6 +111,7 @@ const router = createRouter({
     {
       path: "/:locale?/register",
       name: "Register",
+      beforeEnter: Tr.routeMiddleware,
       component: () => import("@/views/RegisterView.vue"),
     },
   ],
