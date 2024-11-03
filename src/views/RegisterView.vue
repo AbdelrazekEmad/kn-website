@@ -79,7 +79,7 @@
         <div class="register-layout__boxes">
           <div class="register-layout__box" v-if="studentType">
             <SelectInput :error="v$.nationality.$error" :options="country" :label="$t('REGISTER.NATIONALITY')"
-              @update:modelValue="onSelectGender">
+              @update:modelValue="onSelectCountry">
               <template v-slot:icon>
                 <img src="@/assets/images/auth/icons/global.svg" alt="global">
               </template>
@@ -209,6 +209,7 @@ export default {
       password: '',
       pdf: '',
       pdfRequiredStatus: false,
+      birthday: '',
       types: [
         {
           id: 1,
@@ -230,19 +231,20 @@ export default {
         { label: 'Female', value: 'Female', id: 2 },
       ],
       gender: '',
-      country: [{ label: 'list is empty', value: 'list is empty', id: 1 },],
+      country: [{ label: 'egypt', value: 'egypt', id: 1 },],
       tel: ''
     }
   },
   validations() {
     return {
       firstName: { required },
-      nationality: { required },
+      nationality: { requiredIf: requiredIf(() => studentType) },
+      birthday: { requiredIf: requiredIf(() => studentType) },
       gender: { required },
       lastName: { required },
       email: { required, email },
       password: { required },
-      pdf: { requiredIf: requiredIf(() => this.pdfRequiredStatus) },
+      pdf: { requiredIf: requiredIf(() => this.pdfRequiredStatus && studentType) },
       tel: {
         required,
         numeric,
@@ -261,7 +263,7 @@ export default {
       this.v$.$touch()
 
       if (!this.v$.$invalid) {
-        this.$router.push({ name: 'home-page' })
+        this.$router.push({ name: 'loginForm', params: { locale: Tr.currentLocale } })
       }
     },
     changeType(value) {
@@ -272,10 +274,13 @@ export default {
       this.types.find((type) => type.id == value).checked = true
     },
     onSelectDate(value) {
-      console.log(value);
+      this.birthday = value
     },
     onSelectGender(value) {
-      console.log(value);
+      this.gender = value
+    },
+    onSelectCountry(value) {
+      this.nationality = value
     },
     toggleRequired(value) {
       this.pdfRequiredStatus = value

@@ -201,5 +201,6 @@ export default {
   font-size: 16px;
   font-weight: 400;
   color: red;
+  margin: 0;
 }
 </style>
