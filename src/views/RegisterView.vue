@@ -73,7 +73,20 @@
           </div>
 
           <div class="register-layout__box">
-            two
+            <FormInput :placeholder="$t('REGISTER.PHONE_NUMBER')" type="text" :label="$t('REGISTER.PHONE_NUMBER')"
+              :error="v$.tel.$error" v-model="v$.tel.$model">
+              <template v-slot:icon>
+                <img src="@/assets/images/auth/icons/flag.svg" alt="flag">
+              </template>
+
+              <template v-slot:error>
+                <div class="error-wrapper" v-if="v$.tel.$error">
+                  <p class="error-wrapper__error" v-for="(error, index) in v$.tel.$errors" :key="index">
+                    {{ error.$message }}
+                  </p>
+                </div>
+              </template>
+            </FormInput>
           </div>
         </div>
 
@@ -139,7 +152,7 @@ import SelectInput from '@/components/Auth/SelectInput.vue';
 import CustomUploadInput from '@/components/Auth/CustomUploadInput.vue';
 import Tr from "@/i18n/translation";
 import { useVuelidate } from '@vuelidate/core'
-import { required, email } from '@vuelidate/validators'
+import { required, email, minLength, maxLength, numeric } from '@vuelidate/validators'
 
 export default {
   name: 'RegisterView',
@@ -180,7 +193,8 @@ export default {
       genders: [
         { label: 'Male', value: 'Mail', id: 1 },
         { label: 'Female', value: 'Female', id: 2 },
-      ]
+      ],
+      tel: ''
     }
   },
   validations() {
@@ -189,6 +203,12 @@ export default {
       lastName: { required },
       email: { required, email },
       password: { required },
+      tel: {
+        required,
+        numeric,
+        minLength: minLength(12),
+        maxLength: maxLength(12)
+      }
     }
   },
   computed: {
