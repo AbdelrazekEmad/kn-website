@@ -141,7 +141,7 @@
           </template>
         </FormInput>
 
-        <CustomUploadInput @onSwitchInput="toggleRequired" :error="v$.pdf.$error"
+        <CustomUploadInput v-if="studentType" @onSwitchInput="toggleRequired" :error="v$.pdf.$error"
           :title="$t('REGISTER.NEW_MUSLIM_MESSAGE')" :subtitle="$t('REGISTER.NEW_MUSLIM')"
           :placeholder="$t('REGISTER.CERTIFICATE')">
           <template v-slot:error>
