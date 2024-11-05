@@ -2,6 +2,10 @@
   <div class="form-header">
     <h1 class="form-header__title">
       {{ title }}
+
+      <span class="form-header__word" v-if="titleWord">
+        {{ titleWord }}
+      </span>
     </h1>
 
     <p class="form-header__sub-title">
@@ -12,22 +16,25 @@
 
 <script>
 export default {
-  name: 'FormHeader',
+  name: "FormHeader",
   props: {
     title: {
       type: String,
       Required: true,
-      default: 'lorem title'
+      default: "lorem title",
+    },
+    titleWord: {
+      type: String,
+      Required: false,
     },
     subTitle: {
       type: String,
       Required: true,
-      default: 'lorem subtitle'
-    }
+      default: "lorem subtitle",
+    },
   },
-}
+};
 </script>
-
 
 <style scoped lang="scss">
 .form-header {
@@ -43,6 +50,10 @@ export default {
     color: var(--dark-gray);
     margin: 0;
     line-height: 40px;
+  }
+
+  &__word {
+    color: var(--main-color);
   }
 
   &__sub-title {

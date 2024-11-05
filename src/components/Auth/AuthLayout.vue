@@ -1,7 +1,12 @@
 <template>
   <div class="auth-layout">
     <div class="auth-layout__banner">
-      <img class="auth-layout__logo" src="@/assets/images/auth/logo.svg" alt="kn logo" title="kn logo">
+      <img
+        class="auth-layout__logo"
+        src="@/assets/images/auth/logo.svg"
+        alt="kn logo"
+        title="kn logo"
+      />
     </div>
 
     <div class="auth-layout__form">
@@ -12,15 +17,15 @@
 
 <script>
 export default {
-  name: 'AuthLayout'
-}
+  name: "AuthLayout",
+};
 </script>
-
 
 <style scoped lang="scss">
 .auth-layout {
-  min-block-size: 100vh;
+  block-size: 100vh;
   padding: 40px 64px;
+  padding-inline-end: 0;
   display: flex;
   gap: 64px;
 
@@ -30,9 +35,11 @@ export default {
   }
 
   &__banner {
-    background-image: url('@/assets/images/auth/bg.svg');
+    inline-size: 45%;
+    background-image: url("@/assets/images/auth/bg.svg");
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center center;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -44,7 +51,7 @@ export default {
     }
 
     &::before {
-      content: '';
+      content: "";
       position: absolute;
       inset: 0;
       background-color: var(--dark-blue-gray);
@@ -60,10 +67,10 @@ export default {
   }
 
   &__form {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    justify-content: center;
+    inline-size: 55%;
+    height: 100%;
+    overflow-y: auto;
+    padding-inline-end: 64px;
 
     @media (max-width: 991px) {
       inline-size: 100%;
