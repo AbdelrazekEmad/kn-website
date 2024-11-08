@@ -1,12 +1,7 @@
 <template>
   <div class="auth-layout">
     <div class="auth-layout__banner">
-      <img
-        class="auth-layout__logo"
-        src="@/assets/images/auth/logo.svg"
-        alt="kn logo"
-        title="kn logo"
-      />
+      <img class="auth-layout__logo" src="@/assets/images/auth/logo.svg" alt="kn logo" title="kn logo" />
     </div>
 
     <div class="auth-layout__form">
@@ -23,9 +18,7 @@ export default {
 
 <style scoped lang="scss">
 .auth-layout {
-  block-size: 100vh;
   padding: 40px 64px;
-  padding-inline-end: 0;
   display: flex;
   gap: 64px;
 
@@ -44,7 +37,9 @@ export default {
     align-items: center;
     justify-content: center;
     border-radius: 24px;
-    position: relative;
+    position: sticky;
+    inset-block-start: 40px;
+    block-size: calc(100vh - 80px);
 
     @media (max-width: 991px) {
       display: none;
@@ -68,9 +63,7 @@ export default {
 
   &__form {
     inline-size: 55%;
-    height: 100%;
-    overflow-y: auto;
-    padding-inline-end: 64px;
+    block-size: 100%;
 
     @media (max-width: 991px) {
       inline-size: 100%;

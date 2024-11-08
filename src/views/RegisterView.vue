@@ -2,11 +2,8 @@
   <div class="register-layout">
     <AuthLayout>
       <div class="register-layout__content">
-        <FormHeader
-          :title="$t('REGISTER.REGISTER_TITLE_1')"
-          :titleWord="$t('REGISTER.REGISTER_TITLE_2')"
-          :subTitle="$t('REGISTER.REGISTER_SUBTITLE')"
-        />
+        <FormHeader :title="$t('REGISTER.REGISTER_TITLE_1')" :titleWord="$t('REGISTER.REGISTER_TITLE_2')"
+          :subTitle="$t('REGISTER.REGISTER_SUBTITLE')" />
 
         <div class="register-layout__wrapper">
           <h3 class="register-layout__label">
@@ -14,11 +11,7 @@
           </h3>
 
           <div class="register-layout__boxes">
-            <div
-              v-for="(option, index) in types"
-              :key="index"
-              class="register-layout__box"
-            >
+            <div v-for="(option, index) in types" :key="index" class="register-layout__box">
               <RadioButton :option="option" @onSelect="changeType" />
             </div>
           </div>
@@ -26,27 +19,15 @@
 
         <div class="register-layout__boxes">
           <div class="register-layout__box">
-            <FormInput
-              :placeholder="$t('REGISTER.FIRST_NAME_PLACEHOLDER')"
-              type="text"
-              :label="$t('REGISTER.FIRST_NAME')"
-              :error="v$.firstName.$error"
-              v-model="v$.firstName.$model"
-            >
+            <FormInput :placeholder="$t('REGISTER.FIRST_NAME_PLACEHOLDER')" type="text"
+              :label="$t('REGISTER.FIRST_NAME')" :error="v$.firstName.$error" v-model="v$.firstName.$model">
               <template v-slot:icon>
-                <img
-                  src="@/assets/images/auth/icons/user-square.svg"
-                  alt="user first name"
-                />
+                <img src="@/assets/images/auth/icons/user-square.svg" alt="user first name" />
               </template>
 
               <template v-slot:error>
                 <div class="error-wrapper" v-if="v$.firstName.$error">
-                  <p
-                    class="error-wrapper__error"
-                    v-for="(error, index) in v$.firstName.$errors"
-                    :key="index"
-                  >
+                  <p class="error-wrapper__error" v-for="(error, index) in v$.firstName.$errors" :key="index">
                     {{ error.$message }}
                   </p>
                 </div>
@@ -55,27 +36,15 @@
           </div>
 
           <div class="register-layout__box">
-            <FormInput
-              :placeholder="$t('REGISTER.LAST_NAME_PLACEHOLDER')"
-              type="text"
-              :label="$t('REGISTER.LAST_NAME')"
-              :error="v$.lastName.$error"
-              v-model="v$.lastName.$model"
-            >
+            <FormInput :placeholder="$t('REGISTER.LAST_NAME_PLACEHOLDER')" type="text" :label="$t('REGISTER.LAST_NAME')"
+              :error="v$.lastName.$error" v-model="v$.lastName.$model">
               <template v-slot:icon>
-                <img
-                  src="@/assets/images/auth/icons/user-square.svg"
-                  alt="user last name"
-                />
+                <img src="@/assets/images/auth/icons/user-square.svg" alt="user last name" />
               </template>
 
               <template v-slot:error>
                 <div class="error-wrapper" v-if="v$.lastName.$error">
-                  <p
-                    class="error-wrapper__error"
-                    v-for="(error, index) in v$.lastName.$errors"
-                    :key="index"
-                  >
+                  <p class="error-wrapper__error" v-for="(error, index) in v$.lastName.$errors" :key="index">
                     {{ error.$message }}
                   </p>
                 </div>
@@ -86,23 +55,15 @@
 
         <div class="register-layout__boxes">
           <div class="register-layout__box">
-            <SelectInput
-              :error="v$.gender.$error"
-              :options="genders"
-              :label="$t('REGISTER.GENDER')"
-              @update:modelValue="onSelectGender"
-            >
+            <SelectInput :error="v$.gender.$error" :options="genders" :label="$t('REGISTER.GENDER')"
+              @update:modelValue="onSelectGender">
               <template v-slot:icon>
                 <img src="@/assets/images/auth/icons/gender.svg" alt="gender" />
               </template>
 
               <template v-slot:error>
                 <div class="error-wrapper" v-if="v$.gender.$error">
-                  <p
-                    class="error-wrapper__error"
-                    v-for="(error, index) in v$.gender.$errors"
-                    :key="index"
-                  >
+                  <p class="error-wrapper__error" v-for="(error, index) in v$.gender.$errors" :key="index">
                     {{ error.$message }}
                   </p>
                 </div>
@@ -111,32 +72,21 @@
           </div>
 
           <div class="register-layout__box" v-if="studentType">
-            <DatePicker
-              :label="$t('REGISTER.BIRTHDAY')"
-              @selectedDate="onSelectDate"
-            />
+            <DatePicker :label="$t('REGISTER.BIRTHDAY')" @selectedDate="onSelectDate" />
           </div>
         </div>
 
         <div class="register-layout__boxes">
           <div class="register-layout__box" v-if="studentType">
-            <SelectInput
-              :error="v$.nationality.$error"
-              :options="country"
-              :label="$t('REGISTER.NATIONALITY')"
-              @update:modelValue="onSelectCountry"
-            >
+            <SelectInput :error="v$.nationality.$error" :options="country" :label="$t('REGISTER.NATIONALITY')"
+              @update:modelValue="onSelectCountry">
               <template v-slot:icon>
                 <img src="@/assets/images/auth/icons/global.svg" alt="global" />
               </template>
 
               <template v-slot:error>
                 <div class="error-wrapper" v-if="v$.nationality.$error">
-                  <p
-                    class="error-wrapper__error"
-                    v-for="(error, index) in v$.nationality.$errors"
-                    :key="index"
-                  >
+                  <p class="error-wrapper__error" v-for="(error, index) in v$.nationality.$errors" :key="index">
                     {{ error.$message }}
                   </p>
                 </div>
@@ -145,24 +95,15 @@
           </div>
 
           <div class="register-layout__box">
-            <FormInput
-              :placeholder="$t('REGISTER.PHONE_NUMBER')"
-              type="text"
-              :label="$t('REGISTER.PHONE_NUMBER')"
-              :error="v$.tel.$error"
-              v-model="v$.tel.$model"
-            >
+            <FormInput :placeholder="$t('REGISTER.PHONE_NUMBER')" type="text" :label="$t('REGISTER.PHONE_NUMBER')"
+              :error="v$.tel.$error" v-model="v$.tel.$model">
               <template v-slot:icon>
                 <img src="@/assets/images/auth/icons/global.svg" alt="global" />
               </template>
 
               <template v-slot:error>
                 <div class="error-wrapper" v-if="v$.tel.$error">
-                  <p
-                    class="error-wrapper__error"
-                    v-for="(error, index) in v$.tel.$errors"
-                    :key="index"
-                  >
+                  <p class="error-wrapper__error" v-for="(error, index) in v$.tel.$errors" :key="index">
                     {{ error.$message }}
                   </p>
                 </div>
@@ -171,71 +112,41 @@
           </div>
         </div>
 
-        <FormInput
-          :placeholder="$t('REGISTER.EMAIL_PLACEHOLDER')"
-          type="email"
-          :label="$t('REGISTER.EMAIL')"
-          :error="v$.email.$error"
-          v-model="v$.email.$model"
-        >
+        <FormInput :placeholder="$t('REGISTER.EMAIL_PLACEHOLDER')" type="email" :label="$t('REGISTER.EMAIL')"
+          :error="v$.email.$error" v-model="v$.email.$model">
           <template v-slot:icon>
             <img src="@/assets/images/auth/icons/mail.svg" alt="email" />
           </template>
 
           <template v-slot:error>
             <div class="error-wrapper" v-if="v$.email.$error">
-              <p
-                class="error-wrapper__error"
-                v-for="(error, index) in v$.email.$errors"
-                :key="index"
-              >
+              <p class="error-wrapper__error" v-for="(error, index) in v$.email.$errors" :key="index">
                 {{ error.$message }}
               </p>
             </div>
           </template>
         </FormInput>
 
-        <FormInput
-          :placeholder="$t('REGISTER.PASSWORD_PLACEHOLDER')"
-          type="password"
-          :label="$t('REGISTER.PASSWORD')"
-          :error="v$.password.$error"
-          v-model="v$.password.$model"
-        >
+        <FormInput :placeholder="$t('REGISTER.PASSWORD_PLACEHOLDER')" type="password" :label="$t('REGISTER.PASSWORD')"
+          :error="v$.password.$error" v-model="v$.password.$model">
           <template v-slot:icon>
-            <img
-              src="@/assets/images/auth/icons/square-lock-password.svg"
-              alt="password"
-            />
+            <img src="@/assets/images/auth/icons/square-lock-password.svg" alt="password" />
           </template>
           <template v-slot:error>
             <div class="error-wrapper" v-if="v$.password.$error">
-              <p
-                class="error-wrapper__error"
-                v-for="(error, index) in v$.password.$errors"
-                :key="index"
-              >
+              <p class="error-wrapper__error" v-for="(error, index) in v$.password.$errors" :key="index">
                 {{ error.$message }}
               </p>
             </div>
           </template>
         </FormInput>
 
-        <CustomUploadInput
-          v-if="studentType"
-          @onSwitchInput="toggleRequired"
-          :error="v$.pdf.$error"
-          :title="$t('REGISTER.NEW_MUSLIM_MESSAGE')"
-          :subtitle="$t('REGISTER.NEW_MUSLIM')"
-          :placeholder="$t('REGISTER.CERTIFICATE')"
-        >
+        <CustomUploadInput v-if="studentType" @onSwitchInput="toggleRequired" :error="v$.pdf.$error"
+          :title="$t('REGISTER.NEW_MUSLIM_MESSAGE')" :subtitle="$t('REGISTER.NEW_MUSLIM')"
+          :placeholder="$t('REGISTER.CERTIFICATE')">
           <template v-slot:error>
             <div class="error-wrapper" v-if="v$.pdf.$error">
-              <p
-                class="error-wrapper__error"
-                v-for="(error, index) in v$.pdf.$errors"
-                :key="index"
-              >
+              <p class="error-wrapper__error" v-for="(error, index) in v$.pdf.$errors" :key="index">
                 {{ error.$message }}
               </p>
             </div>
@@ -251,15 +162,9 @@
           {{ $t("REGISTER.NOTE_MESSAGE") }}
         </p>
 
-        <FormButton
-          @handelFormSubmit="onSubmit"
-          :text="$t('REGISTER.CREATE_ACCOUNT')"
-        />
+        <FormButton @handelFormSubmit="onSubmit" :text="$t('REGISTER.CREATE_ACCOUNT')" />
 
-        <router-link
-          class="register-layout__link"
-          :to="{ name: 'loginForm', params: { locale: Tr.currentLocale } }"
-        >
+        <router-link class="register-layout__link" :to="{ name: 'loginForm', params: { locale: Tr.currentLocale } }">
           {{ $t("REGISTER.HAVE_ACCOUNT") }}
           <span>
             {{ $t("REGISTER.LOG_IN") }}
@@ -402,10 +307,9 @@ export default {
 
 <style scoped lang="scss">
 .register-layout {
-  flex-grow: 1;
-  overflow-y: auto;
-
-  height: 100%;
+  @media (max-width: 991px) {
+    block-size: fit-content;
+  }
 
   &__content {
     display: flex;
