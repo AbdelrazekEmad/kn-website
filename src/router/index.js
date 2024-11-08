@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory, RouterView } from "vue-router";
 import Tr from "@/i18n/translation";
+import dashboard_routes from "./dashboard.routes";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.VITE_BASE_URL),
@@ -74,11 +75,7 @@ const router = createRouter({
           name: "NotFound",
           component: () => import("@/views/NotFoundView.vue"),
         },
-        {
-          path: "dashboard",
-          name: "dashboard",
-          component: () => import("@/views/dashboard.vue"),
-        },
+        ...dashboard_routes,
       ],
     },
   ],
