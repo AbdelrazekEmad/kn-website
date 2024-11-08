@@ -22,13 +22,9 @@ export default {
   display: flex;
   gap: 64px;
 
-  &__banner,
-  &__form {
-    inline-size: calc((100% - 64px) / 2);
-  }
-
   &__banner {
-    inline-size: 45%;
+    flex-basis: 40%;
+    flex-shrink: 0;
     background-image: url("@/assets/images/auth/bg.svg");
     background-size: cover;
     background-repeat: no-repeat;
@@ -62,7 +58,7 @@ export default {
   }
 
   &__form {
-    inline-size: 55%;
+    flex-grow: 1;
     block-size: 100%;
 
     @media (max-width: 991px) {
