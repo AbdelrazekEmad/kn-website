@@ -7,3 +7,11 @@
 a {
   text-decoration: none;
 }
+
+html[dir='rtl'] input[type="email"] {
+  direction: rtl;
+}
+
+html[dir='rtl'] .dp__pointer {
+  text-align: end;
+}

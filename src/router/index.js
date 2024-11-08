@@ -18,9 +18,13 @@ const router = createRouter({
     },
     {
       path: "/:locale?",
-      component: RouterView,
+      component: () => import("@/views/SystemView.vue"),
       beforeEnter: Tr.routeMiddleware,
       children: [
+        {
+          path: "",
+          redirect: { name: "home-page" },
+        },
         {
           path: "home",
           name: "home-page",
@@ -75,6 +79,40 @@ const router = createRouter({
           component: () => import("@/views/NotFoundView.vue"),
         },
       ],
+    },
+    {
+      path: "/:locale?/login",
+      name: "login",
+      beforeEnter: Tr.routeMiddleware,
+      component: () => import("@/views/LoginView.vue"),
+      children: [
+        {
+          path: "",
+          name: "loginForm",
+          component: () => import("@/components/Auth/Login/LoginForm.vue"),
+        },
+        {
+          path: "forgot-password",
+          name: "ForgotPassword",
+          component: () => import("@/components/Auth/Login/ForgotPassword.vue"),
+        },
+        {
+          path: "verify-otp",
+          name: "VerifyOtp",
+          component: () => import("@/components/Auth/Login/VerifyOtp.vue"),
+        },
+        {
+          path: "reset-password",
+          name: "ResetPassword",
+          component: () => import("@/components/Auth/Login/ResetPassword.vue"),
+        },
+      ],
+    },
+    {
+      path: "/:locale?/register",
+      name: "Register",
+      beforeEnter: Tr.routeMiddleware,
+      component: () => import("@/views/RegisterView.vue"),
     },
   ],
 });
